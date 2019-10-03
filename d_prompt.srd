@@ -1,0 +1,16 @@
+$PBExportHeader$d_prompt.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=79741120 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=76 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=84 color="536870912" )
+table(column=(type=decimal(0) update=yes updatewhereclause=yes key=yes identity=yes name=prompt_id dbname="prompt.prompt_id" )
+ column=(type=char(80) update=yes updatewhereclause=yes name=description dbname="prompt.description" )
+ column=(type=char(80) update=yes updatewhereclause=yes name=wave_file dbname="prompt.wave_file" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"prompt~" ) COLUMN(NAME=~"prompt.prompt_id~") COLUMN(NAME=~"prompt.description~") COLUMN(NAME=~"prompt.wave_file~")) " update="prompt" updatewhere=1 updatekeyinplace=no )
+text(band=header alignment="2" text="prompt"border="0" color="0" x="443" y="4" height="64" width="311"  name=description_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Wave File"border="0" color="0" x="1536" y="4" height="64" width="302"  name=wave_file_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=10 border="5" color="0" x="5" y="4" height="76" width="1189" format="[general]"  name=description edit.limit=80 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=3 alignment="0" tabsequence=20 border="5" color="0" x="1207" y="4" height="76" width="919" format="[general]"  name=wave_file dddw.name=dddw_wave_file dddw.displaycolumn=filename dddw.datacolumn=filename dddw.percentwidth=100 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.hscrollbar=yes dddw.vscrollbar=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes") 

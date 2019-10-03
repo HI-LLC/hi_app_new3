@@ -1,0 +1,944 @@
+/*********************************************************************
+of_export_lesson_to_internet (long al_lesson_id, integer ai_insert_update_ind, integer ai_export_ind)
+**********************************************************************/
+
+integer li_i, li_j, li_count
+long ll_current_row, ll_method_cat_id
+long ll_lesson_id, ll_student_id, ll_teacher_id, ll_chapter_id, ll_subject_id, ll_content_id
+long ll_response_to_right_id, ll_response_to_wrong_id, ll_instruction_id, ll_preposition1, ll_preposition2
+long ll_instruction_id2, ll_method_id, ll_prompt_inst, ll_threshold_min_count
+long ll_lesson_content_id, ll_rowcount, ll_colcount, ll_col, ll_row, ll_new_row
+double ldb_degree, ldb_tries, ldb_threshold
+string ls_description,ls_picture_ind,ls_text_ind,ls_lesson_type,ls_data_collection_ind,ls_pair_ind,ls_prompt_ind,ls_active_ind
+string ls_subject_desc, ls_chapter_desc, ls_filepath, ls_sql_statement
+string ls_key_column_names[], ls_column_names[], ls_empty_list[]
+string ls_lesson_file_name, ls_coltype, ls_expression
+string ls_bitmap_path, ls_wavefile_path, ls_lesson_subpath
+any la_key_column_values[], la_column_values[], la_empty_list[]
+
+datastore lds_lesson, lds_lesson_container
+lds_lesson = create datastore
+lds_lesson.dataobject = 'd_lesson'
+select student_id, teacher_id, lesson.description, response_to_right_id, response_to_wrong_id, 
+		instruction_id, degree,	tries, picture_ind, text_ind, lesson_type, preposition1, 
+		preposition2, instruction_id2, method.method_id, data_collection_ind, pair_ind, prompt_ind, 
+		prompt_inst, threshold, threshold_min_count, active_ind, lesson_subpath 
+into :ll_student_id, :ll_teacher_id, :ls_description, :ll_response_to_right_id, :ll_response_to_wrong_id, 
+		:ll_instruction_id, :ldb_degree,	:ldb_tries, :ls_picture_ind, :ls_text_ind, :ls_lesson_type, :ll_preposition1, 
+		:ll_preposition2, :ll_instruction_id2, :ll_method_id, :ls_data_collection_ind, :ls_pair_ind, :ls_prompt_ind, 
+		:ll_prompt_inst, :ldb_threshold, :ll_threshold_min_count, :ls_active_ind, :ls_lesson_subpath 
+from lesson, method 
+where lesson.method_id = method.method_id and lesson.lesson_id = :al_lesson_id;
+
+if ll_method_id >= 3 and ll_method_id < 13 then
+	ll_method_cat_id = 10313 
+elseif ll_method_id >= 17 and ll_method_id < 19 then
+	ll_method_cat_id = 11719
+else
+	ll_method_cat_id = 10000 + ll_method_id*100 + ll_method_id 
+end if
+
+ls_lesson_file_name = string(ll_method_id, "00") + lower(ls_description) + string(al_lesson_id, "0000000000") + ".txt"
+lds_lesson.SaveAs(ls_lesson_file_name, text!, FALSE)
+of_export_lesson_index(ls_lesson_file_name)
+of_export_lesson_index(ls_lesson_subpath)
+ls_lesson_file_name = string(ll_method_id, "00") + lower(ls_description) + string(al_lesson_id, "0000000000") + ".xml"
+lds_lesson.SaveAs(ls_lesson_file_name, XML!, FALSE)
+of_export_lesson_index(ls_lesson_file_name)
+of_export_lesson_index(ls_lesson_subpath)
+if ll_method_id = 15 or ll_method_id = 16 then
+	lds_lesson_container = create datastore
+	lds_lesson_container.dataobject = 'd_lesson_container'
+	lds_lesson_container.SetTransObject(SQLCA)
+	ll_rowcount = lds_lesson_container.Retrieve(al_lesson_id)
+	if ll_rowcount < 1 then 	
+		destroy lds_lesson
+		return -1
+	end if
+	for ll_row = 1 to ll_rowcount
+		ls_bitmap_path = trim(lds_lesson_container.GetItemString(ll_row, 'bitmap_file'))
+		if isnull(ls_bitmap_path) then ls_bitmap_path = ""
+		if ls_bitmap_path <> "" then
+			ls_bitmap_path = "Static Table\bitmap\container\" + ls_bitmap_path
+			of_export_resource_index(ls_bitmap_path, "")
+		end if
+		ls_wavefile_path = trim(lds_lesson_container.GetItemString(ll_row, 'wave_file'))
+		if isnull(ls_wavefile_path) then ls_wavefile_path = ""
+		if ls_wavefile_path <> "" then
+			ls_wavefile_path = "Static Table\wave\container\" + ls_wavefile_path
+			of_export_resource_index(ls_wavefile_path, "")
+		end if
+		ls_bitmap_path = trim(lds_lesson_container.GetItemString(ll_row, 'bean_bitmap_file'))
+		if isnull(ls_bitmap_path) then ls_bitmap_path = ""
+		if ls_bitmap_path <> "" then
+			ls_bitmap_path = "Static Table\bitmap\Bean\" + ls_bitmap_path
+			of_export_resource_index(ls_bitmap_path, "")
+		end if
+		ls_wavefile_path = trim(lds_lesson_container.GetItemString(ll_row, 'bean_wave_file'))
+		if isnull(ls_wavefile_path) then ls_wavefile_path = ""
+		if ls_wavefile_path <> "" then
+			ls_wavefile_path = "Static Table\wave\Bean\" + ls_wavefile_path
+			of_export_resource_index(ls_wavefile_path, "")
+		end if
+	next	
+	ls_lesson_file_name = string(ll_method_id, "00") + lower(ls_description) + string(al_lesson_id, "0000000000") + "_con.txt"
+	lds_lesson_container.SaveAs(ls_lesson_file_name, TEXT!, FALSE)
+	of_export_lesson_index(ls_lesson_file_name)		
+	of_export_lesson_index(ls_lesson_subpath)
+	ls_lesson_file_name = string(ll_method_id, "00") + lower(ls_description) + string(al_lesson_id, "0000000000") + "_con.xml"	
+	lds_lesson_container.SaveAs(ls_lesson_file_name, XML!, FALSE)
+	of_export_lesson_index(ls_lesson_file_name)		
+	of_export_lesson_index(ls_lesson_subpath)
+	destroy lds_lesson_container
+end if
+
+of_export_preposition(ll_preposition1, ici_internet_export)
+of_export_preposition(ll_preposition2, ici_internet_export)
+of_export_instruction(ll_instruction_id, ici_internet_export)
+of_export_instruction(ll_instruction_id2, ici_internet_export)
+of_export_response_to_right(ll_response_to_right_id, ici_internet_export)
+of_export_response_to_wrong(ll_response_to_wrong_id, ici_internet_export)
+of_export_prompt_inst(ll_prompt_inst, ici_internet_export)
+
+DECLARE subject_cur CURSOR FOR
+	select distinct chapter.subject_id
+	from chapter, content, lesson_content
+	where chapter.chapter_id = content.chapter_id and
+		content.content_id = lesson_content.content_id and
+		lesson_content.lesson_id = :al_lesson_id;
+OPEN subject_cur;
+do 	
+	FETCH subject_cur INTO :ll_subject_id; 
+	IF SQLCA.sqlcode <> 0 THEN exit
+   of_export_subject(ll_subject_id, ici_internet_export, ici_the_item_only)	
+LOOP WHILE SQLCA.sqlcode = 0
+CLOSE subject_cur;
+DECLARE chapter_cur CURSOR FOR
+	select distinct content.chapter_id
+	from content, lesson_content
+	where content.content_id = lesson_content.content_id and
+		lesson_content.lesson_id = :al_lesson_id;
+OPEN chapter_cur;
+do 	
+	FETCH chapter_cur INTO :ll_chapter_id;
+	IF SQLCA.sqlcode <> 0 THEN exit
+	of_export_chapter(0, ll_chapter_id, ici_internet_export, ici_the_item_only)
+LOOP WHILE SQLCA.sqlcode <> 100 or  SQLCA.sqlcode <> -1
+CLOSE chapter_cur;
+DECLARE content_cur CURSOR FOR
+	select content_id
+	from lesson_content
+	where lesson_content.lesson_id = :al_lesson_id;
+OPEN content_cur;
+do 	
+	FETCH content_cur INTO :ll_content_id;
+	IF SQLCA.sqlcode <> 0 THEN exit
+	of_export_content(0, ll_content_id, ici_internet_export)
+LOOP WHILE SQLCA.sqlcode <> 100 or  SQLCA.sqlcode <> -1
+CLOSE content_cur;
+DECLARE lesson_content_cur CURSOR FOR
+	select lesson_content_id
+	from lesson_content
+	where lesson_content.lesson_id = :al_lesson_id;
+OPEN lesson_content_cur;
+do 	
+	FETCH lesson_content_cur INTO :ll_lesson_content_id;
+	IF SQLCA.sqlcode <> 0 THEN exit
+	of_export_lesson_content(al_lesson_id, ll_lesson_content_id, ici_internet_export, ici_the_item_only)
+LOOP WHILE SQLCA.sqlcode <> 100 or  SQLCA.sqlcode <> -1
+CLOSE lesson_content_cur;
+destroy lds_lesson
+return 1
+
+/*********************************************************************
+integer of_export_subject (long al_subject_id, integer ai_insert_update_ind, integer ai_export_ind)
+**********************************************************************/
+
+long ll_chapter_id, ll_student_id, ll_teacher_id
+double ld_degree, ld_standard_pct
+string ls_description, ls_bitmap_ind, ls_wav_ind, ls_presentation_type, ls_file_prefix = ""
+string ls_subject_desc, ls_chapter_desc, ls_filepath, ls_dir_path, ls_sql_statement
+date ld_creation_date
+string ls_column_names[], ls_key_column_names[], ls_empty_list[]
+any la_column_values[], la_key_column_values[], la_empty_list[]
+
+//MessageBox("of_export_subject", "A")
+//MessageBox("al_subject_id", string(al_subject_id))
+select description, degree, standard_pct, bitmap_ind, wav_ind, presentation_type, student_id, teacher_id, creation_date
+into :ls_subject_desc, :ld_degree, :ld_standard_pct, :ls_bitmap_ind, :ls_wav_ind,
+		:ls_presentation_type, :ll_student_id, :ll_teacher_id, :ld_creation_date
+from subject
+where subject_id = :al_subject_id;
+//if ai_insert_update_ind = 2 then ls_file_prefix = string(al_subject_id, "0000") + "00000000"
+//MessageBox("ls_subject_desc", string(ls_subject_desc))
+if not isnull(ls_subject_desc) then 		// write resource file inde
+	if trim(ls_subject_desc) <> '' then
+		ls_dir_path = 'materials\wave\' + ls_subject_desc
+		of_export_resource_dir_list(ls_dir_path)
+		ls_dir_path = 'materials\bitmap\' + ls_subject_desc
+		of_export_resource_dir_list(ls_dir_path)
+	end if
+end if
+if ai_insert_update_ind = 1 then // INSERT subject with system create ID
+	ls_column_names = {"description","degree","standard_pct","bitmap_ind","wav_ind","presentation_type","student_id","teacher_id","creation_date"}
+	la_column_values[1] = ls_subject_desc
+	la_column_values[2] = ld_degree
+	la_column_values[3] = ld_standard_pct
+	la_column_values[4] = ls_bitmap_ind
+	la_column_values[5] = ls_wav_ind
+	la_column_values[6] = ls_presentation_type
+	la_column_values[7] = ll_student_id
+	la_column_values[8] = ll_teacher_id
+	la_column_values[9] = ld_creation_date	
+	ls_sql_statement = of_make_sql_statement("SUBJECT","INSERT",ls_key_column_names,ls_column_names,la_key_column_values,la_column_values)
+	FileWrite(ii_SQL_FileNum, ls_sql_statement) 		
+elseif ai_insert_update_ind = 0 then // INSERT content with provided content_id if content not exists, otherwise update the content
+	ls_column_names = {"subject_id","description","degree","standard_pct","bitmap_ind","wav_ind","presentation_type","student_id","teacher_id","creation_date"}
+	la_column_values[1] = al_subject_id
+	la_column_values[2] = ls_subject_desc
+	la_column_values[3] = ld_degree
+	la_column_values[4] = ld_standard_pct
+	la_column_values[5] = ls_bitmap_ind
+	la_column_values[6] = ls_wav_ind
+	la_column_values[7] = ls_presentation_type
+	la_column_values[8] = ll_student_id
+	la_column_values[9] = ll_teacher_id
+	la_column_values[10] = ld_creation_date
+	ls_sql_statement = of_make_sql_statement("SUBJECT","INSERT",ls_key_column_names,ls_column_names,la_key_column_values,la_column_values)
+	FileWrite(ii_SQL_FileNum, ls_sql_statement) 		
+	ls_column_names = ls_empty_list
+	ls_column_names = {"description","degree","standard_pct","bitmap_ind","wav_ind","presentation_type","student_id","teacher_id","creation_date"}
+	la_column_values = la_empty_list
+	la_column_values[1] = ls_subject_desc
+	la_column_values[2] = ld_degree
+	la_column_values[3] = ld_standard_pct
+	la_column_values[4] = ls_bitmap_ind
+	la_column_values[5] = ls_wav_ind
+	la_column_values[6] = ls_presentation_type
+	la_column_values[7] = ll_student_id
+	la_column_values[8] = ll_teacher_id
+	la_column_values[9] = ld_creation_date	
+	ls_key_column_names[1] = "subject_id"
+	la_key_column_values[1] = al_subject_id
+	ls_sql_statement = of_make_sql_statement("SUBJECT","UPDATE",ls_key_column_names,ls_column_names,la_key_column_values,la_column_values)
+	FileWrite(ii_SQL_FileNum, ls_sql_statement) 		
+end if
+if ai_export_ind = ici_the_item_only then	return 1
+DECLARE chapter_cur CURSOR FOR
+	SELECT chapter_id
+	FROM chapter
+	WHERE subject_id = :al_subject_id;
+OPEN chapter_cur;
+do 
+	FETCH chapter_cur INTO :ll_chapter_id;
+	IF SQLCA.sqlcode <> 0 THEN exit
+	of_export_chapter(al_subject_id, ll_chapter_id, ai_insert_update_ind, ai_export_ind)
+LOOP WHILE SQLCA.sqlcode = 0
+CLOSE chapter_cur;
+
+
+return 1
+end function
+
+
+public function integer of_export_subject (long al_subject_id, integer ai_insert_update_ind, integer ai_export_ind);long ll_chapter_id, ll_student_id, ll_teacher_id
+double ld_degree, ld_standard_pct
+string ls_description, ls_bitmap_ind, ls_wav_ind, ls_presentation_type, ls_file_prefix = ""
+string ls_subject_desc, ls_chapter_desc, ls_filepath, ls_dir_path, ls_sql_statement
+date ld_creation_date
+string ls_column_names[], ls_key_column_names[], ls_empty_list[]
+any la_column_values[], la_key_column_values[], la_empty_list[]
+
+//MessageBox("of_export_subject", "A")
+//MessageBox("al_subject_id", string(al_subject_id))
+select description, degree, standard_pct, bitmap_ind, wav_ind, presentation_type, student_id, teacher_id, creation_date
+into :ls_subject_desc, :ld_degree, :ld_standard_pct, :ls_bitmap_ind, :ls_wav_ind,
+		:ls_presentation_type, :ll_student_id, :ll_teacher_id, :ld_creation_date
+from subject
+where subject_id = :al_subject_id;
+//if ai_insert_update_ind = 2 then ls_file_prefix = string(al_subject_id, "0000") + "00000000"
+//MessageBox("ls_subject_desc", string(ls_subject_desc))
+if not isnull(ls_subject_desc) then 		// write resource file inde
+	if trim(ls_subject_desc) <> '' then
+		ls_dir_path = 'materials\wave\' + ls_subject_desc
+		of_export_resource_dir_list(ls_dir_path)
+		ls_dir_path = 'materials\bitmap\' + ls_subject_desc
+		of_export_resource_dir_list(ls_dir_path)
+	end if
+end if
+if ai_insert_update_ind = 1 then // INSERT subject with system create ID
+	ls_column_names = {"description","degree","standard_pct","bitmap_ind","wav_ind","presentation_type","student_id","teacher_id","creation_date"}
+	la_column_values[1] = ls_subject_desc
+	la_column_values[2] = ld_degree
+	la_column_values[3] = ld_standard_pct
+	la_column_values[4] = ls_bitmap_ind
+	la_column_values[5] = ls_wav_ind
+	la_column_values[6] = ls_presentation_type
+	la_column_values[7] = ll_student_id
+	la_column_values[8] = ll_teacher_id
+	la_column_values[9] = ld_creation_date	
+	ls_sql_statement = of_make_sql_statement("SUBJECT","INSERT",ls_key_column_names,ls_column_names,la_key_column_values,la_column_values)
+	FileWrite(ii_SQL_FileNum, ls_sql_statement) 		
+elseif ai_insert_update_ind = 0 then // INSERT content with provided content_id if content not exists, otherwise update the content
+	ls_column_names = {"subject_id","description","degree","standard_pct","bitmap_ind","wav_ind","presentation_type","student_id","teacher_id","creation_date"}
+	la_column_values[1] = al_subject_id
+	la_column_values[2] = ls_subject_desc
+	la_column_values[3] = ld_degree
+	la_column_values[4] = ld_standard_pct
+	la_column_values[5] = ls_bitmap_ind
+	la_column_values[6] = ls_wav_ind
+	la_column_values[7] = ls_presentation_type
+	la_column_values[8] = ll_student_id
+	la_column_values[9] = ll_teacher_id
+	la_column_values[10] = ld_creation_date
+	ls_sql_statement = of_make_sql_statement("SUBJECT","INSERT",ls_key_column_names,ls_column_names,la_key_column_values,la_column_values)
+	FileWrite(ii_SQL_FileNum, ls_sql_statement) 		
+	ls_column_names = ls_empty_list
+	ls_column_names = {"description","degree","standard_pct","bitmap_ind","wav_ind","presentation_type","student_id","teacher_id","creation_date"}
+	la_column_values = la_empty_list
+	la_column_values[1] = ls_subject_desc
+	la_column_values[2] = ld_degree
+	la_column_values[3] = ld_standard_pct
+	la_column_values[4] = ls_bitmap_ind
+	la_column_values[5] = ls_wav_ind
+	la_column_values[6] = ls_presentation_type
+	la_column_values[7] = ll_student_id
+	la_column_values[8] = ll_teacher_id
+	la_column_values[9] = ld_creation_date	
+	ls_key_column_names[1] = "subject_id"
+	la_key_column_values[1] = al_subject_id
+	ls_sql_statement = of_make_sql_statement("SUBJECT","UPDATE",ls_key_column_names,ls_column_names,la_key_column_values,la_column_values)
+	FileWrite(ii_SQL_FileNum, ls_sql_statement) 		
+end if
+if ai_export_ind = ici_the_item_only then	return 1
+DECLARE chapter_cur CURSOR FOR
+	SELECT chapter_id
+	FROM chapter
+	WHERE subject_id = :al_subject_id;
+OPEN chapter_cur;
+do 
+	FETCH chapter_cur INTO :ll_chapter_id;
+	IF SQLCA.sqlcode <> 0 THEN exit
+	of_export_chapter(al_subject_id, ll_chapter_id, ai_insert_update_ind, ai_export_ind)
+LOOP WHILE SQLCA.sqlcode = 0
+CLOSE chapter_cur;
+
+
+return 1
+end function
+
+
+
+/*********************************************************************
+of_export_lesson_index(string as_file_path) **************************
+**********************************************************************/
+
+of_export_lesson_index(string as_file_path)
+is_lesson_file_list[upperbound(is_lesson_file_list) + 1] = as_file_path
+FileWrite(ii_Lesson_Index_FileNum, lower(as_file_path)) 
+return 1
+
+
+/*********************************************************************
+wf_add_dd_parameters *************************************************
+**********************************************************************/
+
+ids_student_lesson_type.is_select_sql = 
+" Select l.account_id as account_id, sl.student_id as student_id, m.method_cat_id as method_cat_id, m.method_cat_desc as method_name " + &
+" From Method as m, Lesson as l,StudentLesson sl Where m.method_id eq l.method_id and " + &
+" sl.account_id eq l.account_id and sl.lesson_id eq l.lesson_id and " + ls_where_sl + &
+" l.account_id eq " + string(gn_appman.il_account_id) + " Group By l.account_id, sl.student_id, m.method_cat_id " + &
+" union " + &
+"Select la.account_id as account_id, sl.student_id as student_id, m.method_cat_id as method_cat_id, m.method_cat_desc as method_name " + &
+" From Method as m, LessonAcquired As la, Lesson As l,StudentLesson as sl Where la.orig_acct_id eq l.account_id and " + &
+" sl.account_id eq la.account_id and sl.lesson_id eq la.lesson_id and "	 + ls_where_sl + &					
+" la.lesson_id eq l.lesson_id and l.method_id eq m.method_id and la.account_id eq " + string(gn_appman.il_account_id) + &
+" Group By la.account_id, sl.student_id, m.method_cat_id "
+ids_student_lesson_type.is_unique_col[1] = "method_cat_id"
+ids_student_lesson_type.is_desc_col = {"method_name"}
+
+
+
+ids_lesson_list.is_database_table = "Lesson"
+if gn_appman.is_account_type <> 'A' then  
+	ids_lesson_list.is_select_sql = "Select account_id, account_id as orig_acct_id, m.method_cat_desc as method_name, m.method_cat_id as method_cat_id, m.method_id as method_id, l.lesson_id as lesson_id, lesson_name " + &
+" From Lesson As l, Method as m Where l.method_id eq m.method_id and l.account_id eq " + string(gn_appman.il_account_id) + &
+" union " + &
+"Select la.account_id as account_id, la.orig_acct_id as orig_acct_id, m.method_cat_desc as method_name,m.method_cat_id as method_cat_id, m.method_id as method_id, l.lesson_id as lesson_id, lesson_name " + &
+" From LessonAcquired As la, Lesson As l, Method as m Where la.orig_acct_id eq l.account_id " + &
+" and la.lesson_id eq l.lesson_id and l.method_id eq m.method_id and la.account_id eq " + string(gn_appman.il_account_id)
+else
+	ids_lesson_list.is_select_sql = "Select l.account_id as account_id, l.account_id as orig_acct_id, m.method_cat_desc as method_name, m.method_cat_id as method_cat_id, m.method_id as methodid, l.lesson_id as lesson_id, l.lesson_name as lesson_name" + &
+						" From Lesson As l, Method as m Where l.method_id eq m.method_id " + &
+						" union " + &
+						"Select la.account_id as account_id, la.orig_acct_id as orig_acct_id, m.method_cat_desc as method_name, m.method_cat_id as method_cat_id, m.method_id as method_id, l.lesson_id as lesson_id, l.lesson_name as lesson_name " + &
+						" From LessonAcquired As la, Lesson As l, Method as m Where la.orig_acct_id eq l.account_id " + &
+						" and la.lesson_id eq l.lesson_id and l.method_id eq m.method_id "
+end if
+//ids_lesson_list.is_where_col[1] = "account_id"
+//ids_lesson_list.ia_where_value[1] = gn_appman.il_account_id
+ids_lesson_list.is_unique_col[1] = "orig_acct_id"
+ids_lesson_list.is_unique_col[2] = "lesson_id"
+ids_lesson_list.is_desc_col = {"lesson_name"}
+//ids_lesson_list.is_constant_col[1] = "account_id"
+//ids_lesson_list.ia_constant_val[1] = gn_appman.il_account_id
+
+ids_response_to_right.is_database_table = "ResponseTR"
+if gn_appman.is_account_type <> 'A' then  
+	ids_response_to_right.is_select_sql = "Select account_id, account_id as orig_acct_id, response_id, wave_file " + &
+						"From ResponseTR Where account_id eq " + string(gn_appman.il_account_id) +" UNION " + &
+						"Select rtra.account_id as account_id, rtra.orig_acct_id as orig_acct_id, rtr.response_id as response_id, wave_file " + &
+						"From ResponseTRacquired as rtra, ResponseTR as rtr " + &
+						"Where rtra.orig_acct_id eq rtr.account_id and rtra.response_id eq rtr.response_id and rtra.account_id eq "  + string(gn_appman.il_account_id)
+else
+	ids_response_to_right.is_select_sql = "Select account_id, account_id as orig_acct_id, response_id, wave_file " + &
+						"From ResponseTR  UNION " + &
+						"Select rtra.account_id as account_id, rtra.orig_acct_id as orig_acct_id, rtr.response_id as response_id, wave_file " + &
+						"From ResponseTRacquired as rtra, ResponseTR as rtr " + &
+						"Where rtra.orig_acct_id eq rtr.account_id and rtra.response_id eq rtr.response_id " 
+end if
+ids_response_to_right.is_unique_col[1] = "orig_acct_id"
+ids_response_to_right.is_unique_col[2] = "response_id"
+ids_response_to_right.is_desc_col = {"wave_file"}
+
+ids_response_to_wrong.is_database_table = "ResponseTW"
+if gn_appman.is_account_type <> 'A' then  
+	ids_response_to_wrong.is_select_sql = "Select account_id, account_id as orig_acct_id, response_id, wave_file " + &
+						"From ResponseTW Where account_id eq " + string(gn_appman.il_account_id) +" UNION " + &
+						"Select rtwa.account_id as account_id, rtwa.orig_acct_id as orig_acct_id, rtw.response_id as response_id, wave_file " + &
+						"From ResponseTWacquired as rtwa, ResponseTW as rtw " + &
+						"Where rtwa.orig_acct_id eq rtw.account_id and rtwa.response_id eq rtw.response_id and rtwa.account_id eq "  + string(gn_appman.il_account_id)
+else
+	ids_response_to_wrong.is_select_sql = "Select account_id, account_id as orig_acct_id, response_id, wave_file " + &
+						"From ResponseTW  UNION " + &
+						"Select rtwa.account_id as account_id, rtwa.orig_acct_id as orig_acct_id, rtw.response_id as response_id, wave_file " + &
+						"From ResponseTWacquired as rtwa, ResponseTW as rtw " + &
+						"Where rtwa.orig_acct_id eq rtw.account_id and rtwa.response_id eq rtw.response_id " 
+end if
+ids_response_to_wrong.is_unique_col[1] = "orig_acct_id"
+ids_response_to_wrong.is_unique_col[2] = "response_id"
+ids_response_to_wrong.is_desc_col = {"wave_file"}
+
+ids_student_RTR.is_database_table = "StudentRTR"
+ids_student_RTR.is_select_sql = "Select srtr.account_id as account_id, srtr.student_id as student_id, srtr.orig_acct_id as orig_acct_id, srtr.response_id as response_id, " + &
+											"rtr.wave_file as wave_file from StudentRTR As srtr, ResponseTR as rtr " + &
+											"where srtr.orig_acct_id eq rtr.account_id and srtr.response_id eq rtr.response_id "
+if gn_appman.is_account_type <> 'A' then 
+	ids_student_RTR.is_select_sql = ids_student_RTR.is_select_sql + " and srtr.account_id eq " + string(gn_appman.il_account_id)
+end if
+ids_student_RTR.is_key_col[] = {"account_id", "student_id", "orig_acct_id", "response_id"}
+ids_student_RTR.is_unique_col[1] = "orig_acct_id"
+ids_student_RTR.is_unique_col[2] = "response_id"
+ids_student_RTR.is_desc_col = {"wave_file"}
+//ids_student_RTR.is_constant_col[1] = "account_id"
+//ids_student_RTR.ia_constant_val[1] = gn_appman.il_account_id
+
+ids_student_RTW.is_database_table = "StudentRTW"
+ids_student_RTW.is_select_sql = "Select srtw.account_id as account_id, srtw.student_id as student_id, srtw.orig_acct_id as orig_acct_id, srtw.response_id as response_id, " + &
+											"rtw.wave_file as wave_file from StudentRTW As srtw, ResponseTW as rtw " + &
+											"where srtw.orig_acct_id eq rtw.account_id and srtw.response_id eq rtw.response_id "
+if gn_appman.is_account_type <> 'A' then 
+	ids_student_RTW.is_select_sql = ids_student_RTW.is_select_sql + " and srtw.account_id eq " + string(gn_appman.il_account_id)
+end if
+ids_student_RTW.is_key_col[] = {"account_id", "student_id", "orig_acct_id", "response_id"}
+ids_student_RTW.is_unique_col[1] = "orig_acct_id"
+ids_student_RTW.is_unique_col[2] = "response_id"
+ids_student_RTW.is_desc_col = {"wave_file"}
+//ids_student_RTW.is_constant_col[1] = "account_id"
+//ids_student_RTW.ia_constant_val[1] = gn_appman.il_account_id
+
+ids_report.is_database_table = "ProgressData"
+ids_report.is_select_sql = "Select p.account_id as account_id, p.student_id as student_id, p.orig_acct_id as orig_acct_id, " + &
+									"p.lesson_id as lesson_id, p.progress_data_id as progress_data_id,p.begin_date as begin_date, " + &
+									"p.end_date as end_date, p.begin_date as begin_date_t, p.end_date as end_date_t, l.method_cat_id as method_cat_id " + &
+									"from ProgressData as p, Lesson as l Where p.lesson_id eq l.lesson_id and p.account_id eq " + string(gn_appman.il_account_id)
+									
+ids_report.is_key_col[] = {"account_id", "student_id", "orig_acct_id","lesson_id", "progress_data_id"}
+ids_report.is_unique_col[1] = "progress_data_id"
+ids_report.is_desc_col = {"begin_date_t", "end_date_t"}
+ids_report.is_seperator = " To "
+
+ids_account_reward_source.is_database_table = "RewardSource"
+if gn_appman.is_account_type <> 'A' then  
+	ids_account_reward_source.is_select_sql = "Select account_id, account_id as orig_acct_id, resource_id, media_type, site_path, file_name, description, total_duration  " + &
+			"From RewardSource Where account_id eq " + string(gn_appman.il_account_id) +" UNION " + &
+			"Select rsa.account_id as account_id, rsa.orig_acct_id as orig_acct_id, rsa.resource_id as resource_id, media_type, site_path, file_name, description, total_duration  " + &
+			"From RewardSourceAcquired as rsa, RewardSource as rs " + &
+			"Where rsa.orig_acct_id eq rs.account_id and rsa.resource_id eq rs.resource_id and rsa.account_id eq "  + string(gn_appman.il_account_id) 
+else
+	ids_account_reward_source.is_select_sql = "Select account_id, account_id as orig_acct_id, resource_id, media_type, site_path, file_name, description, total_duration  " + &
+			"From RewardSource UNION " + &
+			"Select rsa.account_id as account_id, rsa.orig_acct_id as orig_acct_id, rsa.resource_id as resource_id, media_type, site_path, file_name, description, total_duration  " + &
+			"From RewardSourceAcquired as rsa, RewardSource as rs " + &
+			"Where rsa.orig_acct_id eq rs.account_id and rsa.resource_id eq rs.resource_id " 
+end if
+ids_account_reward_source.is_unique_col[1] = "orig_acct_id"
+ids_account_reward_source.is_unique_col[2] = "resource_id"
+ids_account_reward_source.is_desc_col = {"file_name"}
+
+ids_student_reward.is_database_table = "StudentReward"
+ids_student_reward.is_select_sql = "Select sr.account_id as account_id, orig_acct_id, student_id, sr.resource_id as resource_id, " + &
+											"description, file_name, sort_order  " + &
+											"from StudentReward As sr, RewardSource as rs " + &
+											"where sr.orig_acct_id eq rs.account_id and " + &
+											"sr.resource_id eq rs.resource_id "
+if gn_appman.is_account_type <> 'A' then 
+	ids_student_reward.is_select_sql = ids_student_reward.is_select_sql + " and sr.account_id eq " + string(gn_appman.il_account_id)
+end if
+ids_student_reward.is_select_sql = ids_student_reward.is_select_sql + " order by sort_order "
+ids_student_reward.is_key_col[] = {"account_id", "student_id", "orig_acct_id", "resource_id"}
+ids_student_reward.is_unique_col[1] = "orig_acct_id"
+ids_student_reward.is_unique_col[2] = "resource_id"
+ids_student_reward.is_desc_col = {"description"}
+//ids_student_reward.is_constant_col[1] = "account_id"
+//ids_student_reward.ia_constant_val[1] = gn_appman.il_account_id
+
+
+
+ids_reward_program.is_database_table = "RewardProgram"
+ids_reward_program.is_select_sql = "Select account_id, reward_program_id, description, token_num, token_file  " + &
+									"from  RewardProgram " + ls_sql_account_id
+ids_reward_program.is_unique_col[1] = "reward_program_id"
+ids_reward_program.is_desc_col = {"description"}
+
+ids_reward_program_content.is_database_table = "RewardProgramContent"
+ids_reward_program_content.is_select_sql = "Select RPC.account_id As account_id, reward_program_id, RPC.reward_source_id As reward_source_id, file_name, reward_duration  " + &
+									"from  RewardProgramContent As RPC, RewardSource As RS " + &
+									"where AS.resource_id eq RS.resource_id " + ls_sql_account_id2
+ids_reward_program_content.is_unique_col[1] = "resource_id"
+ids_reward_program_content.is_desc_col = {"file_name"}
+
+ids_student_reward_program.is_database_table = "StudentRewardProgram"
+ids_student_reward_program.is_select_sql = "Select SRP.account_id As account_id, SRP.reward_program_id AS reward_program_id, RP.description As description, SRP.token_num As token_num " + &
+									"from  StudentRewardProgram As SRP, RewardProgram As RP " + &
+									"where SRP.account_id eq RP.account_id "
+if gn_appman.is_account_type <> 'A' then 
+	ids_student_reward_program.is_select_sql = ids_student_reward_program.is_select_sql + " and SRP.account_id eq " + string(gn_appman.il_account_id)
+end if
+ids_student_reward_program.is_unique_col[1] = "student_id"
+ids_student_reward_program.is_desc_col = {"description"}
+
+ids_lesson_program.is_database_table = "LessonProgram"
+ids_lesson_program.is_select_sql = "Select account_id, student_id, lesson_program_id, description  " + &
+									"from  LessonProgram " + ls_sql_account_id
+//ids_lesson_program.is_unique_col[1] = "student_id"
+//ids_lesson_program.is_desc_col = {"description"}
+
+ids_lesson_program_content.is_database_table = "LessonProgramContent"
+ids_lesson_program_content.is_select_sql = "Select LPC.account_id As account_id, student_id, lesson_program_id, LPC.lesson_id As lesson_id, lesson_name " + &
+									"from  LessonProgramContent As LPC, Lesson As L " + &
+									"where LPC.account_id eq L.account_id and LPC.lesson_id eq L.lesson_id "
+if gn_appman.is_account_type <> 'A' then 
+	ids_lesson_program_content.is_select_sql = ids_lesson_program_content.is_select_sql + " and LPC.account_id eq " + string(gn_appman.il_account_id)							
+end if
+//ids_lesson_program_content.is_unique_col[1] = "lesson_program_id"
+//ids_lesson_program_content.is_desc_col = {"lesson_name"}
+
+
+return 1
+
+
+/*********************************************************************
+wf_init_parameters ***************************************************
+**********************************************************************/
+
+long ll_row, li_prompt_ind
+string ls_resource_path, ls_remote_path, ls_coltype
+string ls_lesson_name, ls_lesson_subpath
+if gn_appman.ib_online_data then
+	if not isvalid(gn_appman.ids_student) then 
+		gn_appman.ids_student = create nvo_datastore
+		gn_appman.ids_student.dataobject = "d_student"
+	end if
+	if	gn_appman.il_training_account_id <> il_account_id or &
+		gn_appman.il_training_student_id <> il_student_id then
+		gn_appman.ids_student.Reset()
+		gn_appman.ids_student.is_database_table = "Student"
+		gn_appman.ids_student.is_where_col[1] = "account_id"
+		gn_appman.ids_student.ia_where_value[1] = il_account_id
+		gn_appman.ids_student.is_where_col[2] = "student_id"
+		gn_appman.ids_student.ia_where_value[2] = il_student_id
+		gn_appman.ids_student.data_retrieve()
+	end if
+	gn_appman.il_data_threshold = gn_appman.ids_student.GetItemNumber(1, "data_count_threshold")
+	ids_lesson_parm = create nvo_datastore
+	ids_lesson_parm.dataobject = "d_lesson_parm"
+	ids_lesson_parm.is_database_table = "StudentLesson"
+	ids_lesson_parm.is_select_sql =  "Select sl.account_id as account_id, sl.orig_acct_id as orig_acct_id, sl.student_id as student_id,sl.lesson_id as lesson_id,sl.degree as degree,sl.tries as tries,sl.prompt_inst as prompt_inst,sl.prompt_ind as prompt_ind,l.instruction_id as instruction_id," + &
+												"sl.picture_ind as picture_ind,sl.text_ind as text_ind, repeat,a.site_path as site_path, l.lesson_name as lesson_name, lesson_subpath " + &
+												"from StudentLesson as sl, Account as a, Lesson as l, Method as m " + &
+												"where sl.orig_acct_id eq a.id and sl.lesson_id eq l.lesson_id and sl.orig_acct_id eq l.account_id and l.method_id eq m.method_id and "+ &
+												"		 sl.account_id eq " + string(il_account_id) + " and "+ &
+												"      sl.student_id eq " + string(il_student_id) + " and "+ &
+												"      sl.lesson_id eq " + string(il_lesson_id) + " and "+ &
+												"      sl.orig_acct_id eq " + string(il_orig_acct_id)
+	ids_lesson_parm.is_database_table = "StudentLesson"											
+	ids_lesson_parm.is_update_col[] = {"degree","tries","prompt_ind","picture_ind","text_ind"}
+	ids_lesson_parm.is_key_col[] = {"account_id", "student_id", "orig_acct_id", "lesson_id"}
+	ids_lesson_parm.Data_retrieve()	
+//	MessageBox("ids_lesson_parm.is_select_sql", ids_lesson_parm.is_select_sql)
+	if ids_lesson_parm.RowCount() > 0 then
+		ls_lesson_name = lower(ids_lesson_parm.GetItemString(1, "lesson_name"))
+		ls_lesson_subpath = lower(ids_lesson_parm.GetItemString(1, "lesson_subpath"))
+		if isnull(ls_lesson_name) then ls_lesson_name = "lesson_name Is NULL"
+		if isnull(ls_lesson_subpath) then ls_lesson_subpath = "Lesson_Subpath Is NULL"
+		is_remote_site_path = ids_lesson_parm.GetItemString(1, "site_path") + "/Account" + string(il_orig_acct_id, "000000")
+		is_remote_lesson_path = is_remote_site_path + "/LH_lessons/" + ls_lesson_subpath + "/" + string(il_method_id, "00") + ls_lesson_name + string(il_lesson_id, "0000000000") + ".txt"	
+		gn_appman.is_dictionary_wave = is_remote_site_path + "/LH_resources/static table/wave/dictionary"
+		gn_appman.is_dictionary_bitmap = is_remote_site_path + "/LH_resources/static table/bitmap/dictionary"
+		choose case il_method_id
+			case 14,15,16,21,22,23,24
+				ids_lesson_parm.is_update_col[] = {"prompt_ind","picture_ind","text_ind"}
+			case else
+				ii_degree = ids_lesson_parm.GetItemNumber(1, "degree")
+				ii_tries = ids_lesson_parm.GetItemNumber(1, "tries")
+				ids_lesson_parm.is_update_col[] = {"degree","tries","prompt_ind","picture_ind","text_ind"}
+				dw_prompt.SetItem(1, "degree", ii_degree)
+				dw_prompt.SetItem(1, "tries", ii_tries)
+		end choose
+		li_prompt_ind = long(ids_lesson_parm.GetItemString(1, "prompt_ind"))
+		dw_prompt.SetItem(1, "prompt_ind", li_prompt_ind)
+		li_prompt_ind = dw_prompt.GetItemNumber(1, "prompt_ind")
+		dw_prompt.SetItem(1, "picture_ind", ids_lesson_parm.GetItemString(1, "picture_ind"))
+		dw_prompt.SetItem(1, "text_ind", ids_lesson_parm.GetItemString(1, "text_ind"))
+		dw_prompt.ResetUpdate()
+	end if
+	if upperbound(gn_appman.is_response_to_right_list) = 0 or &
+		gn_appman.il_training_account_id <> il_account_id or &
+		gn_appman.il_training_student_id <> il_student_id then
+		gn_appman.is_response_to_right_list = gn_appman.is_empty_list
+		ids_student_RTR = create nvo_datastore
+		ids_student_RTR.dataobject = "d_student_rtr"
+		ids_student_RTR.is_database_table = "StudentRTR"
+		ids_student_RTR.is_select_sql =  "Select srtr.orig_acct_id as orig_acct_id,rtr.response_id as response_id, rtr.wave_file as wave_file, a.site_path as site_path " + &
+													"from StudentRTR As srtr, ResponseTR as rtr, Account as a " + &
+													"where srtr.orig_acct_id eq rtr.account_id and " + &
+													"      srtr.response_id eq rtr.response_id and "+ &
+													"      srtr.orig_acct_id eq a.id and "+ &
+													"      srtr.account_id eq " + string(il_account_id) + " and "+ &
+													"      srtr.student_id eq " + string(il_student_id)
+		ids_student_RTR.data_retrieve()	
+		for ll_row = 1 to ids_student_RTR.RowCount()
+			ls_resource_path = ids_student_RTR.GetItemString(ll_row, "site_path") + "/Account" + string(ids_student_RTR.GetItemNumber(ll_row, "orig_acct_id"), "000000") + "/LH_resources/static table/wave/"
+			gn_appman.is_response_to_right_list[ll_row] = ls_resource_path + "response to right/" + string(ids_student_RTR.GetItemNumber(ll_row, "response_id"), "00000000") + lower(ids_student_RTR.GetItemString(ll_row, "wave_file"))
+//			MessageBox("gn_appman.is_response_to_right_list[" + string(ll_row) + "]", gn_appman.is_response_to_right_list[ll_row])
+		next
+		destroy ids_student_RTR		
+	end if
+	if upperbound(gn_appman.is_response_to_wrong_list) = 0 or &
+		gn_appman.il_training_account_id <> il_account_id or &
+		gn_appman.il_training_student_id <> il_student_id then
+		gn_appman.is_response_to_wrong_list = gn_appman.is_empty_list
+		ids_student_RTW = create nvo_datastore
+		ids_student_RTW.dataobject = "d_student_rtw"
+		ids_student_RTW.is_database_table = "StudentRTW"
+		ids_student_RTW.is_select_sql =  "Select srtw.orig_acct_id as orig_acct_id,rtw.response_id as response_id, rtw.wave_file as wave_file, a.site_path as site_path " + &
+													"from StudentRTW As srtw, ResponseTW as rtw, Account as a " + &
+													"where srtw.orig_acct_id eq rtw.account_id and " + &
+													"      srtw.response_id eq rtw.response_id and "+ &
+													"      srtw.orig_acct_id eq a.id and "+ &
+													"      srtw.account_id eq " + string(il_account_id) + " and "+ &
+													"      srtw.student_id eq " + string(il_student_id)
+		ids_student_RTW.data_retrieve()
+		for ll_row = 1 to ids_student_RTW.RowCount()
+			ls_resource_path = ids_student_RTW.GetItemString(ll_row, "site_path") + "/Account" + string(ids_student_RTW.GetItemNumber(ll_row, "orig_acct_id"), "000000") + "/LH_resources/static table/wave/"
+			gn_appman.is_response_to_wrong_list[ll_row] = ls_resource_path + "response to wrong/" + string(ids_student_RTW.GetItemNumber(ll_row, "response_id"), "00000000") + lower(ids_student_RTW.GetItemString(ll_row, "wave_file"))
+//			MessageBox("gn_appman.is_response_to_wrong_list[" + string(ll_row) + "]", gn_appman.is_response_to_wrong_list[ll_row])
+		next
+		destroy ids_student_RTW
+	end if	
+	if upperbound(gn_appman.is_reward_list) = 0 or &
+		gn_appman.il_training_account_id <> il_account_id or &
+		gn_appman.il_training_student_id <> il_student_id then
+		gn_appman.is_reward_list = gn_appman.is_empty_list
+		if not isvalid(gn_appman.ids_reward) then			
+			gn_appman.ids_reward = create nvo_datastore
+			gn_appman.ids_reward.dataobject = "d_student_reward_source"
+		end if
+		gn_appman.ids_reward.Reset()
+		gn_appman.ids_reward.is_database_table = "StudentReward"
+		gn_appman.ids_reward.is_select_sql =  "Select media_type, rs.site_path as site_path, rs.file_name as file_name, " + &
+													" sr.duration as duration,sr.repeat as repeat,sr.sort_order as sort_order " + &
+													"from StudentReward As sr, RewardSource As rs " + &
+													"where sr.orig_acct_id eq rs.account_id and " + &
+													"      sr.resource_id eq rs.resource_id and "+ &
+													"      sr.account_id eq " + string(il_account_id) + " and "+ &
+													"      sr.student_id eq " + string(il_student_id) + " " + &
+													"order by sr.sort_order "
+		gn_appman.ids_reward.data_retrieve()
+//		MessageBox("gn_appman.ids_reward.is_select_sql", gn_appman.ids_reward.is_select_sql)
+//		MessageBox("gn_appman.ids_reward.RowCount()", gn_appman.ids_reward.RowCount())
+		for ll_row = 1 to gn_appman.ids_reward.RowCount()
+			ls_resource_path = gn_appman.ids_reward.GetItemString(ll_row, "site_path")
+			if left(gn_appman.ids_reward.GetItemString(ll_row, "media_type"), 1) = 'I' then
+				gn_appman.is_reward_list[ll_row] = ls_resource_path + "/" + gn_appman.ids_reward.GetItemString(ll_row, "file_name")
+			else
+				gn_appman.is_reward_list[ll_row] = ls_resource_path + "\" + gn_appman.ids_reward.GetItemString(ll_row, "file_name")
+			end if
+//			MessageBox(ls_resource_path, gn_appman.ids_reward.GetItemString(ll_row, "file_name"))
+		next
+	end if
+	return 1
+else
+	return 0
+end if
+gn_appman.il_training_account_id = il_account_id
+gn_appman.il_training_student_id = il_student_id
+gn_appman.il_training_method_id = il_method_id
+gn_appman.il_training_lesson_id = il_lesson_id
+
+
+/*********************************************************************
+wf_init_lesson  ******************************************************
+**********************************************************************/
+
+integer il_row, li_rowcount
+string ls_tmp, ls_resource_path, ls_data_col_ind, ls_prompt_ind, ls_degree
+long ll_method_id, ll_content_id
+any la_parm
+gn_appman.of_get_parm("Method ID", la_parm)
+ll_method_id = la_parm
+ib_prompt = false					
+ib_error_correction = false
+li_rowcount = ids_lesson.rowcount()
+wf_set_prompt_list(il_method_id)
+ls_prompt_ind = string(dw_prompt.GetItemNumber(1, "prompt_ind"))
+if isnull(ls_prompt_ind) then
+	if not isnull(ids_lesson.GetItemString(1, 'lesson_prompt_ind')) then 
+		ii_prompt_ind = integer(ids_lesson.GetItemString(1, 'lesson_prompt_ind'))
+		choose case ii_prompt_ind
+			case 1
+				ib_prompt = true
+			case 2
+				ib_error_correction = true
+		end choose
+	else
+		ii_prompt_ind = 0
+	end if
+else
+	ii_prompt_ind = integer(ls_prompt_ind)
+	choose case ii_prompt_ind
+		case 1
+			ib_prompt = true
+		case 2
+			ib_error_correction = true
+	end choose
+end if
+//ls_degree = ProfileString(is_startupfile, "degree", "method_" + string(ll_method_id), "")
+ii_degree = dw_prompt.GetItemNumber(1, "degree")
+
+if isnull(ii_degree) then
+	if not isnull(ids_lesson.GetItemNumber(1, 'lesson_degree')) then 
+		ii_degree = ids_lesson.GetItemNumber(1, 'lesson_degree')
+	else
+		ii_degree = 2
+	end if
+end if
+//is_picture_ind = ProfileString(is_startupfile, "picture_ind", "method_" + string(ll_method_id), "")
+is_picture_ind = dw_prompt.GetItemString(1, "picture_ind")
+if isnull(is_picture_ind) then
+	if not isnull(ids_lesson.GetItemString(1, 'lesson_picture_ind')) then 
+		is_picture_ind = ids_lesson.GetItemString(1, 'lesson_picture_ind')
+	else
+		is_picture_ind = "1"
+	end if
+end if
+is_text_ind = dw_prompt.GetItemString(1, "text_ind")
+if isnull(is_text_ind) then
+	if not isnull(ids_lesson.GetItemString(1, 'lesson_text_ind')) then 
+		is_text_ind = ids_lesson.GetItemString(1, 'lesson_text_ind')
+	else
+		is_text_ind = "0"
+	end if
+end if
+
+if not isnull(ids_lesson.GetItemString(1, 'lesson_pair_ind')) then
+	ii_trial_target = integer(ids_lesson.GetItemString(1, 'lesson_pair_ind'))
+end if
+//if ii_trial_target > ii_degree then ii_trial_target = ii_degree
+ii_total_items = ids_lesson.RowCount()
+for il_row = 1 to ii_total_items
+	ll_content_id = ids_lesson.GetItemNumber(il_row, "lesson_content_content_id")
+	ls_tmp = ids_lesson.GetItemString(il_row, 'content_details')
+	if (not isnull(ls_tmp)) and isnumber(ls_tmp) then
+		ii_number_list[il_row] = integer(ls_tmp)
+	else
+		ii_number_list[il_row] = 0
+	end if
+	is_picture_list[il_row] = ""
+	is_text_list[il_row] = ""	
+	is_mask_list[il_row] = ""	
+	is_distract_list[il_row] = ""	
+	ls_resource_path = ids_lesson.GetItemString(il_row, 'subject_description') + '/' + &
+								ids_lesson.GetItemString(il_row, 'chapter_description') + "/" 								
+	ls_tmp = lower(ids_lesson.GetItemString(il_row, 'content_bitmap_file'))
+	if not isnull(ls_tmp) /* and is_picture_ind = '1' */ then
+		if gn_appman.ib_online_data then
+			is_picture_list[il_row] = is_remote_site_path + "/LH_resources/materials/bitmap/" + &
+												lower(ls_resource_path) + string(ll_content_id, "0000000000") + ls_tmp				
+		else
+			is_picture_list[il_row] = string(ll_content_id, "0000000000") + "/" + ls_tmp
+		end if
+	end if
+	if gn_appman.ib_online_data then
+		is_wave_list[il_row] = is_remote_site_path + "/LH_resources/materials/wave/" + &
+											lower(ls_resource_path) + string(ll_content_id, "0000000000") + lower(ids_lesson.GetItemString(il_row, 'content_wave_file'))			
+	else
+		is_wave_list[il_row] = string(ll_content_id, "0000000000") + lower(ids_lesson.GetItemString(il_row, 'content_wave_file'))		
+	end if
+	
+//	is_remote_site_path
+	ls_tmp = ids_lesson.GetItemString(il_row, 'content_details')
+	if not isnull(ls_tmp) then 
+		is_text_list[il_row] = ls_tmp
+	end if
+	if not isnull(ids_lesson.GetItemString(il_row, 'lesson_content_mask')) then 
+		is_mask_list[il_row] = ids_lesson.GetItemString(il_row, 'lesson_content_mask')
+	end if
+	if not isnull(ids_lesson.GetItemString(il_row, 'lesson_content_distraction')) then 
+		is_distract_list[il_row] = ids_lesson.GetItemString(il_row, 'lesson_content_distraction')
+	end if
+	il_lesson_content_pair_ind[il_row] = ids_lesson.GetItemNumber(il_row, 'content_pair_ind')
+next
+//ls_data_col_ind = ids_lesson.GetItemString(1, 'data_collection_ind')
+ib_data_collection = gn_appman.ib_lesson_training_only
+if gn_appman.ib_online_data then
+	ls_resource_path = gn_appman.is_remote_site_path + "/Account" + string(il_orig_acct_id, "000000") + "/LH_resources/static table/wave/" 
+else
+	ls_resource_path = ""
+end if
+is_instruction = ls_resource_path + "instruction/" +  string(ids_lesson_parm.GetItemNumber(1, 'instruction_id'), "00000000") + &
+								lower(ids_lesson.GetItemString(1, 'instruction_wave_file'))
+ii_type = ids_lesson.GetItemNumber(1, 'lesson_method_id')
+if ii_degree > ii_total_items then
+	ii_degree = ii_total_items
+end if
+if ii_degree > 4 then
+	ii_degree = 4
+end if
+
+ii_current_question_id = 0
+ii_current_try = 0
+ii_current_list_offset = 1 
+
+
+
+/*********************************************************************
+wf_get_new_item ******************************************************
+**********************************************************************/
+
+integer il_row, li_correct_row, li_delayed_time = 0
+long ll_hwn, li_i, li_msg_count = 0
+long ll_x, ll_y, ll_i
+integer li_dummy[]
+string ls_selected_item, ls_local_filename
+w_container_discrete_trial lw_tmp
+li_dummy = {0, 13}	
+if isvalid(gw_money_board) then
+	gw_money_board.BringToTop = true
+end if
+ib_done_prompt = false
+ii_current_try = 0
+
+if ii_trial_target > 0 then // pair up
+	ii_current_question_id = ii_current_list_offset + ii_trial_target - 1
+else
+	ii_current_question_id++
+end if
+if (ii_trial_target = 0 and ii_current_question_id > ii_total_items) or &
+	(ii_current_list_offset + ii_degree - 1  > ii_total_items) then
+	for il_row = 1 to ii_degree
+//		iw_source[il_row].ib_to_stop_movie = true
+		lw_tmp = iw_source[il_row]	
+		if not lw_tmp.ib_stopped then
+			lw_tmp.ib_stopped = true
+			iw_source[il_row].ib_to_stop_movie = true
+			lw_tmp.ole_1.object.Stop()
+		end if
+		lw_tmp.visible = false
+	next 
+	MessageBox("Lesson", "End of the lesson, click Start button to restart the lesson!")
+	timer(0, this)
+	post wf_set_lesson_mode(false)
+	wf_update_progress_report()	
+//	wf_check_batch()
+	ii_current_state = ici_lesson_end_state  
+	return
+end if
+ii_current_i++
+//il_total_tries[ii_current_question_id]++
+il_total_tries[ii_current_i]++
+wf_random_list()
+string ls_bean
+//SetPointer(HourGlass!)
+ShowCursor(false)
+for il_row = 1 to ii_degree
+	iw_source[il_row].BackColor = il_orig_color
+	timer(0, iw_source[il_row])
+	iw_source[il_row].visible = false
+	ii_item_presented[il_row] = mod(ii_random_list[il_row] + ii_current_question_id - 1, ii_total_items)
+	if ii_item_presented[il_row] = 0 then
+		ii_item_presented[il_row] = ii_total_items
+	end if
+	lw_tmp = iw_source[il_row]	
+	f_GetResourceFile(is_picture_list[ii_item_presented[il_row]], ls_local_filename)
+	if pos(ls_local_filename, ".bmp") > 0 or pos(ls_local_filename, ".jpg") > 0 or pos(ls_local_filename, ".gif") > 0 or pos(ls_local_filename, ".wmf") > 0 then
+		lw_tmp.width = lw_tmp.ii_width
+		lw_tmp.height = lw_tmp.ii_height
+		if is_text_ind = "1" then
+			lw_tmp.pb_1.Text = is_text_list[ii_item_presented[il_row]]	
+		else
+			lw_tmp.pb_1.Text = ""
+		end if
+		if is_picture_ind = "1" then
+			lw_tmp.pb_1.PictureName = ls_local_filename
+		else
+			lw_tmp.pb_1.PictureName = ""
+		end if
+		lw_tmp.pb_1.BringToTop = true
+		lw_tmp.pb_1.visible = true
+		if isvalid(lw_tmp.ole_1) then lw_tmp.ole_1.visible = false
+		lw_tmp.visible = true
+	elseif pos(ls_local_filename, ".avi") > 0 or pos(ls_local_filename, ".mpg") > 0 or pos(ls_local_filename, ".mov") > 0 or pos(ls_local_filename, ".wmv") > 0 then
+		lw_tmp.ib_to_stop_movie =  false
+		lw_tmp.pb_1.visible = false		
+		if isvalid(lw_tmp.ole_1) then
+			lw_tmp.ole_1.BringToTop = true
+			lw_tmp.ole_1.visible = true
+			lw_tmp.ole_1.object.FileName = ls_local_filename	
+//			FileDelete(is_picture_list[ii_item_presented[il_row]])
+		end if
+	else
+		if is_text_ind = "1" then
+			lw_tmp.pb_1.Text = is_text_list[ii_item_presented[il_row]]	
+		end if
+		lw_tmp.pb_1.BringToTop = true
+		lw_tmp.pb_1.visible = true
+		if isvalid(lw_tmp.ole_1) then
+			lw_tmp.ole_1.visible = false
+		end if
+		lw_tmp.visible = true		
+	end if
+next
+for il_row = 1 to ii_degree
+	lw_tmp = iw_source[il_row]	
+	lw_tmp.visible = true
+	lw_tmp.pb_1.BringToTop = true
+next
+wf_question_announcer()
+if ii_trial_target > 0 then
+	ii_current_list_offset = ii_current_list_offset + ii_degree
+end if
+str_msg msg
+for li_i = 1 to upperbound(iw_source)
+	ll_hwn = handle(iw_source[li_i])
+	do while remove_message(msg, ll_hwn, 513, 513) > 0 
+	loop
+next
+
+for il_row = 1 to ii_degree
+	if ii_item_presented[il_row] = ii_current_question_id then
+		li_correct_row = il_row			
+	end if
+next
+lw_tmp = iw_source[li_correct_row]	

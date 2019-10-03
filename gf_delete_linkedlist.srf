@@ -1,0 +1,22 @@
+$PBExportHeader$gf_delete_linkedlist.srf
+global type gf_delete_linkedlist from function_object
+end type
+
+forward prototypes
+global subroutine gf_delete_linkedlist (ref nvo_linkedlist a_linkedlist)
+end prototypes
+
+global subroutine gf_delete_linkedlist (ref nvo_linkedlist a_linkedlist);nvo_linkedlist lnvo_current, lnvo_next
+lnvo_current = a_linkedlist.first_n
+
+DO WHILE isvalid(lnvo_current)
+	lnvo_next = lnvo_current.next_n
+	destroy lnvo_current
+	lnvo_current = lnvo_next
+LOOP 
+
+
+
+
+end subroutine
+

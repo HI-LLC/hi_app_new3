@@ -1,0 +1,9 @@
+$PBExportHeader$str_customerinfo.srs
+global type str_customerinfo from structure
+	decimal {10}	customerid
+	string		dda
+	string		name
+	integer		status
+	string		unit
+end type
+

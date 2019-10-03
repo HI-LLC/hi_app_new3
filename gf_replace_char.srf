@@ -1,0 +1,25 @@
+$PBExportHeader$gf_replace_char.srf
+global type gf_replace_char from function_object
+end type
+
+forward prototypes
+global function string gf_replace_char (string as_input, string as_replacee, string as_replacer)
+end prototypes
+
+global function string gf_replace_char (string as_input, string as_replacee, string as_replacer);integer li_i, li_len
+string ls_tmp, ls_mid
+
+li_len = len(as_input)
+for li_i = 1 to li_len
+	ls_mid = mid(as_input, li_i, 1)
+	if ls_mid = as_replacee then
+		ls_tmp = ls_tmp + '~r'
+	else
+		ls_tmp = ls_tmp + ls_mid
+	end if
+next
+
+return ls_tmp
+		
+end function
+

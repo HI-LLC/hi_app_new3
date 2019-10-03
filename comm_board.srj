@@ -1,0 +1,8 @@
+$PBExportHeader$comm_board.srj
+EXE:comm_board.exe,,0,1
+CMP:0,0,0,2,0,0
+PBD:C:\PB Apps\Learning Helper\Source Code PB 7.0\comm_board.pbl,,0
+OBJ:C:\PB Apps\Learning Helper\Source Code PB 7.0\comm_board.pbl,comm_board,a
+OBJ:c:\pb apps\learning helper\source code pb 7.0\comm_board.pbl,w_comm_board_sa,w
+OBJ:c:\pb apps\learning helper\source code pb 7.0\comm_board.pbl,comm_board,a
+OBJ:c:\pb apps\learning helper\source code pb 7.0\comm_board.pbl,d_comm_board,d

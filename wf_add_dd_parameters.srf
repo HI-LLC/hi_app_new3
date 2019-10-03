@@ -1,0 +1,335 @@
+
+string ls_sql_statement, ls_sql_account_id = "", ls_sql_account_id2 = "", ls_where_sl = ""
+
+ids_sys_treeview.is_update_col = {"parent_id", "description", "update_ind","dw_name","sender_dw","note","sort_seq"}
+ids_sys_treeview.is_key_col[] = {"tv_group_id", "treeview_id"}
+ids_sys_treeview.is_database_table = "Treeview"
+ids_sys_treeview.is_select_sql = "Select * From Treeview where tv_group_id eq " + string(gn_appman.il_tv_group_id) + " And Status eq 'A'"
+ids_sys_treeview.is_where_col[1] = "tv_group_id"
+ids_sys_treeview.ia_where_value[1] = gn_appman.il_tv_group_id
+ids_sys_treeview.is_where_col[2] = "Status"
+ids_sys_treeview.ia_where_value[2] = 'A'
+
+ids_account.is_database_table = "Account"
+if gn_appman.is_account_type = 'A' then 
+	ids_account.is_select_sql = "select Name, ID as account_id From Account Where ID > 0 Order By Name"
+else
+	ls_sql_account_id = "Where Account_id eq " + string(gn_appman.il_account_id) + " "
+//	ls_sql_account_id = " and Account_id eq " + string(gn_appman.il_account_id) + " "
+	ids_account.is_select_sql = "select Name, ID as account_id From Account Where ID eq " + string(gn_appman.il_account_id)
+end if
+//ids_account.is_where_col[1] = "account_id"
+ids_account.is_where_col[1] = "id"
+ids_account.ia_where_value[1] = gn_appman.il_account_id
+ids_account.is_unique_col[1] = "account_id"
+ids_account.is_desc_col = {"Name"}
+ids_account.is_header = "Account: "
+
+ids_student.is_database_table = "Student"
+if gn_appman.is_account_type <> 'A' then 
+	ids_student.is_where_col[1] = "account_id"
+	ids_student.ia_where_value[1] = gn_appman.il_account_id
+end if
+ids_student.is_select_col = {"account_id", "student_id", "last_name", "first_name"}
+ids_student.is_unique_col[1] = "account_id"
+ids_student.is_unique_col[2] = "student_id"
+ids_student.is_desc_col = {"last_name", "first_name"}
+ids_student.is_seperator = ", "
+
+ids_group.is_database_table = "StudentGroup"
+if gn_appman.is_account_type <> 'A' then 
+	ids_group.is_where_col[1] = "account_id"
+	ids_group.ia_where_value[1] = gn_appman.il_account_id
+end if
+ids_group.is_unique_col[1] = "group_id"
+ids_group.is_desc_col = {"group_name"}
+
+ids_group_student.is_database_table = "GroupStudent"
+ids_group_student.is_select_sql = "Select g.account_id as account_id, g.group_id as group_id, g.student_id as student_id, " + &
+											"s.last_name as last_name, s.first_name as first_name from GroupStudent As g left " + &
+											"outer join Student As s on g.account_id eq s.account_id and " + &
+											"g.student_id eq s.student_id "
+											
+if gn_appman.is_account_type <> 'A' then 
+		ids_group_student.is_select_sql = ids_group_student.is_select_sql	+ " where g.account_id eq " + string(gn_appman.il_account_id)
+end if
+ids_group_student.is_key_col[] = {"account_id", "group_id", "student_id"}
+ids_group_student.is_where_col[1] = "account_id"
+ids_group_student.ia_where_value[1] = gn_appman.il_account_id
+ids_group_student.is_unique_col[1] = "account_id"
+ids_group_student.is_unique_col[2] = "student_id"
+ids_group_student.is_desc_col = {"last_name","first_name"}
+ids_group_student.is_seperator = ", "
+
+if gn_appman.ib_lesson_training_only then
+	ls_where_sl = " sl.active_ind eq 'A' and "
+end if
+if gn_appman.is_account_type <> 'A' then 
+ids_student_lesson_type.is_select_sql = "Select l.account_id as account_id, sl.student_id as student_id, m.method_cat_id as method_cat_id, m.method_cat_desc as method_name " + &
+						" From Method as m, Lesson as l,StudentLesson sl Where m.method_id eq l.method_id and " + &
+						" sl.account_id eq l.account_id and sl.lesson_id eq l.lesson_id and " + ls_where_sl + &
+						" l.account_id eq " + string(gn_appman.il_account_id) + " Group By l.account_id, sl.student_id, m.method_cat_id " + &
+						" union " + &
+						"Select la.account_id as account_id, sl.student_id as student_id, m.method_cat_id as method_cat_id, m.method_cat_desc as method_name " + &
+						" From Method as m, LessonAcquired As la, Lesson As l,StudentLesson as sl Where la.orig_acct_id eq l.account_id and " + &
+						" sl.account_id eq la.account_id and sl.lesson_id eq la.lesson_id and "	 + ls_where_sl + &					
+						" la.lesson_id eq l.lesson_id and l.method_id eq m.method_id and la.account_id eq " + string(gn_appman.il_account_id) + &
+						" Group By la.account_id, sl.student_id, m.method_cat_id "
+else						
+ids_student_lesson_type.is_select_sql = "Select l.account_id as account_id, sl.student_id as student_id, m.method_cat_id as method_cat_id, m.method_cat_desc as method_name " + &
+						" From Method as m, Lesson as l,StudentLesson sl Where m.method_id eq l.method_id and " + &
+						" sl.account_id eq l.account_id and " + ls_where_sl + &
+						" sl.lesson_id eq l.lesson_id " + &
+						" Group By l.account_id, sl.student_id, m.method_cat_id " + &
+						" union " + &
+						"Select la.account_id as account_id, sl.student_id as student_id, m.method_cat_id as method_cat_id, m.method_cat_desc as method_name " + &
+						" From Method as m, LessonAcquired As la, Lesson As l,StudentLesson as sl Where la.orig_acct_id eq l.account_id and " + &
+						" sl.account_id eq la.account_id and sl.lesson_id eq la.lesson_id and "	 + ls_where_sl + &					
+						" la.lesson_id eq l.lesson_id and l.method_id eq m.method_id Group By la.account_id, sl.student_id, m.method_cat_id "
+end if
+ids_student_lesson_type.is_unique_col[1] = "account_id"
+ids_student_lesson_type.is_unique_col[2] = "student_id"
+ids_student_lesson_type.is_unique_col[3] = "method_cat_id"
+ids_student_lesson_type.is_desc_col = {"method_name"}
+
+
+ids_student_lesson.is_database_table = "StudentLesson"
+ids_student_lesson.is_select_sql = "Select sl.account_id as account_id, sl.orig_acct_id as orig_acct_id, sl.student_id as student_id, l.lesson_id as lesson_id, " + &
+											"l.lesson_name as lesson_name, l.method_cat_id as method_cat_id, l.method_id as method_id from StudentLesson As sl, Lesson As l " + &
+											"where sl.orig_acct_id eq l.account_id and " + ls_where_sl + &
+											"sl.lesson_id eq l.lesson_id "
+if gn_appman.is_account_type <> 'A' then 
+	ids_student_lesson.is_select_sql = ids_student_lesson.is_select_sql + " and sl.account_id eq " + string(gn_appman.il_account_id)
+end if
+ids_student_lesson.is_key_col[] = {"account_id", "student_id", "orig_acct_id", "lesson_id"}
+ids_student_lesson.is_where_col[1] = "account_id"
+ids_student_lesson.ia_where_value[1] = gn_appman.il_account_id
+ids_student_lesson.is_unique_col[1] = "account_id"
+ids_student_lesson.is_unique_col[2] = "orig_acct_id"
+ids_student_lesson.is_unique_col[3] = "lesson_id"
+ids_student_lesson.is_desc_col = {"lesson_name"}
+
+ids_lesson_type.is_database_table = "Method"
+if gn_appman.is_account_type <> 'A' then 
+ids_lesson_type.is_select_sql = "Select l.account_id as account_id, m.method_cat_id as method_cat_id, m.method_cat_desc as method_name " + &
+						" From Method as m, Lesson as l Where m.method_id eq l.method_id and " + &
+						"l.account_id eq " + string(gn_appman.il_account_id) + " Group By l.account_id, m.method_cat_id " + &
+						" union " + &
+						"Select la.account_id as account_id, m.method_cat_id as method_cat_id, m.method_cat_desc as method_name " + &
+						" From Method as m, LessonAcquired As la, Lesson As l Where la.orig_acct_id eq l.account_id " + &
+						" and la.lesson_id eq l.lesson_id and l.method_id eq m.method_id and la.account_id eq " + string(gn_appman.il_account_id) + &
+						" Group By la.account_id, m.method_cat_id "
+else						
+ids_lesson_type.is_select_sql = "Select l.account_id as account_id, m.method_cat_id as method_cat_id, m.method_cat_desc as method_name " + &
+						" From Method as m, Lesson as l Where m.method_id eq l.method_id " + &
+						" Group By l.account_id, m.method_cat_id " + &
+						" union " + &
+						"Select la.account_id as account_id, m.method_cat_id as method_cat_id, m.method_cat_desc as method_name " + &
+						" From Method as m, LessonAcquired As la, Lesson As l Where la.orig_acct_id eq l.account_id " + &
+						" and la.lesson_id eq l.lesson_id and l.method_id eq m.method_id Group By la.account_id, m.method_cat_id "
+end if
+ids_lesson_type.is_key_col[] = {"account_id", "method_cat_id", "lesson_id"}
+ids_lesson_type.is_where_col[1] = "account_id"
+ids_lesson_type.ia_where_value[1] = gn_appman.il_account_id
+ids_lesson_type.is_unique_col[1] = "account_id"
+ids_lesson_type.is_unique_col[2] = "method_cat_id"
+ids_lesson_type.is_desc_col = {"method_name"}
+ids_lesson_type.is_constant_col[1] = "account_id"
+ids_lesson_type.ia_constant_val[1] = gn_appman.il_account_id
+
+ids_lesson_list.is_database_table = "LessonAcquired"
+if gn_appman.is_account_type <> 'A' then  
+	ids_lesson_list.is_select_sql = "Select account_id, account_id as orig_acct_id, m.method_cat_desc as method_name, m.method_cat_id as method_cat_id, m.method_id as method_id, l.lesson_id as lesson_id, lesson_name " + &
+						" From Lesson As l, Method as m Where l.method_id eq m.method_id and l.account_id eq " + string(gn_appman.il_account_id) + &
+						" union " + &
+						"Select la.account_id as account_id, la.orig_acct_id as orig_acct_id, m.method_cat_desc as method_name,m.method_cat_id as method_cat_id, m.method_id as method_id, l.lesson_id as lesson_id, lesson_name " + &
+						" From LessonAcquired As la, Lesson As l, Method as m Where la.orig_acct_id eq l.account_id " + &
+						" and la.lesson_id eq l.lesson_id and l.method_id eq m.method_id and la.account_id eq " + string(gn_appman.il_account_id)
+else
+	ids_lesson_list.is_select_sql = "Select l.account_id as account_id, l.account_id as orig_acct_id, m.method_cat_desc as method_name, m.method_cat_id as method_cat_id, m.method_id as methodid, l.lesson_id as lesson_id, l.lesson_name as lesson_name" + &
+						" From Lesson As l, Method as m Where l.method_id eq m.method_id " + &
+						" union " + &
+						"Select la.account_id as account_id, la.orig_acct_id as orig_acct_id, m.method_cat_desc as method_name, m.method_cat_id as method_cat_id, m.method_id as method_id, l.lesson_id as lesson_id, l.lesson_name as lesson_name " + &
+						" From LessonAcquired As la, Lesson As l, Method as m Where la.orig_acct_id eq l.account_id " + &
+						" and la.lesson_id eq l.lesson_id and l.method_id eq m.method_id "
+end if
+//ids_lesson_list.is_where_col[1] = "account_id"
+//ids_lesson_list.ia_where_value[1] = gn_appman.il_account_id
+ids_lesson_list.is_key_col[] = {"account_id", "orig_acct_id", "lesson_id"}
+ids_lesson_list.is_unique_col[1] = "account_id"
+ids_lesson_list.is_unique_col[2] = "orig_acct_id"
+ids_lesson_list.is_unique_col[3] = "lesson_id"
+ids_lesson_list.is_desc_col = {"lesson_name"}
+//ids_lesson_list.is_constant_col[1] = "account_id"
+//ids_lesson_list.ia_constant_val[1] = gn_appman.il_account_id
+
+ids_response_to_right.is_database_table = "ResponseTR"
+if gn_appman.is_account_type <> 'A' then  
+	ids_response_to_right.is_select_sql = "Select account_id, account_id as orig_acct_id, response_id, wave_file " + &
+						"From ResponseTR Where account_id eq " + string(gn_appman.il_account_id) +" UNION " + &
+						"Select rtra.account_id as account_id, rtra.orig_acct_id as orig_acct_id, rtr.response_id as response_id, wave_file " + &
+						"From ResponseTRacquired as rtra, ResponseTR as rtr " + &
+						"Where rtra.orig_acct_id eq rtr.account_id and rtra.response_id eq rtr.response_id and rtra.account_id eq "  + string(gn_appman.il_account_id)
+else
+	ids_response_to_right.is_select_sql = "Select account_id, account_id as orig_acct_id, response_id, wave_file " + &
+						"From ResponseTR  UNION " + &
+						"Select rtra.account_id as account_id, rtra.orig_acct_id as orig_acct_id, rtr.response_id as response_id, wave_file " + &
+						"From ResponseTRacquired as rtra, ResponseTR as rtr " + &
+						"Where rtra.orig_acct_id eq rtr.account_id and rtra.response_id eq rtr.response_id " 
+end if
+ids_response_to_right.is_unique_col[1] = "account_id"
+ids_response_to_right.is_unique_col[2] = "orig_acct_id"
+ids_response_to_right.is_unique_col[3] = "response_id"
+ids_response_to_right.is_desc_col = {"wave_file"}
+
+ids_response_to_wrong.is_database_table = "ResponseTW"
+if gn_appman.is_account_type <> 'A' then  
+	ids_response_to_wrong.is_select_sql = "Select account_id, account_id as orig_acct_id, response_id, wave_file " + &
+						"From ResponseTW Where account_id eq " + string(gn_appman.il_account_id) +" UNION " + &
+						"Select rtwa.account_id as account_id, rtwa.orig_acct_id as orig_acct_id, rtw.response_id as response_id, wave_file " + &
+						"From ResponseTWacquired as rtwa, ResponseTW as rtw " + &
+						"Where rtwa.orig_acct_id eq rtw.account_id and rtwa.response_id eq rtw.response_id and rtwa.account_id eq "  + string(gn_appman.il_account_id)
+else
+	ids_response_to_wrong.is_select_sql = "Select account_id, account_id as orig_acct_id, response_id, wave_file " + &
+						"From ResponseTW  UNION " + &
+						"Select rtwa.account_id as account_id, rtwa.orig_acct_id as orig_acct_id, rtw.response_id as response_id, wave_file " + &
+						"From ResponseTWacquired as rtwa, ResponseTW as rtw " + &
+						"Where rtwa.orig_acct_id eq rtw.account_id and rtwa.response_id eq rtw.response_id " 
+end if
+ids_response_to_wrong.is_unique_col[1] = "account_id"
+ids_response_to_wrong.is_unique_col[2] = "orig_acct_id"
+ids_response_to_wrong.is_unique_col[3] = "response_id"
+ids_response_to_wrong.is_desc_col = {"wave_file"}
+
+ids_student_RTR.is_database_table = "StudentRTR"
+ids_student_RTR.is_select_sql = "Select srtr.account_id as account_id, srtr.student_id as student_id, srtr.orig_acct_id as orig_acct_id, srtr.response_id as response_id, " + &
+											"rtr.wave_file as wave_file from StudentRTR As srtr, ResponseTR as rtr " + &
+											"where srtr.orig_acct_id eq rtr.account_id and srtr.response_id eq rtr.response_id "
+if gn_appman.is_account_type <> 'A' then 
+	ids_student_RTR.is_select_sql = ids_student_RTR.is_select_sql + " and srtr.account_id eq " + string(gn_appman.il_account_id)
+end if
+ids_student_RTR.is_key_col[] = {"account_id", "student_id", "orig_acct_id", "response_id"}
+ids_student_RTR.is_unique_col[1] = "account_id"
+ids_student_RTR.is_unique_col[2] = "student_id"
+ids_student_RTR.is_unique_col[3] = "orig_acct_id"
+ids_student_RTR.is_unique_col[4] = "response_id"
+ids_student_RTR.is_desc_col = {"wave_file"}
+//ids_student_RTR.is_constant_col[1] = "account_id"
+//ids_student_RTR.ia_constant_val[1] = gn_appman.il_account_id
+
+ids_student_RTW.is_database_table = "StudentRTW"
+ids_student_RTW.is_select_sql = "Select srtw.account_id as account_id, srtw.student_id as student_id, srtw.orig_acct_id as orig_acct_id, srtw.response_id as response_id, " + &
+											"rtw.wave_file as wave_file from StudentRTW As srtw, ResponseTW as rtw " + &
+											"where srtw.orig_acct_id eq rtw.account_id and srtw.response_id eq rtw.response_id "
+if gn_appman.is_account_type <> 'A' then 
+	ids_student_RTW.is_select_sql = ids_student_RTW.is_select_sql + " and srtw.account_id eq " + string(gn_appman.il_account_id)
+end if
+ids_student_RTW.is_key_col[] = {"account_id", "student_id", "orig_acct_id", "response_id"}
+ids_student_RTW.is_unique_col[1] = "account_id"
+ids_student_RTW.is_unique_col[2] = "student_id"
+ids_student_RTW.is_unique_col[3] = "orig_acct_id"
+ids_student_RTR.is_unique_col[4] = "response_id"
+ids_student_RTW.is_desc_col = {"wave_file"}
+//ids_student_RTW.is_constant_col[1] = "account_id"
+//ids_student_RTW.ia_constant_val[1] = gn_appman.il_account_id
+
+ids_report.is_database_table = "ProgressData"
+ids_report.is_select_sql = "Select p.account_id as account_id, p.student_id as student_id, p.orig_acct_id as orig_acct_id, " + &
+									"p.lesson_id as lesson_id, p.progress_data_id as progress_data_id,p.begin_date as begin_date, " + &
+									"p.end_date as end_date, p.begin_date as begin_date_t, p.end_date as end_date_t, l.method_cat_id as method_cat_id " + &
+									"from ProgressData as p, Lesson as l Where p.lesson_id eq l.lesson_id and p.account_id eq " + string(gn_appman.il_account_id)
+									
+ids_report.is_key_col[] = {"account_id", "student_id", "orig_acct_id","lesson_id", "progress_data_id"}
+ids_report.is_unique_col[1] = "account_id"
+ids_report.is_unique_col[2] = "student_id"
+ids_report.is_unique_col[3] = "progress_data_id"
+ids_report.is_desc_col = {"begin_date_t", "end_date_t"}
+ids_report.is_seperator = " To "
+
+ids_account_reward_source.is_database_table = "RewardSource"
+if gn_appman.is_account_type <> 'A' then  
+	ids_account_reward_source.is_select_sql = "Select account_id, account_id as orig_acct_id, resource_id, media_type, site_path, file_name, description, total_duration  " + &
+			"From RewardSource Where account_id eq " + string(gn_appman.il_account_id) +" UNION " + &
+			"Select rsa.account_id as account_id, rsa.orig_acct_id as orig_acct_id, rsa.resource_id as resource_id, media_type, site_path, file_name, description, total_duration  " + &
+			"From RewardSourceAcquired as rsa, RewardSource as rs " + &
+			"Where rsa.orig_acct_id eq rs.account_id and rsa.resource_id eq rs.resource_id and rsa.account_id eq "  + string(gn_appman.il_account_id) 
+else
+	ids_account_reward_source.is_select_sql = "Select account_id, account_id as orig_acct_id, resource_id, media_type, site_path, file_name, description, total_duration  " + &
+			"From RewardSource UNION " + &
+			"Select rsa.account_id as account_id, rsa.orig_acct_id as orig_acct_id, rsa.resource_id as resource_id, media_type, site_path, file_name, description, total_duration  " + &
+			"From RewardSourceAcquired as rsa, RewardSource as rs " + &
+			"Where rsa.orig_acct_id eq rs.account_id and rsa.resource_id eq rs.resource_id " 
+end if
+ids_account_reward_source.is_unique_col[1] = "account_id"
+ids_account_reward_source.is_unique_col[2] = "orig_acct_id"
+ids_account_reward_source.is_unique_col[3] = "resource_id"
+ids_account_reward_source.is_desc_col = {"file_name"}
+
+ids_student_reward.is_database_table = "StudentReward"
+ids_student_reward.is_select_sql = "Select sr.account_id as account_id, orig_acct_id, student_id, sr.resource_id as resource_id, " + &
+											"description, file_name, sort_order  " + &
+											"from StudentReward As sr, RewardSource as rs " + &
+											"where sr.orig_acct_id eq rs.account_id and " + &
+											"sr.resource_id eq rs.resource_id "
+if gn_appman.is_account_type <> 'A' then 
+	ids_student_reward.is_select_sql = ids_student_reward.is_select_sql + " and sr.account_id eq " + string(gn_appman.il_account_id)
+end if
+ids_student_reward.is_select_sql = ids_student_reward.is_select_sql + " order by sort_order "
+ids_student_reward.is_key_col[] = {"account_id", "student_id", "orig_acct_id", "resource_id"}
+ids_student_reward.is_unique_col[1] = "account_id"
+ids_student_reward.is_unique_col[2] = "student_id"
+ids_student_reward.is_unique_col[3] = "orig_acct_id"
+ids_student_reward.is_unique_col[4] = "resource_id"
+ids_student_reward.is_desc_col = {"description"}
+//ids_student_reward.is_constant_col[1] = "account_id"
+//ids_student_reward.ia_constant_val[1] = gn_appman.il_account_id
+
+
+
+ids_reward_program.is_database_table = "RewardProgram"
+ids_reward_program.is_select_sql = "Select account_id, reward_program_id, description, token_num, token_file  " + &
+									"from  RewardProgram " + ls_sql_account_id
+ids_reward_program.is_unique_col[1] = "account_id"
+ids_reward_program.is_unique_col[2] = "reward_program_id"
+ids_reward_program.is_desc_col = {"description"}
+
+ids_reward_program_content.is_database_table = "RewardProgramContent"
+ids_reward_program_content.is_select_sql = "Select RPC.account_id As account_id, reward_program_id, RPC.reward_source_id As reward_source_id, file_name, reward_duration  " + &
+									"from  RewardProgramContent As RPC, RewardSource As RS " + &
+									"where AS.resource_id eq RS.resource_id " + ls_sql_account_id2
+ids_reward_program_content.is_unique_col[1] = "account_id"
+ids_reward_program_content.is_unique_col[2] = "reward_program_id"
+ids_reward_program_content.is_unique_col[3] = "reward_source_id"
+ids_reward_program_content.is_desc_col = {"file_name"}
+
+ids_student_reward_program.is_database_table = "StudentRewardProgram"
+ids_student_reward_program.is_select_sql = "Select SRP.account_id As account_id, SRP.student_id As student_id, SRP.reward_program_id AS reward_program_id, RP.description As description, SRP.token_num As token_num " + &
+									"from  StudentRewardProgram As SRP, RewardProgram As RP " + &
+									"where SRP.account_id eq RP.account_id "
+if gn_appman.is_account_type <> 'A' then 
+	ids_student_reward_program.is_select_sql = ids_student_reward_program.is_select_sql + " and SRP.account_id eq " + string(gn_appman.il_account_id)
+end if
+ids_reward_program_content.is_unique_col[1] = "account_id"
+ids_student_reward_program.is_unique_col[2] = "student_id"
+ids_reward_program_content.is_unique_col[3] = "reward_program_id"
+ids_reward_program_content.is_unique_col[4] = "reward_source_id"
+ids_student_reward_program.is_desc_col = {"description"}
+
+ids_lesson_program.is_database_table = "LessonProgram"
+ids_lesson_program.is_select_sql = "Select account_id, student_id, lesson_program_id, description  " + &
+									"from  LessonProgram " + ls_sql_account_id
+//ids_lesson_program.is_unique_col[1] = "student_id"
+//ids_lesson_program.is_desc_col = {"description"}
+
+ids_lesson_program_content.is_database_table = "LessonProgramContent"
+ids_lesson_program_content.is_select_sql = "Select LPC.account_id As account_id, student_id, lesson_program_id, LPC.lesson_id As lesson_id, lesson_name " + &
+									"from  LessonProgramContent As LPC, Lesson As L " + &
+									"where LPC.account_id eq L.account_id and LPC.lesson_id eq L.lesson_id "
+if gn_appman.is_account_type <> 'A' then 
+	ids_lesson_program_content.is_select_sql = ids_lesson_program_content.is_select_sql + " and LPC.account_id eq " + string(gn_appman.il_account_id)							
+end if
+//ids_lesson_program_content.is_unique_col[1] = "lesson_program_id"
+//ids_lesson_program_content.is_desc_col = {"lesson_name"}
+
+
+return 1

@@ -1,0 +1,10 @@
+Save Format v3.0(19990112)
+@begin Unchecked
+ 0 "test_app.pbt";
+ 1 "hi_app.pbt";
+@end;
+@begin Targets
+ 0 "hi_app_new3.pbt";
+@end;
+DefaultTarget "hi_app_new3.pbt";
+DefaultRemoteTarget "hi_app_new3.pbt";

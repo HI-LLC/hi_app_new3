@@ -1,0 +1,530 @@
+$PBExportHeader$m_material.srm
+forward
+global type m_material from menu
+end type
+type m_file from menu within m_material
+end type
+type m_loadpicture from menu within m_file
+end type
+type m_load_picture_chapter from menu within m_loadpicture
+end type
+type m_load_picture_content from menu within m_loadpicture
+end type
+type m_loadpicture from menu within m_file
+m_load_picture_chapter m_load_picture_chapter
+m_load_picture_content m_load_picture_content
+end type
+type m_loadsoundfiles from menu within m_file
+end type
+type m_load_sound_chapter from menu within m_loadsoundfiles
+end type
+type m_load_sound_content from menu within m_loadsoundfiles
+end type
+type m_loadsoundfiles from menu within m_file
+m_load_sound_chapter m_load_sound_chapter
+m_load_sound_content m_load_sound_content
+end type
+type m_save from menu within m_file
+end type
+type m_closeteachingmaterial from menu within m_file
+end type
+type m_file from menu within m_material
+m_loadpicture m_loadpicture
+m_loadsoundfiles m_loadsoundfiles
+m_save m_save
+m_closeteachingmaterial m_closeteachingmaterial
+end type
+type m_add from menu within m_material
+end type
+type m_subject from menu within m_add
+end type
+type m_chapter from menu within m_add
+end type
+type m_content from menu within m_add
+end type
+type m_add from menu within m_material
+m_subject m_subject
+m_chapter m_chapter
+m_content m_content
+end type
+type m_delete from menu within m_material
+end type
+type m_subject1 from menu within m_delete
+end type
+type m_chapter1 from menu within m_delete
+end type
+type m_content1 from menu within m_delete
+end type
+type m_delete from menu within m_material
+m_subject1 m_subject1
+m_chapter1 m_chapter1
+m_content1 m_content1
+end type
+type m_tool from menu within m_material
+end type
+type m_timetext from menu within m_tool
+end type
+type m_maketextcontent from menu within m_tool
+end type
+type m_materialmerge from menu within m_tool
+end type
+type m_saveintotextfile from menu within m_tool
+end type
+type m_tool from menu within m_material
+m_timetext m_timetext
+m_maketextcontent m_maketextcontent
+m_materialmerge m_materialmerge
+m_saveintotextfile m_saveintotextfile
+end type
+global type m_material from menu
+m_file m_file
+m_add m_add
+m_delete m_delete
+m_tool m_tool
+end type
+end forward
+
+global type m_material from menu
+m_file m_file
+m_add m_add
+m_delete m_delete
+m_tool m_tool
+end type
+global m_material m_material
+
+type variables
+private:
+window iw_window
+end variables
+
+forward prototypes
+public subroutine mf_set_window (ref window a_window)
+end prototypes
+
+public subroutine mf_set_window (ref window a_window);iw_window = a_window
+end subroutine
+
+on m_material.create
+m_material=this
+call super::create
+this.m_file=create m_file
+this.m_add=create m_add
+this.m_delete=create m_delete
+this.m_tool=create m_tool
+this.Item[UpperBound(this.Item)+1]=this.m_file
+this.Item[UpperBound(this.Item)+1]=this.m_add
+this.Item[UpperBound(this.Item)+1]=this.m_delete
+this.Item[UpperBound(this.Item)+1]=this.m_tool
+end on
+
+on m_material.destroy
+call super::destroy
+destroy(this.m_file)
+destroy(this.m_add)
+destroy(this.m_delete)
+destroy(this.m_tool)
+end on
+
+type m_file from menu within m_material
+m_loadpicture m_loadpicture
+m_loadsoundfiles m_loadsoundfiles
+m_save m_save
+m_closeteachingmaterial m_closeteachingmaterial
+end type
+
+on m_file.create
+call super::create
+this.text = "File"
+this.m_loadpicture=create m_loadpicture
+this.m_loadsoundfiles=create m_loadsoundfiles
+this.m_save=create m_save
+this.m_closeteachingmaterial=create m_closeteachingmaterial
+this.Item[UpperBound(this.Item)+1]=this.m_loadpicture
+this.Item[UpperBound(this.Item)+1]=this.m_loadsoundfiles
+this.Item[UpperBound(this.Item)+1]=this.m_save
+this.Item[UpperBound(this.Item)+1]=this.m_closeteachingmaterial
+end on
+
+on m_file.destroy
+call super::destroy
+destroy(this.m_loadpicture)
+destroy(this.m_loadsoundfiles)
+destroy(this.m_save)
+destroy(this.m_closeteachingmaterial)
+end on
+
+type m_loadpicture from menu within m_file
+m_load_picture_chapter m_load_picture_chapter
+m_load_picture_content m_load_picture_content
+end type
+
+event clicked;iw_window.dynamic wf_load_picture_files()
+end event
+
+on m_loadpicture.create
+call super::create
+this.text = "Load Picture Files"
+this.m_load_picture_chapter=create m_load_picture_chapter
+this.m_load_picture_content=create m_load_picture_content
+this.Item[UpperBound(this.Item)+1]=this.m_load_picture_chapter
+this.Item[UpperBound(this.Item)+1]=this.m_load_picture_content
+end on
+
+on m_loadpicture.destroy
+call super::destroy
+destroy(this.m_load_picture_chapter)
+destroy(this.m_load_picture_content)
+end on
+
+type m_load_picture_chapter from menu within m_loadpicture
+end type
+
+event clicked;iw_window.dynamic wf_load_files('Picture', 'Subject')
+end event
+
+on m_load_picture_chapter.create
+call super::create
+this.tag = "1304010"
+this.text = "Subject"
+end on
+
+on m_load_picture_chapter.destroy
+call super::destroy
+end on
+
+type m_load_picture_content from menu within m_loadpicture
+end type
+
+event clicked;iw_window.dynamic wf_load_files('Picture', 'Chapter')
+end event
+
+on m_load_picture_content.create
+call super::create
+this.tag = "1304020"
+this.text = "Chapter"
+end on
+
+on m_load_picture_content.destroy
+call super::destroy
+end on
+
+type m_loadsoundfiles from menu within m_file
+m_load_sound_chapter m_load_sound_chapter
+m_load_sound_content m_load_sound_content
+end type
+
+on m_loadsoundfiles.create
+call super::create
+this.text = "Load Sound Files"
+this.m_load_sound_chapter=create m_load_sound_chapter
+this.m_load_sound_content=create m_load_sound_content
+this.Item[UpperBound(this.Item)+1]=this.m_load_sound_chapter
+this.Item[UpperBound(this.Item)+1]=this.m_load_sound_content
+end on
+
+on m_loadsoundfiles.destroy
+call super::destroy
+destroy(this.m_load_sound_chapter)
+destroy(this.m_load_sound_content)
+end on
+
+type m_load_sound_chapter from menu within m_loadsoundfiles
+event clicked ( )
+end type
+
+event clicked;iw_window.dynamic wf_load_files('Sound', 'Subject')
+end event
+
+on m_load_sound_chapter.create
+call super::create
+this.tag = "1304030"
+this.text = "Subject"
+end on
+
+on m_load_sound_chapter.destroy
+call super::destroy
+end on
+
+type m_load_sound_content from menu within m_loadsoundfiles
+end type
+
+event clicked;iw_window.dynamic wf_load_files('Sound', 'Chapter')
+end event
+
+on m_load_sound_content.create
+call super::create
+this.tag = "1304040"
+this.text = "Chapter"
+end on
+
+on m_load_sound_content.destroy
+call super::destroy
+end on
+
+type m_save from menu within m_file
+end type
+
+event clicked;iw_window.dynamic wf_save()
+end event
+
+on m_save.create
+call super::create
+this.tag = "1304050"
+this.text = "Save"
+end on
+
+on m_save.destroy
+call super::destroy
+end on
+
+type m_closeteachingmaterial from menu within m_file
+end type
+
+event clicked;iw_window.dynamic wf_close()
+end event
+
+on m_closeteachingmaterial.create
+call super::create
+this.tag = "1304060"
+this.text = "Close "
+end on
+
+on m_closeteachingmaterial.destroy
+call super::destroy
+end on
+
+type m_add from menu within m_material
+m_subject m_subject
+m_chapter m_chapter
+m_content m_content
+end type
+
+on m_add.create
+call super::create
+this.text = "Add"
+this.m_subject=create m_subject
+this.m_chapter=create m_chapter
+this.m_content=create m_content
+this.Item[UpperBound(this.Item)+1]=this.m_subject
+this.Item[UpperBound(this.Item)+1]=this.m_chapter
+this.Item[UpperBound(this.Item)+1]=this.m_content
+end on
+
+on m_add.destroy
+call super::destroy
+destroy(this.m_subject)
+destroy(this.m_chapter)
+destroy(this.m_content)
+end on
+
+type m_subject from menu within m_add
+end type
+
+event clicked;iw_window.dynamic wf_add_subject()
+end event
+
+on m_subject.create
+call super::create
+this.tag = "1304070"
+this.text = "Subject"
+end on
+
+on m_subject.destroy
+call super::destroy
+end on
+
+type m_chapter from menu within m_add
+end type
+
+event clicked;iw_window.dynamic wf_add_chapter()
+end event
+
+on m_chapter.create
+call super::create
+this.tag = "1304080"
+this.text = "Chapter"
+end on
+
+on m_chapter.destroy
+call super::destroy
+end on
+
+type m_content from menu within m_add
+end type
+
+event clicked;iw_window.dynamic wf_add_content()
+end event
+
+on m_content.create
+call super::create
+this.tag = "1304090"
+this.text = "Content"
+end on
+
+on m_content.destroy
+call super::destroy
+end on
+
+type m_delete from menu within m_material
+m_subject1 m_subject1
+m_chapter1 m_chapter1
+m_content1 m_content1
+end type
+
+on m_delete.create
+call super::create
+this.text = "Delete"
+this.m_subject1=create m_subject1
+this.m_chapter1=create m_chapter1
+this.m_content1=create m_content1
+this.Item[UpperBound(this.Item)+1]=this.m_subject1
+this.Item[UpperBound(this.Item)+1]=this.m_chapter1
+this.Item[UpperBound(this.Item)+1]=this.m_content1
+end on
+
+on m_delete.destroy
+call super::destroy
+destroy(this.m_subject1)
+destroy(this.m_chapter1)
+destroy(this.m_content1)
+end on
+
+type m_subject1 from menu within m_delete
+end type
+
+event clicked;iw_window.dynamic wf_delete_subject()
+end event
+
+on m_subject1.create
+call super::create
+this.tag = "1304100"
+this.text = "Subject"
+end on
+
+on m_subject1.destroy
+call super::destroy
+end on
+
+type m_chapter1 from menu within m_delete
+end type
+
+event clicked;iw_window.dynamic wf_delete_chapter()
+end event
+
+on m_chapter1.create
+call super::create
+this.tag = "1304110"
+this.text = "Chapter"
+end on
+
+on m_chapter1.destroy
+call super::destroy
+end on
+
+type m_content1 from menu within m_delete
+end type
+
+event clicked;iw_window.dynamic wf_delete_content()
+end event
+
+on m_content1.create
+call super::create
+this.tag = "1304120"
+this.text = "Content"
+end on
+
+on m_content1.destroy
+call super::destroy
+end on
+
+type m_tool from menu within m_material
+m_timetext m_timetext
+m_maketextcontent m_maketextcontent
+m_materialmerge m_materialmerge
+m_saveintotextfile m_saveintotextfile
+end type
+
+on m_tool.create
+call super::create
+this.text = "Tools"
+this.m_timetext=create m_timetext
+this.m_maketextcontent=create m_maketextcontent
+this.m_materialmerge=create m_materialmerge
+this.m_saveintotextfile=create m_saveintotextfile
+this.Item[UpperBound(this.Item)+1]=this.m_timetext
+this.Item[UpperBound(this.Item)+1]=this.m_maketextcontent
+this.Item[UpperBound(this.Item)+1]=this.m_materialmerge
+this.Item[UpperBound(this.Item)+1]=this.m_saveintotextfile
+end on
+
+on m_tool.destroy
+call super::destroy
+destroy(this.m_timetext)
+destroy(this.m_maketextcontent)
+destroy(this.m_materialmerge)
+destroy(this.m_saveintotextfile)
+end on
+
+type m_timetext from menu within m_tool
+end type
+
+event clicked;iw_window.dynamic wf_time_text()
+end event
+
+on m_timetext.create
+call super::create
+this.tag = "1304130"
+this.text = "Time Text"
+end on
+
+on m_timetext.destroy
+call super::destroy
+end on
+
+type m_maketextcontent from menu within m_tool
+end type
+
+event clicked;iw_window.dynamic wf_make_text_content()
+
+end event
+
+on m_maketextcontent.create
+call super::create
+this.tag = "1304140"
+this.text = "Make Text Content"
+end on
+
+on m_maketextcontent.destroy
+call super::destroy
+end on
+
+type m_materialmerge from menu within m_tool
+end type
+
+event clicked;iw_window.dynamic of_merging()
+end event
+
+on m_materialmerge.create
+call super::create
+this.text = "Material Merge"
+end on
+
+on m_materialmerge.destroy
+call super::destroy
+end on
+
+type m_saveintotextfile from menu within m_tool
+end type
+
+event clicked;iw_window.dynamic of_save_material_as_flat_file()
+end event
+
+on m_saveintotextfile.create
+call super::create
+this.text = "Save Into Text File"
+end on
+
+on m_saveintotextfile.destroy
+call super::destroy
+end on
+

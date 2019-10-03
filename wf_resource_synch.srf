@@ -1,0 +1,110 @@
+long ll_row, ll_orig_acct_id, ll_method_id, ll_lesson_id
+string ls_remote_site_path, ls_remote_lesson_path, ls_lesson_name, ls_lesson_subpath
+string ls_remote_resource_path, ls_resource_path, ls_local_filename
+
+long ll_i, ll_count
+string ls_r_path[], ls_r_tstamp[]
+ll_count = extResIndexCount("D:\Resource_sync\resource.lhi") 
+MessageBox("ll_count", ll_count)
+for ll_i = 1 to ll_count
+	ls_r_path[ll_i] = space(200)
+	ls_r_tstamp[ll_i] = space(50)
+next
+extRetrieveResIndex("D:\Resource_sync\resource.lhi", ls_r_path, ls_r_tstamp) 
+for ll_i = 1 to 10
+	MessageBox(ls_r_tstamp[ll_i], ls_r_path[ll_i])
+next
+return 1 
+// Lesson Retrieving
+ids_lesson_list = create nvo_datastore
+ids_lesson_list.dataobject = "d_lesson_list"
+ids_lesson_list.is_select_sql = &
+	"Select la.account_id as account_id,la.orig_acct_id as orig_acct_id,instruction_id,instruction_id2," + &
+	" prompt_inst,l.lesson_id as lesson_id,m.method_id as method_id," + &
+	" l.lesson_name as lesson_name,m.Lesson_subpath as Lesson_subpath,a.Site_path as Site_path" + &
+	" From LessonAcquired As la,Lesson As l,Method as m,Account as a " + &
+	" Where la.orig_acct_id eq l.account_id and la.lesson_id eq l.lesson_id and l.method_id eq m.method_id " + &
+	" and l.account_id eq a.id and la.account_id eq " + string(gn_appman.il_account_id) + &
+	" union " + &
+   " Select l.account_id as account_id,l.account_id as orig_acct_id,instruction_id,instruction_id2," + &
+	" prompt_inst,l.lesson_id as lesson_id,m.method_id as method_id," + &
+	" l.lesson_name as lesson_name,m.Lesson_subpath as Lesson_subpath,a.Site_path as Site_path" + &
+	" From Lesson As l,Method as m,Account as a" + &
+	" Where l.method_id eq m.method_id and l.account_id eq a.id and l.account_id eq " + string(gn_appman.il_account_id)	
+//MessageBox("sql", ids_lesson_list.is_select_sql)
+
+//extCreateResourceFile("D:\Resource_sync\resource.lhi", "D:\Resource_sync\resource.lhm")
+
+ids_lesson_list.Data_retrieve( )
+
+// Lesson Loading
+For ll_row = 1 to ids_lesson_list.RowCount()
+	ll_orig_acct_id = ids_lesson_list.GetItemNumber(ll_row, "orig_acct_id")
+	ll_method_id = long(ids_lesson_list.GetItemString(ll_row, "method_id"))
+	ll_lesson_id = ids_lesson_list.GetItemNumber(ll_row, "lesson_id")	
+	ls_lesson_name = lower(ids_lesson_list.GetItemString(ll_row, "lesson_name"))
+	ls_lesson_subpath = ids_lesson_list.GetItemString(ll_row, "Lesson_subpath")
+	ls_remote_site_path = ids_lesson_list.GetItemString(ll_row, "site_path") + "/Account" + string(ll_orig_acct_id, "000000")
+	ls_remote_lesson_path = ls_remote_site_path + "/LH_lessons/" + ls_lesson_subpath + "/" + string(ll_method_id, "00") + ls_lesson_name + string(ll_lesson_id, "0000000000") + ".txt"	
+//	MessageBox("ls_remote_lesson_path", ls_remote_lesson_path)
+	wf_load_lesson_content( ls_remote_lesson_path, ls_remote_site_path, ll_row)
+Next
+string ls_remote_file_time_stamp
+ls_remote_file_time_stamp = space(20)
+long ll_file_size
+
+ids_response_to_right = create nvo_datastore
+ids_response_to_right.dataobject = "d_responsetr"
+ids_response_to_right.is_select_sql = &
+	" Select account_id, account_id as orig_acct_id, response_id, wave_file, site_path " + &
+	" From ResponseTR as r, Account as a " + & 
+	" Where r.account_id eq a.id and r.account_id eq " + string(gn_appman.il_account_id) + &
+	" UNION " + &
+	" Select rtra.account_id as account_id, rtra.orig_acct_id as orig_acct_id, " + &
+	" rtr.response_id as response_id, wave_file, site_path " + &
+	" From ResponseTRacquired as rtra, ResponseTR as rtr, Account as a " + &
+	" Where rtra.orig_acct_id eq rtr.account_id and rtr.account_id eq a.id " + &
+	" and rtra.response_id eq rtr.response_id and rtra.account_id eq "  + string(gn_appman.il_account_id)
+	
+ids_response_to_right.Data_retrieve( )
+For ll_row = 1 to ids_response_to_right.RowCount()
+	ls_resource_path = ids_response_to_right.GetItemString(ll_row, "site_path") + "/Account" + string(ids_response_to_right.GetItemNumber(ll_row, "orig_acct_id"), "000000") + "/LH_resources/static table/wave/"
+	ls_remote_resource_path = ls_resource_path + "response to right/" + string(ids_response_to_right.GetItemNumber(ll_row, "response_id"), "00000000") + lower(ids_response_to_right.GetItemString(ll_row, "wave_file"))	
+	ls_local_filename = "D:\Resource_sync\" + ids_response_to_right.GetItemString(ll_row, "wave_file")
+	wf_add_to_resource_list( ls_remote_resource_path )
+//	extGetBinaryFile(ls_local_filename, ls_remote_resource_path)
+//	ll_file_size = FileLength(ls_local_filename)
+//	extGetRemoteFileDate(ls_remote_resource_path, ls_remote_file_time_stamp)	
+//	extPutImageFile("D:\Resource_sync\resource.lhi", "D:\Resource_sync\resource.lhm", ls_local_filename, ls_remote_resource_path, ls_remote_file_time_stamp, ll_file_size)
+//	extGetImageFile("D:\Resource_sync\resource.lhi", "D:\Resource_sync\resource.lhm", ls_remote_resource_path, ls_local_filename)
+Next
+
+ids_response_to_wrong = create nvo_datastore
+ids_response_to_wrong.dataobject = "d_responsetw"
+ids_response_to_wrong.is_select_sql = &
+	" Select account_id, account_id as orig_acct_id, response_id, wave_file, site_path " + &
+	" From ResponseTW as r, Account as a " + & 
+	" Where r.account_id eq a.id and r.account_id eq " + string(gn_appman.il_account_id) + &
+	" UNION " + &
+	" Select rtwa.account_id as account_id, rtwa.orig_acct_id as orig_acct_id, " + &
+	" rtw.response_id as response_id, wave_file, site_path " + &
+	" From ResponseTWacquired as rtwa, ResponseTW as rtw, Account as a " + &
+	" Where rtwa.orig_acct_id eq rtw.account_id and rtw.account_id eq a.id " + &
+	" and rtwa.response_id eq rtw.response_id and rtwa.account_id eq "  + string(gn_appman.il_account_id)
+	
+ids_response_to_wrong.Data_retrieve( )
+For ll_row = 1 to ids_response_to_wrong.RowCount()
+	ls_resource_path = ids_response_to_wrong.GetItemString(ll_row, "site_path") + "/Account" + string(ids_response_to_wrong.GetItemNumber(ll_row, "orig_acct_id"), "000000") + "/LH_resources/static table/wave/"
+	ls_remote_resource_path = ls_resource_path + "response to wrong/" + string(ids_response_to_wrong.GetItemNumber(ll_row, "response_id"), "00000000") + lower(ids_response_to_wrong.GetItemString(ll_row, "wave_file"))	
+	ls_local_filename = "D:\Resource_sync\" + ids_response_to_wrong.GetItemString(ll_row, "wave_file")
+	wf_add_to_resource_list( ls_remote_resource_path )
+//	extGetBinaryFile(ls_local_filename, ls_remote_resource_path)
+//	ll_file_size = FileLength(ls_local_filename)
+//	extGetRemoteFileDate(ls_remote_resource_path, ls_remote_file_time_stamp)	
+//	extPutImageFile("D:\Resource_sync\resource.lhi", "D:\Resource_sync\resource.lhm", ls_local_filename, ls_remote_resource_path, ls_remote_file_time_stamp, ll_file_size)
+//	extGetImageFile("D:\Resource_sync\resource.lhi", "D:\Resource_sync\resource.lhm", ls_remote_resource_path, ls_local_filename)
+Next
+wf_make_resource( )
+
+
+return 1

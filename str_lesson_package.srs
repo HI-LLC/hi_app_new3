@@ -1,0 +1,17 @@
+$PBExportHeader$str_lesson_package.srs
+global type str_lesson_package from structure
+	long Total_File_Size
+	long Total_Lessons
+	long Total_Resources
+	long Start_Lesson_Index
+	long Start_Resource_Index
+	char Record_sig[22]
+	char Package_prefix[200]
+	char Package_type[2] // D=Demo, P=Purchased, I=Internal package
+	char Owner[100] // Account ID
+	char DateStamp[12] // Date Packaged or Loaded, YYYY-MM-DD
+	char TimeStamp[20] // HH:MM:SS 000000
+	char SystemID[20] // Computer System ID where the package is initially loaded
+	char Reserve[500]
+end type
+

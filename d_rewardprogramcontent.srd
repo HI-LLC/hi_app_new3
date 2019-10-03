@@ -1,0 +1,27 @@
+$PBExportHeader$d_rewardprogramcontent.srd
+release 8;
+datawindow(units=0 timer_interval=0 color=12632256 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=88 color="12632256" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=100 color="12632256" )
+table(column=(type=number updatewhereclause=yes name=account_id dbname="account_id" )
+ column=(type=number updatewhereclause=yes name=student_id dbname="student_id" )
+ column=(type=number updatewhereclause=yes name=reward_program_id dbname="reward_program_id" )
+ column=(type=number updatewhereclause=yes name=reward_program_current_id dbname="reward_program_current_id" )
+ column=(type=char(2) updatewhereclause=yes name=media_type dbname="media_type")
+ column=(type=number updatewhereclause=yes name=reward_source_id dbname="reward_source_id" )
+ column=(type=char(100) updatewhereclause=yes name=description dbname="description" )
+ column=(type=char(500) updatewhereclause=yes name=video_file dbname="video_file" )
+ column=(type=number updatewhereclause=yes name=total_duration dbname="total_duration" )
+ column=(type=number updatewhereclause=yes name=reward_duration dbname="reward_duration" )
+ column=(type=number updatewhereclause=yes name=replay_num dbname="replay_num" )
+ column=(type=number updatewhereclause=yes name=current_play_count dbname="current_play_count" )
+ column=(type=number updatewhereclause=yes name=sequence dbname="sequence" )
+ column=(type=char(70) updatewhereclause=yes name=note dbname="note" )
+ retrieve="    SELECT ~"account_id~",   
+         ~"student_id~"   
+	FROM ~"RewardProgram~" 
+" update="RewardProgram" updatewhere=1 updatekeyinplace=no  sort="account_id A ")
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" netscapelayers="0" )

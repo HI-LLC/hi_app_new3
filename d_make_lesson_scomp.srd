@@ -1,0 +1,80 @@
+$PBExportHeader$d_make_lesson_scomp.srd
+release 7;
+datawindow(units=0 timer_interval=0 color=12639424 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=76 color="536870912" )
+summary(height=12 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=84 color="536870912" )
+table(column=(type=decimal(0) update=yes updatewhereclause=yes key=yes identity=yes name=lesson_id dbname="lesson.lesson_id" )
+ column=(type=decimal(0) update=yes updatewhereclause=yes name=student_id dbname="lesson.student_id" )
+ column=(type=decimal(0) update=yes updatewhereclause=yes name=teacher_id dbname="lesson.teacher_id" )
+ column=(type=char(50) update=yes updatewhereclause=yes name=description dbname="lesson.description" )
+ column=(type=decimal(0) update=yes updatewhereclause=yes name=response_to_right_id dbname="lesson.response_to_right_id" )
+ column=(type=decimal(0) update=yes updatewhereclause=yes name=response_to_wrong_id dbname="lesson.response_to_wrong_id" )
+ column=(type=decimal(0) update=yes updatewhereclause=yes name=instruction_id dbname="lesson.instruction_id" )
+ column=(type=real update=yes updatewhereclause=yes name=degree dbname="lesson.degree" initial="2" values="2	2/3	3/4	4/" )
+ column=(type=real update=yes updatewhereclause=yes name=tries dbname="lesson.tries" initial="1" values="1	1/2	2/3	3/4	4/" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=picture_ind dbname="lesson.picture_ind" initial="1" values="On	1/Off	0/" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=text_ind dbname="lesson.text_ind" initial="1" values="On	1/Off	0/" )
+ column=(type=char(2) update=yes updatewhereclause=yes name=lesson_type dbname="lesson.lesson_type" )
+ column=(type=decimal(0) update=yes updatewhereclause=yes name=instruction_id2 dbname="lesson.instruction_id2" )
+ column=(type=decimal(0) update=yes updatewhereclause=yes name=method_id dbname="lesson.method_id" initial="17" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=data_collection_ind dbname="lesson.data_collection_ind" initial="0" values="On	1/Off	0/" )
+ column=(type=char(1) updatewhereclause=yes name=pair_ind dbname="lesson.pair_ind" initial="0" values="Yes	1/No	0/" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=prompt_ind dbname="lesson.prompt_ind" initial="0" values="Yes	1/No	0/" )
+ column=(type=decimal(0) update=yes updatewhereclause=yes name=prompt_inst dbname="lesson.prompt_inst" )
+ retrieve="  SELECT ~"lesson~".~"lesson_id~",   
+         ~"lesson~".~"student_id~",   
+         ~"lesson~".~"teacher_id~",   
+         ~"lesson~".~"description~",   
+         ~"lesson~".~"response_to_right_id~",   
+         ~"lesson~".~"response_to_wrong_id~",   
+         ~"lesson~".~"instruction_id~",   
+         ~"lesson~".~"degree~",   
+         ~"lesson~".~"tries~",   
+         ~"lesson~".~"picture_ind~",   
+         ~"lesson~".~"text_ind~",   
+         ~"lesson~".~"lesson_type~",   
+         ~"lesson~".~"instruction_id2~",   
+         ~"lesson~".~"method_id~",   
+         ~"lesson~".~"data_collection_ind~",   
+         ~"lesson~".~"pair_ind~",   
+         ~"lesson~".~"prompt_ind~",   
+         ~"lesson~".~"prompt_inst~" prompt_inst 
+    FROM ~"lesson~"  
+   WHERE ( ~"lesson~".~"method_id~" >= :al_from_method_id ) AND  
+         ( ~"lesson~".~"method_id~" <= :al_to_method_id )    
+" update="lesson" updatewhere=0 updatekeyinplace=no arguments=(("al_from_method_id", number),("al_to_method_id", number))  sort="description A " )
+text(band=header alignment="2" text="Lesson" border="0" color="0" x="430" y="4" height="64" width="219"  name=description_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Student" border="0" color="0" x="1088" y="4" height="64" width="462"  name=student_id_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Teacher" border="0" color="0" x="1563" y="4" height="64" width="462"  name=teacher_id_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Response - Right" border="0" color="0" x="2053" y="8" height="64" width="512"  name=t_1  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Response - Wrong" border="0" color="0" x="2587" y="4" height="64" width="553"  name=t_2  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Instruction" border="0" color="0" x="3269" y="0" height="64" width="311"  name=t_3  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Instruction 2" border="0" color="0" x="3799" y="0" height="64" width="352"  name=t_10  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Degree" border="0" color="0" x="4256" y="4" height="64" width="238"  name=t_4  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Tries" border="0" color="0" x="4512" y="4" height="64" width="178"  name=t_5  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Picture" border="0" color="0" x="4713" y="4" height="64" width="206"  name=t_6  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Text" border="0" color="0" x="4942" y="4" height="64" width="187"  name=t_7  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Data Collection" border="0" color="0" x="5147" y="4" height="64" width="434"  name=t_8  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Prompt Instr." border="0" color="0" x="6798" y="0" height="64" width="535"  name=t_11  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Prompt Ind." border="0" color="0" x="6418" y="4" height="64" width="361"  name=t_12  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=10 border="5" color="0" x="5" y="8" height="64" width="1070" format="[general]"  name=description edit.limit=50 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=2 alignment="1" tabsequence=20 border="5" color="0" x="1088" y="8" height="64" width="462" format="[general]"  name=student_id dddw.name=dddw_student dddw.displaycolumn=fullname dddw.datacolumn=student_id dddw.percentwidth=100 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=3 alignment="1" tabsequence=30 border="5" color="0" x="1563" y="8" height="64" width="462" format="[general]"  name=teacher_id dddw.name=dddw_teacher dddw.displaycolumn=fullname dddw.datacolumn=teacher_id dddw.percentwidth=100 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=5 alignment="0" tabsequence=40 border="5" color="0" x="2043" y="8" height="64" width="535" format="[General]"  name=response_to_right_id dddw.name=dddw_response_right dddw.displaycolumn=description dddw.datacolumn=response_id dddw.percentwidth=100 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.hscrollbar=yes dddw.vscrollbar=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=6 alignment="0" tabsequence=50 border="5" color="0" x="2597" y="8" height="64" width="535" format="[General]"  name=response_to_wrong_id dddw.name=dddw_response_wrong dddw.displaycolumn=description dddw.datacolumn=response_id dddw.percentwidth=100 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.hscrollbar=yes dddw.vscrollbar=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=7 alignment="0" tabsequence=60 border="5" color="0" x="3154" y="8" height="64" width="535" format="[General]"  name=instruction_id dddw.name=dddw_instruction dddw.displaycolumn=description dddw.datacolumn=instruction_id dddw.percentwidth=100 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.hscrollbar=yes dddw.vscrollbar=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=13 alignment="0" tabsequence=70 border="5" color="0" x="3703" y="8" height="64" width="535" format="[general]"  name=instruction_id2 dddw.name=dddw_instruction dddw.displaycolumn=description dddw.datacolumn=instruction_id dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.vscrollbar=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=8 alignment="0" tabsequence=80 border="5" color="0" x="4256" y="8" height="64" width="238" format="[General]"  name=degree ddlb.limit=0 ddlb.allowedit=no ddlb.case=any  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=9 alignment="0" tabsequence=90 border="5" color="0" x="4512" y="8" height="64" width="178" format="[General]"  name=tries ddlb.limit=0 ddlb.allowedit=no ddlb.case=any  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=10 alignment="0" tabsequence=100 border="5" color="0" x="4713" y="8" height="64" width="206" format="[general]"  name=picture_ind ddlb.limit=0 ddlb.allowedit=no ddlb.case=any  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=11 alignment="0" tabsequence=110 border="5" color="0" x="4942" y="8" height="64" width="187" format="[general]"  name=text_ind ddlb.limit=0 ddlb.allowedit=no ddlb.case=any  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=18 alignment="0" tabsequence=150 border="5" color="0" x="6798" y="8" height="64" width="535" format="[General]"  name=prompt_inst dddw.name=dddw_prompt dddw.displaycolumn=description dddw.datacolumn=prompt_id dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.vscrollbar=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=17 alignment="0" tabsequence=140 border="5" color="0" x="6418" y="8" height="64" width="361" format="[general]"  name=prompt_ind ddlb.limit=0 ddlb.allowedit=no ddlb.case=any ddlb.useasborder=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=15 alignment="0" tabsequence=120 border="5" color="0" x="5147" y="8" height="64" width="434" format="[general]"  name=data_collection_ind ddlb.limit=0 ddlb.allowedit=no ddlb.case=any ddlb.useasborder=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+text(band=header alignment="2" text="Concept Type" border="0" color="0" x="5600" y="4" height="64" width="800"  name=t_9  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=14 alignment="0" tabsequence=130 border="5" color="0" x="5600" y="8" height="64" width="800"  name=method_id dddw.name=dddw_method dddw.displaycolumn=description dddw.datacolumn=method_id dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.vscrollbar=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )
+  

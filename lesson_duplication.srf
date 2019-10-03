@@ -1,0 +1,144 @@
+long ll_new_lesson_id, ll_old_lesson_id, ll_count, ll_row
+ll_old_lesson_id = il_current_master_id
+datetime ldt_update_dt
+
+ldt_update_dt = datetime(today(), now())
+
+if ll_old_lesson_id = 0 then
+	MessageBox("Error", "No lesson selected, Cannot duplicate.")
+	return
+end if
+
+ INSERT INTO lesson (
+         student_id,   
+         teacher_id,   
+         description,   
+         response_to_right_id,   
+         response_to_wrong_id,   
+         instruction_id,   
+         degree,   
+         tries,   
+         picture_ind,   
+         text_ind,   
+         lesson_type,   
+			preposition1,
+			preposition2,
+         instruction_id2,   
+         method_id,   
+         data_collection_ind,   
+         pair_ind,   
+         prompt_ind,   
+         prompt_inst,
+			threshold,
+			threshold_min_count,
+			active_ind
+		) 
+ SELECT  l.student_id,   
+         l.teacher_id,   
+         'DUPLICATE LESSON',   
+         l.response_to_right_id,   
+         l.response_to_wrong_id,   
+         l.instruction_id,   
+         l.degree,   
+         l.tries,   
+         l.picture_ind,   
+         l.text_ind,   
+         l.lesson_type,   
+			l.preposition1,
+			l.preposition2,
+         l.instruction_id2,   
+         l.method_id,   
+         l.data_collection_ind,   
+         l.pair_ind,   
+         l.prompt_ind,   
+         l.prompt_inst,
+			l.threshold,
+			l.threshold_min_count,
+			l.active_ind
+FROM	lesson l
+WHERE l.lesson_id = :ll_old_lesson_id;
+
+if SQLCA.sqlcode <> 0 then
+	f_log_error("Duplicate Lesson", SQLCA.sqlcode, SQLCA.sqldbcode, SQLCA.sqlerrtext)
+	MessageBox("Error", "Cannot duplicate lesson.")
+	return
+end if
+commit;
+
+SELECT max(lesson_id) INTO :ll_new_lesson_id
+FROM lesson;
+
+SELECT Count(*) INTO :ll_count
+FROM lesson_content
+WHERE lesson_id = :ll_old_lesson_id;
+
+
+if ll_count > 0 then	
+	INSERT INTO lesson_content (
+				lesson_id,   
+				content_id,   
+				total_correct_answers,   
+				total_tries,   
+				lastupdatedon,   
+				sequence,   
+				pair_ind
+		)
+		SELECT  
+				:ll_new_lesson_id,   
+				lc.content_id,   
+				0,   
+				0,   
+				:ldt_update_dt,   
+				sequence,   
+				pair_ind
+		FROM lesson_content lc 
+	  WHERE lc.lesson_id = :ll_old_lesson_id;
+	
+	if SQLCA.sqlcode <> 0 then
+		f_log_error("Duplicate Lesson Content", SQLCA.sqlcode, SQLCA.sqldbcode, SQLCA.sqlerrtext)
+		MessageBox("Error", "Cannot duplicate lesson contents.")
+		return
+	end if
+	commit;
+end if
+
+SELECT Count(*) INTO :ll_count
+FROM lesson_container
+WHERE lesson_id = :ll_old_lesson_id;
+
+if ll_count > 0 then	
+ INSERT INTO lesson_container (
+			lesson_id,   
+         container_id,   
+         source_ind,   
+         selected_ind,   
+         bean_id,   
+         bean_drop_style  
+		)
+  SELECT :ll_new_lesson_id,   
+         lct.container_id,   
+         lct.source_ind,   
+         lct.selected_ind,   
+         lct.bean_id,   
+         lct.bean_drop_style  
+    FROM lesson_container lct   
+   WHERE lct.lesson_id = :ll_old_lesson_id;
+	
+	if SQLCA.sqlcode <> 0 then
+		f_log_error("Duplicate Lesson Container", SQLCA.sqlcode, SQLCA.sqldbcode, SQLCA.sqlerrtext)
+		MessageBox("Error", "Cannot duplicate lesson Container.")
+		return
+	end if
+	commit;
+end if
+
+dwobject dwo
+if wf_master_retrieve() > 0 then
+	il_current_master_row = dw_master.of_get_row(is_master_id_name, ll_new_lesson_id)
+	if il_current_master_row < 1 then il_current_master_row = 1
+	dw_master.event clicked(0, 0, il_current_master_row, dwo)
+	if dw_details.retrieve(il_current_master_id) > 0 then
+		il_current_details_row = 1
+		dw_details.event clicked(0, 0, il_current_details_row, dwo)
+	end if
+end if

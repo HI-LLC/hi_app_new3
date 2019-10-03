@@ -1,0 +1,31 @@
+$PBExportHeader$gf_play_sound.srf
+global type gf_play_sound from function_object
+end type
+
+forward prototypes
+global subroutine gf_play_sound (string as_wave_file, integer ai_table_ind, long al_table_id)
+end prototypes
+
+global subroutine gf_play_sound (string as_wave_file, integer ai_table_ind, long al_table_id);string ls_wave_file, ls_subject, ls_chapter
+long ll_subject_id
+
+if ai_table_ind = 0 then // wave file in base dir
+	ls_wave_file = "wave\" + as_wave_file
+elseif ai_table_ind = 1 then // wave file under subject
+	select description into :ls_subject
+	from subject
+	where subject_id = :al_table_id;
+	ls_wave_file = "wave\" + ls_subject + '\' + as_wave_file
+else // wave file under chapter
+	select description, subject_id into :ls_chapter, :ll_subject_id
+	from chapter
+	where chapter_id = :al_table_id;	
+	select description into :ls_subject
+	from subject
+	where subject_id = :ll_subject_id;	
+	ls_wave_file = "wave\" + ls_subject + '\' + ls_chapter + '\' + as_wave_file
+end if
+	
+sndPlaySoundA(ls_wave_file, 0)
+end subroutine
+

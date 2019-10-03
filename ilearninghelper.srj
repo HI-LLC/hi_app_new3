@@ -1,0 +1,45 @@
+$PBExportHeader$ilearninghelper.srj
+EXE:ilearninghelper.exe,,0,1
+CMP:0,0,0,2,0,0
+COM:Sybase, Inc.
+DES:Sybase, Inc. Product File
+CPY:
+PRD:Powerbuilder Enterprise Series
+VER:8.0.3.9850
+PBD:C:\Han\PB Apps\Light End - Internet\ilearninghelper.pbl,,1
+OBJ:C:\Han\PB Apps\Light End - Internet\ilearninghelper.pbl,uo_count_alpha,u
+OBJ:C:\Han\PB Apps\Light End - Internet\ilearninghelper.pbl,str_msg,s
+OBJ:C:\Han\PB Apps\Light End - Internet\ilearninghelper.pbl,str_point,s
+OBJ:C:\Han\PB Apps\Light End - Internet\ilearninghelper.pbl,nvo_aba_appman,u
+OBJ:C:\Han\PB Apps\Light End - Internet\ilearninghelper.pbl,d_student_l,d
+OBJ:C:\Han\PB Apps\Light End - Internet\ilearninghelper.pbl,w_lesson_unscramble_sentence,w
+OBJ:C:\Han\PB Apps\Light End - Internet\ilearninghelper.pbl,nvo_linkedlist,u
+OBJ:C:\Han\PB Apps\Light End - Internet\ilearninghelper.pbl,uo_count_comparison,u
+OBJ:C:\Han\PB Apps\Light End - Internet\ilearninghelper.pbl,d_lesson_comparison,d
+OBJ:C:\Han\PB Apps\Light End - Internet\ilearninghelper.pbl,f_getcolor,f
+OBJ:C:\Han\PB Apps\Light End - Internet\ilearninghelper.pbl,gf_get_parentwindow,f
+OBJ:C:\Han\PB Apps\Light End - Internet\ilearninghelper.pbl,w_play_avi,w
+OBJ:C:\Han\PB Apps\Light End - Internet\ilearninghelper.pbl,w_container_unscramble_word,w
+OBJ:C:\Han\PB Apps\Light End - Internet\ilearninghelper.pbl,ilearninghelper,a
+OBJ:C:\Han\PB Apps\Light End - Internet\ilearninghelper.pbl,str_resource_data,s
+OBJ:C:\Han\PB Apps\Light End - Internet\ilearninghelper.pbl,w_money_board,w
+OBJ:C:\Han\PB Apps\Light End - Internet\ilearninghelper.pbl,w_lesson_unscramble_word,w
+OBJ:C:\Han\PB Apps\Light End - Internet\ilearninghelper.pbl,d_prompt_spelling,d
+OBJ:C:\Han\PB Apps\Light End - Internet\ilearninghelper.pbl,uo_count,u
+OBJ:C:\Han\PB Apps\Light End - Internet\ilearninghelper.pbl,d_reward,d
+OBJ:C:\Han\PB Apps\Light End - Internet\ilearninghelper.pbl,str_rect,s
+OBJ:C:\Han\PB Apps\Light End - Internet\ilearninghelper.pbl,str_string_array,s
+OBJ:C:\Han\PB Apps\Light End - Internet\ilearninghelper.pbl,w_lesson_dragdrop_count,w
+OBJ:C:\Han\PB Apps\Light End - Internet\ilearninghelper.pbl,uo_count_dragdrop,u
+OBJ:C:\Han\PB Apps\Light End - Internet\ilearninghelper.pbl,str_mousepos,s
+OBJ:C:\Han\PB Apps\Light End - Internet\ilearninghelper.pbl,uo_count_number,u
+OBJ:C:\Han\PB Apps\Light End - Internet\ilearninghelper.pbl,d_prompt,d
+OBJ:C:\Han\PB Apps\Light End - Internet\ilearninghelper.pbl,w_container_number_match,w
+OBJ:C:\Han\PB Apps\Light End - Internet\ilearninghelper.pbl,f_getresourcefile,f
+OBJ:C:\Han\PB Apps\Light End - Internet\ilearninghelper.pbl,w_lesson_mw_cmmnd,w
+OBJ:C:\Han\PB Apps\Light End - Internet\ilearninghelper.pbl,nvo_reward_program,u
+OBJ:C:\Han\PB Apps\Light End - Internet\ilearninghelper.pbl,str_size,s
+OBJ:C:\Han\PB Apps\Light End - Internet\ilearninghelper.pbl,w_lesson,w
+OBJ:C:\Han\PB Apps\Light End - Internet\ilearninghelper.pbl,w_container,w
+OBJ:C:\Han\PB Apps\Light End - Internet\ilearninghelper.pbl,nv_sound_play,u
+OBJ:C:\Han\PB Apps\Light End - Internet\ilearninghelper.pbl,str_lesson_package,s

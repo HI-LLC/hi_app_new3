@@ -1,0 +1,10 @@
+$PBExportHeader$str_msg.srs
+global type str_msg from structure
+	long		hwnd
+	integer		message
+	integer		wParam
+	long		lParam
+	long		time
+	str_point		pt
+end type
+

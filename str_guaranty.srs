@@ -1,0 +1,8 @@
+$PBExportHeader$str_guaranty.srs
+global type str_guaranty from structure
+	long		type_id
+	string		type_name
+	long		guarantor_id
+	string		guarantor_name
+end type
+

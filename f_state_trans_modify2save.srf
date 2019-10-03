@@ -1,0 +1,17 @@
+$PBExportHeader$f_state_trans_modify2save.srf
+global type f_state_trans_modify2save from function_object
+end type
+
+forward prototypes
+global function integer f_state_trans_modify2save (window a_window, datawindow a_datawindow, ref str_state a_state)
+end prototypes
+
+global function integer f_state_trans_modify2save (window a_window, datawindow a_datawindow, ref str_state a_state);if a_datawindow.dynamic event ue_save() = g_constants.execute_fail then
+	return g_constants.execute_fail
+end if
+f_state_trans_set_mode(a_window, a_datawindow, g_constants.state_view, a_state)
+return g_constants.execute_sucessful
+
+
+end function
+

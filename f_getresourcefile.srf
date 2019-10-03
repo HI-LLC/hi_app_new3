@@ -1,0 +1,21 @@
+$PBExportHeader$f_getresourcefile.srf
+global type f_getresourcefile from function_object
+end type
+
+forward prototypes
+global function integer f_getresourcefile (string as_filename, ref string as_local_filename)
+end prototypes
+
+global function integer f_getresourcefile (string as_filename, ref string as_local_filename);string ls_filename, ls_local_file
+if gn_appman.ib_online_data then
+	f_getonlinefile(as_filename, ls_local_file)
+	as_local_filename = ls_local_file
+//	MessageBox(as_filename, ls_local_file)
+	return 1
+else
+	ls_filename = lower(as_filename)
+	as_local_filename = as_filename	
+	return extExtractPackageFile(gn_appman.istr_lesson_package.Package_prefix, ls_filename, 2)
+end if
+end function
+

@@ -1,0 +1,6 @@
+$PBExportHeader$str_mousepos.srs
+global type str_mousepos from structure
+	long		xpos
+	long		ypos
+end type
+

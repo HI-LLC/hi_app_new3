@@ -1,0 +1,46 @@
+objects that use f_getcache function
+
+non_visual_objects.pbl(nvo_datastore).data_restore.0009:  if f_getcachedatawindowfile(ls_res_path, ls_local_path) = 0 then
+	ls_res_path = as_id + "_ds_" + dataobject + ".csv"
+	ls_local_path = gn_appman.is_sys_temp +"\" + ls_res_path
+non_visual_objects.pbl(nvo_sound_play).play_st_sound.0007:  if f_getcacheresourcefile(as_wave_file, "play_st_sound.wav") = 1 then
+	if f_getcacheresourcefile(as_wave_file, "play_st_sound.wav") = 1 then
+		f_set_garbage_file("play_st_sound.wav")	
+		if pos(as_wave_file, ".wav") > 0 then
+			sndPlaySoundA("play_st_sound.wav", ai_flag)
+		end if
+	end if
+non_visual_objects.pbl(nvo_synch_cache).of_load_lesson_content.0020:  f_getcachelessonfile(RemoetFileName, LocalFileName)
+	ls_FileName = LocalFileName
+	LocalFileName = gn_appman.is_sys_temp + "\" + ls_FileName
+non_visual_objects.pbl(nvo_synch_cache).of_load_lesson_content.0168:   f_getcachelessonfile(RemoetFileName, LocalFileName)
+	LocalFileName = gn_appman.is_sys_temp + "\" + ls_FileName
+
+visual_objects.pbl(uo_count_alpha).st_number.mouseover.0025:  if f_GetCacheDictionaryFile(ls_dict_bmp_file, ls_bitmap_file) = 1 then
+	ls_bitmap_file = "uo_count_alpha.jpg"
+	if f_GetCacheDictionaryFile(ls_dict_bmp_file, ls_bitmap_file) = 1 then
+		if not isvalid(gn_appman.iw_picture_pop) and FileExists(ls_bitmap_file)  then
+			OpenWithParm(gn_appman.iw_picture_pop, ls_bitmap_file)
+		end if
+	end if
+	//MessageBox("ls_dict_sound_file", ls_dict_sound_file)
+	if not gn_appman.ib_sound_played then
+	//	MessageBox("ls_dict_bmp_file", ls_dict_bmp_file)
+		extsndPlaySound(gn_appman.is_dict_index_file, gn_appman.is_dict_image_file, ls_dict_sound_file, 1)
+		gn_appman.ib_sound_played = true
+	end if
+	return 1
+
+window_objects.pbl(w_lesson_dragdrop_count).wf_question_announcer.0008:  if f_getcacheresourcefile(is_instruction, ls_local_file) = 0 then return
+window_objects.pbl(w_lesson_dragdrop_count).wf_question_announcer.0024:   f_getcacheresourcefile(is_source_bean_wave_list[ii_selected_source], ls_local_file)
+window_objects.pbl(w_lesson_dragdrop_count).wf_question_announcer.0031:   f_getcacheresourcefile(is_preposition_1, ls_local_file)
+window_objects.pbl(w_lesson_dragdrop_count).wf_question_announcer.0044:   f_getcacheresourcefile(is_preposition_2, ls_local_file)
+window_objects.pbl(w_lesson_dragdrop_count).wf_question_announcer.0048:   f_getcacheresourcefile(is_dest_wave_list[ii_selected_dest], ls_local_file)
+window_objects.pbl(w_lesson_dragdrop_count).wf_response.0010:  if f_getcacheresourcefile(is_response_to_right, ls_local_file) = 0 then return
+window_objects.pbl(w_lesson_dragdrop_count).wf_response.0024:   if f_getcacheresourcefile(is_wave_list[ii_current_question_id], ls_local_file) = 1 then
+window_objects.pbl(w_lesson_dragdrop_count).wf_init_container.0053:   if f_getcacheresourcefile(is_source_picture_list[li_source_row], ls_local_filename) = 0 then 
+window_objects.pbl(w_lesson_dragdrop_count).wf_init_container.0062:    if f_getcacheresourcefile(is_source_bean_picture_list[li_source_row], ls_local_filename) = 0 then 
+window_objects.pbl(w_lesson_dragdrop_count).wf_init_container.0080:   if f_getcacheresourcefile(is_dest_picture_list[li_dest_row], ls_local_filename) = 0 then 
+window_objects.pbl(w_lesson_numbermatch_count).wf_question_announcer.0003:  if f_getcacheresourcefile(is_instruction, ls_local_file) = 0 then return
+window_objects.pbl(w_lesson_numbermatch_count).wf_response.0008:  if f_getcacheresourcefile(is_response_to_right, ls_local_file) = 0 then return
+window_objects.pbl(w_lesson_numbermatch_count).wf_response.0038:   if f_getcacheresourcefile(is_response_to_wrong, ls_local_file) = 1 then

@@ -1,0 +1,139 @@
+$PBExportHeader$d_lesson.srd
+release 7;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=664 color="536870912" )
+table(column=(type=decimal(0) update=yes updatewhereclause=yes name=lesson_content_total_correct_answers dbname="lesson_content.total_correct_answers" )
+ column=(type=decimal(0) update=yes updatewhereclause=yes name=lesson_content_total_tries dbname="lesson_content.total_tries" )
+ column=(type=datetime update=yes updatewhereclause=yes name=lesson_content_lastupdatedon dbname="lesson_content.lastupdatedon" )
+ column=(type=long updatewhereclause=yes name=lesson_content_sequence dbname="lesson_content.sequence" )
+ column=(type=char(50) updatewhereclause=yes name=lesson_description dbname="lesson.description" )
+ column=(type=char(50) updatewhereclause=yes name=content_description dbname="content.description" )
+ column=(type=char(50) updatewhereclause=yes name=content_bitmap_file dbname="content.bitmap_file" )
+ column=(type=char(50) updatewhereclause=yes name=content_wave_file dbname="content.wave_file" )
+ column=(type=decimal(0) updatewhereclause=yes name=lesson_content_lesson_id dbname="lesson_content.lesson_id" )
+ column=(type=decimal(0) updatewhereclause=yes name=lesson_content_content_id dbname="lesson_content.content_id" )
+ column=(type=char(80) updatewhereclause=yes name=response_to_right_wave_file dbname="response_to_right.wave_file" )
+ column=(type=char(80) updatewhereclause=yes name=response_to_wrong_wave_file dbname="response_to_wrong.wave_file" )
+ column=(type=char(80) updatewhereclause=yes name=instruction_wave_file dbname="instruction.wave_file" )
+ column=(type=real updatewhereclause=yes name=lesson_tries dbname="lesson.tries" )
+ column=(type=real updatewhereclause=yes name=lesson_degree dbname="lesson.degree" )
+ column=(type=char(30000) updatewhereclause=yes name=content_details dbname="content.details" )
+ column=(type=char(50) updatewhereclause=yes name=chapter_description dbname="chapter.description" )
+ column=(type=char(50) updatewhereclause=yes name=subject_description dbname="subject.description" )
+ column=(type=char(1) updatewhereclause=yes name=lesson_picture_ind dbname="lesson.picture_ind" )
+ column=(type=char(1) updatewhereclause=yes name=lesson_text_ind dbname="lesson.text_ind" )
+ column=(type=char(50) updatewhereclause=yes name=preposition_1 dbname="preposition.preposition_1" )
+ column=(type=char(50) updatewhereclause=yes name=preposition_2 dbname="preposition.preposition_2" )
+ column=(type=decimal(0) updatewhereclause=yes name=lesson_method_id dbname="lesson.method_id" )
+ column=(type=char(2) updatewhereclause=yes name=lesson_type dbname="lesson.lesson_type" )
+ column=(type=char(80) updatewhereclause=yes name=instruction2_wave_file dbname="instruction.instruction2" )
+ column=(type=char(1) updatewhereclause=yes name=data_collection_ind dbname="lesson.data_collection_ind" )
+ column=(type=decimal(0) updatewhereclause=yes name=lesson_content_id dbname="lesson_content.lesson_content_id" )
+ column=(type=decimal(0) updatewhereclause=yes name=lesson_id dbname="lesson.lesson_id" )
+ column=(type=char(1) updatewhereclause=yes name=lesson_prompt_ind dbname="lesson.prompt_ind" )
+ column=(type=char(80) updatewhereclause=yes name=prompt_prompt_inst dbname="prompt.prompt_inst" )
+ column=(type=decimal(0) updatewhereclause=yes key=yes identity=yes name=lesson_content_lesson_content_id dbname="lesson_content.lesson_content_id" )
+ column=(type=char(1) updatewhereclause=yes name=lesson_pair_ind dbname="lesson.pair_ind" )
+ column=(type=number updatewhereclause=yes name=lesson_threshold dbname="lesson.threshold" )
+ column=(type=long updatewhereclause=yes name=lesson_threshold_min_count dbname="lesson.threshold_min_count" )
+ column=(type=long updatewhereclause=yes name=content_pair_ind dbname="lesson_content.lesson_content_pair_ind" )
+ column=(type=char(150) updatewhereclause=yes name=lesson_content_mask dbname="lesson_content.mask" )
+ column=(type=char(150) updatewhereclause=yes name=lesson_content_distraction dbname="lesson_content.distraction" )
+ retrieve="    SELECT ~"lesson_content~".~"total_correct_answers~",   
+         ~"lesson_content~".~"total_tries~",   
+         ~"lesson_content~".~"lastupdatedon~",   
+         ~"lesson_content~".~"sequence~",   
+         ~"lesson~".~"description~",   
+         ~"content~".~"description~",   
+         ~"content~".~"bitmap_file~",   
+         ~"content~".~"wave_file~",   
+         ~"lesson_content~".~"lesson_id~",   
+         ~"lesson_content~".~"content_id~",   
+         ~"response_to_right~".~"wave_file~",   
+         ~"response_to_wrong~".~"wave_file~",   
+         ~"instruction~".~"wave_file~",   
+         ~"lesson~".~"tries~",   
+         ~"lesson~".~"degree~",   
+         ~"content~".~"details~",   
+         ~"chapter~".~"description~",   
+         ~"subject~".~"description~",   
+         ~"lesson~".~"picture_ind~",   
+         ~"lesson~".~"text_ind~",   
+         ~"preposition_a~".~"wave_file~" Preposition_1,   
+         ~"preposition_b~".~"wave_file~" Preposition_2,   
+         ~"lesson~".~"method_id~",
+         ~"lesson~".~"lesson_type~",
+			instruction2.wave_file instruction2,
+			data_collection_ind,
+			~"lesson_content~".~"lesson_content_id~" lesson_content_id,
+			~"lesson~".~"lesson_id~" lesson_id,
+			~"lesson~".~"prompt_ind~" prompt_ind,
+			~"Prompt~".~"wave_file~" prompt_inst,
+         ~"lesson_content~".~"lesson_content_id~",
+			~"lesson~".~"pair_ind~" pair_ind,
+			~"lesson~".~"threshold~" threshold,
+			~"lesson~".~"threshold_min_count~" threshold_min_count,
+			~"lesson_content~".~"pair_ind~" lesson_content_pair_ind,
+         ~"lesson~".~"response_to_right_id~" response_to_right_id,  
+         ~"lesson~".~"response_to_wrong_id~" response_to_wrong_id,  
+         ~"lesson~".~"instruction_id~" instruction_id,
+			instruction2.instruction_id instruction2_id,
+			~"Prompt~".~"Prompt_id~" Prompt_id,
+			~"lesson_content~".~"mask~" mask,
+			~"lesson_content~".~"distraction~" distraction
+    FROM {oj {oj {oj {oj ~"lesson~"  LEFT OUTER JOIN ~"preposition~" preposition_a  ON ~"lesson~".~"preposition1~" = ~"preposition_a~".~"word_id~"} LEFT OUTER JOIN ~"preposition~" preposition_b  ON ~"lesson~".~"preposition2~" = ~"preposition_b~".~"word_id~"} LEFT OUTER JOIN ~"Instruction~" instruction2  ON ~"lesson~".~"instruction_id2~" = instruction2.instruction_id } LEFT OUTER JOIN ~"Prompt~" ON ~"lesson~".~"Prompt_inst~" = ~"Prompt~".~"Prompt_id~" },   
+    FROM {oj {oj {oj {oj ~"lesson~"  LEFT OUTER JOIN ~"preposition~" preposition_a  ON ~"lesson~".~"preposition1~" = ~"preposition_a~".~"word_id~"} LEFT OUTER JOIN ~"preposition~" preposition_b  ON ~"lesson~".~"preposition2~" = ~"preposition_b~".~"word_id~"} LEFT OUTER JOIN ~"Instruction~" instruction2  ON ~"lesson~".~"instruction_id2~" = instruction2.instruction_id } LEFT OUTER JOIN ~"Prompt~" ON ~"lesson~".~"Prompt_inst~" = ~"Prompt~".~"Prompt_id~" },   
+         ~"content~",   
+         ~"lesson_content~",   
+         ~"response_to_right~",   
+         ~"response_to_wrong~",   
+         ~"instruction~",   
+         ~"chapter~",   
+         ~"subject~"			
+   WHERE ( ~"lesson~".~"lesson_id~" = ~"lesson_content~".~"lesson_id~" ) and  
+         ( ~"lesson_content~".~"content_id~" = ~"content~".~"content_id~" ) and  
+         ( ~"lesson~".~"response_to_right_id~" = ~"response_to_right~".~"response_id~" ) and  
+         ( ~"lesson~".~"response_to_wrong_id~" = ~"response_to_wrong~".~"response_id~" ) and  
+         ( ~"lesson~".~"instruction_id~" = ~"instruction~".~"instruction_id~" ) and 
+         ( ~"chapter~".~"chapter_id~" = ~"content~".~"chapter_id~" ) and  
+         ( ~"subject~".~"subject_id~" = ~"chapter~".~"subject_id~" ) and  
+          ( ~"lesson~".~"active_ind~" ='1' ) and  
+        ( ( ~"lesson~".~"lesson_id~" = :an_lesson_id ) )   
+ORDER BY ~"lesson_content~".~"sequence~" ASC   
+" update="lesson_content" updatewhere=0 updatekeyinplace=no arguments=(("an_lesson_id", number)) )
+column(band=detail id=19 alignment="0" tabsequence=32766 border="0" color="0" x="14" y="184" height="64" width="526" format="[general]"  name=lesson_picture_ind edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="0" x="14" y="16" height="64" width="526" format="[general]"  name=lesson_description edit.limit=50 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=15 alignment="0" tabsequence=32766 border="0" color="0" x="14" y="100" height="64" width="526" format="[General]"  name=lesson_degree edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=10 border="0" color="0" x="567" y="16" height="64" width="1070" format="[general]"  name=lesson_content_total_correct_answers edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="0" x="567" y="100" height="64" width="1070" format="[shortdate] [time]"  name=lesson_content_lastupdatedon edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=16 alignment="0" tabsequence=32766 border="0" color="0" x="1669" y="184" height="64" width="521" format="[general]"  name=content_details edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="0" x="1669" y="268" height="64" width="521" format="[general]"  name=content_description edit.limit=50 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="0" x="1669" y="16" height="64" width="521" format="[general]"  name=content_wave_file edit.limit=50 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="0" x="1669" y="100" height="64" width="521" format="[general]"  name=content_bitmap_file edit.limit=50 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=20 border="0" color="0" x="571" y="184" height="64" width="1070" format="[general]"  name=lesson_content_total_tries edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=20 alignment="0" tabsequence=32766 border="0" color="0" x="14" y="268" height="64" width="526" format="[general]"  name=lesson_text_ind edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=14 alignment="0" tabsequence=32766 border="0" color="0" x="14" y="352" height="64" width="526" format="[General]"  name=lesson_tries edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=24 alignment="0" tabsequence=32766 border="0" color="0" x="14" y="440" height="64" width="526" format="[general]"  name=lesson_type edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=25 alignment="0" tabsequence=32766 border="0" color="0" x="2217" y="448" height="64" width="814" format="[general]"  name=instruction2_wave_file edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=27 alignment="0" tabsequence=30 border="0" color="0" x="544" y="272" height="64" width="1161" format="[General]"  name=lesson_content_id edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=28 alignment="0" tabsequence=32766 border="0" color="0" x="5" y="520" height="80" width="539" format="[general]"  name=lesson_id edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=18 alignment="0" tabsequence=32766 border="0" color="0" x="2226" y="16" height="64" width="805" format="[general]"  name=subject_description edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=17 alignment="0" tabsequence=32766 border="0" color="0" x="2226" y="100" height="64" width="805" format="[general]"  name=chapter_description edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="0" tabsequence=32766 border="0" color="0" x="2226" y="184" height="64" width="805" format="[general]"  name=response_to_right_wave_file edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="0" tabsequence=32766 border="0" color="0" x="2217" y="356" height="64" width="805" format="[general]"  name=instruction_wave_file edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=21 alignment="0" tabsequence=32766 border="0" color="0" x="3081" y="16" height="64" width="1353" format="[general]"  name=preposition_1 edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=22 alignment="0" tabsequence=32766 border="0" color="0" x="3081" y="100" height="64" width="1353" format="[general]"  name=preposition_2 edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=26 alignment="0" tabsequence=32766 border="0" color="0" x="3081" y="184" height="64" width="1353" format="[general]"  name=data_collection_ind edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="0" tabsequence=32766 border="0" color="0" x="2222" y="268" height="64" width="805" format="[general]"  name=response_to_wrong_wave_file edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=29 alignment="0" tabsequence=32766 border="0" color="0" x="3081" y="268" height="64" width="1353" format="[general]"  name=lesson_prompt_ind edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=30 alignment="0" tabsequence=32766 border="0" color="0" x="3081" y="352" height="64" width="1353" format="[general]"  name=prompt_prompt_inst edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=23 alignment="0" tabsequence=32766 border="0" color="0" x="3077" y="432" height="64" width="1161" format="[General]"  name=lesson_method_id edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=31 alignment="0" tabsequence=32766 border="0" color="0" x="3072" y="516" height="64" width="1161" format="[general]"  name=lesson_content_lesson_content_id edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=32 alignment="0" tabsequence=32766 border="0" color="0" x="2213" y="536" height="64" width="535" format="[general]"  name=lesson_pair_ind edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=33 alignment="0" tabsequence=32766 border="0" color="0" x="4434" y="0" height="64" width="1161" format="[General]"  name=lesson_threshold edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=34 alignment="0" tabsequence=32766 border="0" color="0" x="4453" y="96" height="64" width="1161" format="[General]"  name=lesson_threshold_min_count edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=35 alignment="0" tabsequence=32766 border="0" color="0" x="4443" y="204" height="64" width="1161" format="[General]"  name=content_pair_ind edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )

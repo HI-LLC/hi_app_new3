@@ -1,0 +1,74 @@
+$PBExportHeader$d_progress_report_mwcmmnd.srd
+release 7;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=yes )
+header(height=120 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=108 color="536870912" )
+detail(height=0 color="536870912" )
+table(column=(type=decimal(0) updatewhereclause=yes name=total_tries dbname="progress_data.total_tries" )
+ column=(type=decimal(0) updatewhereclause=yes name=total_correct_answers dbname="progress_data.total_correct_answers" )
+ column=(type=datetime updatewhereclause=yes name=end_date dbname="progress_data.end_date" )
+ column=(type=datetime updatewhereclause=yes name=begin_date dbname="progress_data.begin_date" )
+ column=(type=char(102) updatewhereclause=yes name=student_name dbname="student_name" )
+ column=(type=char(50) updatewhereclause=yes name=lesson_name dbname="lesson.lesson_name" )
+ column=(type=char(60) updatewhereclause=yes name=lesson_key dbname="lesson_key" )
+ column=(type=char(102) updatewhereclause=yes name=teacher_name dbname="teacher_name" )
+ column=(type=char(50) updatewhereclause=yes name=lesson_item dbname="content.lesson_item" )
+ column=(type=decimal(0) updatewhereclause=yes name=progress_data_id dbname="progress_data.progress_data_id" )
+ column=(type=decimal(0) updatewhereclause=yes identity=yes name=lesson_lesson_id dbname="lesson.lesson_id" )
+ column=(type=decimal(0) updatewhereclause=yes name=progress_data_lesson_content_id dbname="progress_data.lesson_content_id" )
+ retrieve="  SELECT ~"progress_data~".~"total_tries~",   
+         ~"progress_data~".~"total_correct_answers~",   
+         ~"progress_data~".~"end_date~",   
+         ~"progress_data~".~"begin_date~",           
+         ~"student~".~"last_name~" + ', ' + ~"student~".~"first_name~" student_name,   
+			~"lesson~".~"description~" lesson_name,
+			~"lesson~".~"description~" + convert(char(10), ~"lesson~".~"lesson_id~") lesson_key,
+			~"teacher~".~"last_name~" + ', ' + ~"teacher~".~"first_name~" teacher_name,
+			~"content~".~"description~" lesson_item ,
+			~"progress_data~".~"progress_data_id~" progress_data_id,
+			~"lesson~".~"lesson_id~",
+			~"progress_data~".~"lesson_content_id~" 
+    FROM ~"lesson~",   
+         ~"lesson_content~",   
+         ~"progress_data~",   
+         ~"student~",   
+         ~"teacher~" ,
+			~"content~",
+			~"container~" 
+   WHERE ( ~"lesson~".~"lesson_id~" = ~"lesson_content~".~"lesson_id~" ) and  
+         ( ~"lesson_content~".~"lesson_content_id~" = ~"progress_data~".~"lesson_content_id~" ) and  
+         ( ~"lesson~".~"student_id~" = ~"student~".~"student_id~" ) and  
+         ( ~"lesson~".~"teacher_id~" = ~"teacher~".~"teacher_id~" ) and
+         ( ~"lesson_content~".~"content_id~" = ~"content~".~"content_id~" ) and
+         ( convert(char(10), ~"lesson~".~"student_id~") like :as_student_id ) and  
+         ( convert(char(10), ~"lesson~".~"method_id~") like :as_method_id ) and  
+   		( convert(char(10), ~"lesson~".~"lesson_id~") like :as_lesson_id ) and
+         ( convert(char(10), ~"progress_data~".~"progress_data_id~") like :as_report_id )
+" arguments=(("as_student_id", string),("as_method_id", string),("as_lesson_id", string),("as_report_id", string))  sort="student_name A lesson_key A progress_data_id A lesson_item A progress_data_lesson_content_id A " )
+group(level=1 header.height=112 trailer.height=0 by=("student_name" ) header.color="536870912" trailer.color="536870912" )
+group(level=2 header.height=360 trailer.height=0 by=("lesson_key" ) header.color="536870912" trailer.color="536870912" )
+group(level=3 header.height=236 trailer.height=116 by=("progress_data_id" ) header.color="536870912" trailer.color="536870912" )
+group(level=4 header.height=100 trailer.height=0 by=("progress_data_lesson_content_id" ) header.color="536870912" trailer.color="536870912" )
+text(band=header alignment="2" text="Progress Report (Multi-word Command)" border="0" color="0" x="357" y="20" height="80" width="1655"  name=t_2  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header.1 alignment="0" expression="~"Student: ~" + if(isnull( student_name ), ~"~", student_name)"border="0" color="0" x="9" y="8" height="64" width="974" format="[GENERAL]"  name=compute_1  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=header.1 x1="5" y1="92" x2="2162" y2="92"  name=l_2 pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+compute(band=header.2 alignment="0" expression="~"Lesson: ~" + if(isnull(lesson_name), ~"~", lesson_name) + ~"  - ( Teacher : ~" + if(isnull(teacher_name), ~" )~", teacher_name + ~" )~")"border="0" color="0" x="165" y="8" height="64" width="2002" format="[GENERAL]"  name=compute_5  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=header.2 x1="155" y1="84" x2="2171" y2="84"  name=l_3 pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+report(band=header.2 dataobject="d_lesson_container_report" x="151" y="100" height="252" width="2016" border="0"  height.autosize=yes criteria="" nest_arguments=((" lesson_lesson_id ")) trail_footer = yes  name=dw_1 )
+text(band=header.3 alignment="2" text="Total Tries" border="0" color="0" x="1221" y="164" height="64" width="379"  name=progress_data_total_tries_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.3 alignment="1" text="Rate of 
+Successful Trial" border="0" color="0" x="1669" y="100" height="128" width="489"  name=progress_data_total_correct_answers_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header.3 alignment="0" expression="~"Data Taken Period: ~" + string(  begin_date  , ~"mm/dd/yyyyy hh:mm AM/PM~") + ~" To ~" + string(  end_date  , ~"mm/dd/yyyyy hh:mm AM/PM~")"border="0" color="0" x="320" y="8" height="64" width="1842" format="[GENERAL]"  name=compute_3  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.3 alignment="0" text="Item" border="0" color="0" x="320" y="164" height="64" width="709"  name=t_1  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.4 id=1 alignment="1" tabsequence=32766 border="0" color="0" x="1271" y="16" height="64" width="329" format="[general]"  name=total_tries edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header.4 alignment="1" expression="if(total_correct_answers = 0, ~"0%~", string( total_correct_answers / total_tries , ~"###%~"))"border="0" color="0" x="1760" y="20" height="64" width="398" format="[GENERAL]"  name=compute_2  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.4 id=9 alignment="0" tabsequence=32766 border="0" color="0" x="320" y="20" height="64" width="722" format="[general]"  name=lesson_item edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=trailer.3 x1="297" y1="12" x2="2153" y2="12"  name=l_1 pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+compute(band=trailer.3 alignment="1" expression="string(  sum(total_correct_answers for group 3) /  sum(total_tries for group 3 ), ~"###%~")"border="0" color="0" x="1733" y="36" height="64" width="425" format="[GENERAL]"  name=compute_6  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=trailer.3 alignment="0" text="Weighted Average" border="0" color="0" x="320" y="36" height="64" width="709"  name=t_3  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=footer alignment="1" expression="'Page ' + page() + ' of ' + pageCount()"border="0" color="0" x="1111" y="4" height="76" width="1042" format="[general]"  name=page_1  font.face="Arial" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=footer alignment="0" expression="string(today(), ~"mmm dd, yyyy  hh:mm AM/PM~")"border="0" color="0" x="32" y="4" height="76" width="658" format="[General]"  name=date_1  font.face="Arial" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )
+  

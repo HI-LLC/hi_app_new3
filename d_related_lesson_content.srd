@@ -1,0 +1,27 @@
+$PBExportHeader$d_related_lesson_content.srd
+release 7;
+datawindow(units=0 timer_interval=0 color=79741120 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=684 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912" )
+table(column=(type=char(50) updatewhereclause=yes name=lesson_description dbname="lesson.description" )
+ column=(type=char(50) updatewhereclause=yes name=content_description dbname="content.description" )
+ column=(type=decimal(0) updatewhereclause=yes name=lesson_student_id dbname="lesson.student_id" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"lesson_content~" )  TABLE(NAME=~"lesson~" )  TABLE(NAME=~"content~" ) COLUMN(NAME=~"lesson.description~") COLUMN(NAME=~"content.description~") COLUMN(NAME=~"lesson.student_id~")    JOIN (LEFT=~"lesson_content.lesson_id~"    OP =~"=~"RIGHT=~"lesson.lesson_id~" )    JOIN (LEFT=~"lesson_content.content_id~"    OP =~"=~"RIGHT=~"content.content_id~" )WHERE(    EXP1 =~"~~~"lesson_content~~~".~~~"content_id~~~"~"   OP =~"in~"    EXP2 =~":an_content_id~" ) ) ARG(NAME = ~"an_content_id~" TYPE = numberlist) " arguments=(("an_content_id", numberlist))  sort="content_description A lesson_description A " )
+group(level=1 header.height=88 trailer.height=0 by=("content_description" ) header.color="536870912" trailer.color="536870912" )
+groupbox(band=header text=""border="5" color="255" x="23" y="20" height="528" width="2757"  name=gb_1  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="The listed lesson contents including the data in the progress reports are 
+associated with the selected teaching materials to be deleted and the lesson  
+contents will be deleted as well  if the teaching materials are deleted. To" border="0" color="255" x="82" y="52" height="240" width="2670"  name=t_1  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="0" text="prevent the loss of data, please print the associated reports or save them
+as ~"Excel~" file.  Please click ~"Continue deleting~" button to proceed the
+deleting, or click ~"Cancel~" button to dismiss the deleting process." border="0" color="255" x="82" y="292" height="240" width="2633"  name=t_2  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Student" border="0" color="0" x="1947" y="588" height="64" width="800"  name=lesson_student_id_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Lesson" border="0" color="0" x="969" y="588" height="64" width="965"  name=lesson_description_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Content" border="0" color="0" x="23" y="588" height="64" width="933"  name=content_description_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.1 id=2 alignment="0" tabsequence=32766 border="5" color="0" x="23" y="4" height="76" width="933" format="[general]"  name=content_description edit.limit=50 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="5" color="0" x="969" y="4" height="76" width="965" format="[general]"  name=lesson_description edit.limit=50 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="5" color="0" x="1947" y="4" height="76" width="800" format="[general]"  name=lesson_student_id dddw.name=dddw_student dddw.displaycolumn=fullname dddw.datacolumn=student_id dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )

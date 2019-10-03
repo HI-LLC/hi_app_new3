@@ -1,0 +1,37 @@
+w_container_number_match lw_tmp
+string ls_answer
+super::wf_response()
+boolean lb_dummy_opened = false
+long ll_i
+ii_current_try++
+SetPointer(HourGlass!)
+if ab_correct then
+	timer(0, iw_dest[1])
+	iw_dest[1].wf_reset_backcolor()
+	ll_i = ii_current_question_id/2 + 1
+	il_total_correct_answers[ll_i] = il_total_correct_answers[ll_i] + 1
+	ls_answer = string(integer(st_3.text) - integer(st_5.text)) + ".wav"
+	inv_sound_play.play_number_sound(ls_answer)
+	if pos(is_response_to_right, ".wav") > 0 then
+		inv_sound_play.play_st_sound(is_response_to_right)
+	else
+		wf_play_video(is_response_to_right)
+	end if
+	if ii_current_question_id > ii_total_items then return
+//	MessageBox("Good Job!", "Next Number")
+	if isvalid(gw_money_board) then
+		gw_money_board.BringToTop = true
+		gw_money_board.wf_add_credit()
+	end if
+	wf_get_new_item()
+elseif ii_current_try = ii_tries then
+	timer(0, iw_dest[1])
+	iw_dest[1].wf_reset_backcolor()
+	wf_get_new_item()
+else
+	if pos(is_response_to_wrong, ".wav") > 0 then
+		inv_sound_play.play_st_sound(is_response_to_wrong)
+	else
+		wf_play_video(is_response_to_wrong)
+	end if
+end if	

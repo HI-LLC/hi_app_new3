@@ -1,0 +1,9 @@
+$PBExportHeader$str_reading.srs
+global type str_reading from structure
+	string		title
+	string		content
+	string		timelapse
+	long		backgroundcolor
+	long		highlightcolor
+end type
+

@@ -1,0 +1,30 @@
+$PBExportHeader$f_set_picture.srf
+global type f_set_picture from function_object
+end type
+
+forward prototypes
+global subroutine f_set_picture (ref picture apicture, string as_filename)
+end prototypes
+
+global subroutine f_set_picture (ref picture apicture, string as_filename);string ls_uncompressed_filename
+if right(as_filename, 1) = "_" then
+	if pos(lower(as_filename), ".jp_") > 0 then // scrambled JPeg file
+		ls_uncompressed_filename = "c:\current_picture.jpg"
+		JPegHeaderComplementOut(as_filename, ls_uncompressed_filename)
+	elseif pos(lower(as_filename), ".gi_") > 0 then // scrambled GIF file
+		ls_uncompressed_filename = "c:\current_picture.gif"
+		JPegHeaderComplementOut(as_filename, ls_uncompressed_filename)		
+	elseif pos(lower(as_filename), ".bm_") > 0 then // scrambled GIF file
+		ls_uncompressed_filename = "c:\current_picture.bmp"
+		Uncompress(as_filename, ls_uncompressed_filename)
+	else
+		MessageBox("Error", "Unrecognized compressed file!")
+		return
+	end if
+	apicture.PictureName = ls_uncompressed_filename
+	FileDelete(ls_uncompressed_filename)
+else
+	apicture.PictureName = as_filename
+end if
+end subroutine
+

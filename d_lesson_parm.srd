@@ -1,0 +1,46 @@
+$PBExportHeader$d_lesson_parm.srd
+release 8;
+datawindow(units=0 timer_interval=0 color=12632256 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=148 color="12632256" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=140 color="12632256" )
+table(column=(type=number updatewhereclause=yes name=account_id dbname="account_id" )
+ column=(type=number updatewhereclause=yes name=student_id dbname="student_id" )
+ column=(type=number updatewhereclause=yes name=lesson_id dbname="lesson_id" )
+ column=(type=char(100) updatewhereclause=yes name=lesson_name dbname="lesson_name" )
+ column=(type=number updatewhereclause=yes name=instruction_id dbname="instruction_id" )
+ column=(type=number updatewhereclause=yes name=degree dbname="degree" values="1	1/2	2/3	3/4	4/" )
+ column=(type=number updatewhereclause=yes name=tries dbname="tries" values="1	1/2	2/3	3/4	4/" )
+ column=(type=char(1) updatewhereclause=yes name=picture_ind dbname="picture_ind" values="Yes	Y/No	N/" )
+ column=(type=char(1) updatewhereclause=yes name=text_ind dbname="text_ind" values="Yes	Y/No	N/" )
+ column=(type=char(1) updatewhereclause=yes name=prompt_ind dbname="prompt_ind" )
+ column=(type=number updatewhereclause=yes name=prompt_inst dbname="prompt_inst" )
+ column=(type=char(1) updatewhereclause=yes name=active_ind dbname="active_ind" values="Active	A/Archived	I/" )
+ column=(type=char(100) updatewhereclause=yes name=photo dbname="photo" )
+ column=(type=char(100) updatewhereclause=yes name=note dbname="note" )
+ column=(type=char(1) updatewhereclause=yes name=photo_upload dbname="photo_upload" )
+ retrieve="    SELECT ~"account_id~",   
+         ~"student_id~"   
+	FROM ~"Lesson~" 
+"  sort="lesson_name A " )
+text(band=header alignment="2" text="Description" border="0" color="33554432" x="18" y="80" height="64" width="882" html.valueishtml="0"  name=last_name_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Degree of Difficulty" border="0" color="33554432" x="923" y="16" height="128" width="302" html.valueishtml="0"  name=first_name_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Picture" border="0" color="33554432" x="1490" y="80" height="64" width="279" html.valueishtml="0"  name=t_6 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Text" border="0" color="33554432" x="1792" y="80" height="64" width="279" html.valueishtml="0"  name=t_5 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Prompt" border="0" color="33554432" x="2094" y="80" height="64" width="334" html.valueishtml="0"  name=t_4 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Active/Archived" border="0" color="33554432" x="2450" y="16" height="128" width="297" html.valueishtml="0"  name=t_2 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Icon" border="0" color="33554432" x="2770" y="80" height="64" width="192" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Tries" border="0" color="33554432" x="1248" y="80" height="64" width="219" html.valueishtml="0"  name=mid_name_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=10 border="5" color="33554432" x="923" y="12" height="76" width="302" format="[general]" html.valueishtml="0"  name=degree visible="1" ddlb.limit=0 ddlb.allowedit=no ddlb.case=any ddlb.useasborder=yes ddlb.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="5" color="33554432" x="18" y="12" height="76" width="882" format="[general]" html.valueishtml="0"  name=lesson_name visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+column(band=detail id=8 alignment="0" tabsequence=50 border="5" color="33554432" x="1490" y="12" height="76" width="279" format="[general]" html.valueishtml="0"  name=picture_ind visible="1" ddlb.limit=0 ddlb.allowedit=no ddlb.case=any ddlb.useasborder=yes ddlb.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=9 alignment="0" tabsequence=30 border="5" color="33554432" x="1792" y="12" height="76" width="279" format="[general]" html.valueishtml="0"  name=text_ind visible="1" ddlb.limit=0 ddlb.allowedit=no ddlb.case=any ddlb.useasborder=yes ddlb.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=10 alignment="0" tabsequence=40 border="5" color="33554432" x="2094" y="12" height="76" width="334" format="[general]" html.valueishtml="0"  name=prompt_ind visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+button(band=detail text="Get Photo"filename=""action="0" border="0" color="33554432" x="2971" y="4" height="112" width="306" vtextalign="0" htextalign="0"  name=b_phto visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=12 alignment="0" tabsequence=32766 border="5" color="33554432" x="2450" y="12" height="76" width="297" format="[general]" html.valueishtml="0"  name=active_ind visible="1" ddlb.limit=0 ddlb.allowedit=no ddlb.case=any ddlb.useasborder=yes ddlb.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=12 alignment="0" tabsequence=32766 border="0" color="33554432" x="2770" y="8" height="124" width="192" format="[general]" html.valueishtml="0"  name=photo visible="1" bitmapname=yes edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=7 alignment="0" tabsequence=20 border="5" color="33554432" x="1248" y="12" height="76" width="219" format="[general]" html.valueishtml="0"  name=tries visible="1" ddlb.limit=0 ddlb.allowedit=no ddlb.case=any ddlb.useasborder=yes ddlb.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" netscapelayers="0" )
+ 

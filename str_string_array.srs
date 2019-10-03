@@ -1,0 +1,5 @@
+$PBExportHeader$str_string_array.srs
+global type str_string_array from structure
+	string		array[]                              
+end type
+

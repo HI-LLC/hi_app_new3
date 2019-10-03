@@ -1,0 +1,49 @@
+$PBExportHeader$f_state_trans_browse_userobject.srf
+global type f_state_trans_browse_userobject from function_object
+end type
+
+forward prototypes
+global subroutine f_state_trans_browse_userobject (datawindow a_datawindow, userobject a_userobject, integer ai_mode)
+end prototypes
+
+global subroutine f_state_trans_browse_userobject (datawindow a_datawindow, userobject a_userobject, integer ai_mode);long ll_i, ll_i2
+commandbutton lcb_tmp
+userobject luo_tmp
+datawindow ldw_tmp
+tab ltab_tmp
+
+if upperbound(a_userobject.control) > 0 then
+	for ll_i = 1 to upperbound(a_userobject.control)
+		choose case TypeOf(a_userobject.control[ll_i])
+			case tab!
+				ltab_tmp = a_userobject.control[ll_i]
+				for ll_i2 = 1 to upperbound(ltab_tmp.control)
+					f_state_trans_browse_userobject(a_datawindow, ltab_tmp.control[ll_i2], ai_mode)
+				next 				
+			case datawindow!
+				ldw_tmp = a_userobject.control[ll_i]
+				if (not isnull(ldw_tmp.tag)) and pos(ldw_tmp.tag, "on_in_view_mode") > 0 then
+					ldw_tmp.enabled = (ai_mode = g_constants.state_view or ai_mode = g_constants.state_0view)
+				end if
+				if (not isnull(ldw_tmp.tag)) and pos(ldw_tmp.tag, "on_in_edit_mode") > 0 then
+					ldw_tmp.enabled = (ai_mode = g_constants.state_modify)
+				end if
+			case commandbutton!
+				lcb_tmp = a_userobject.control[ll_i]
+				if TypeOf(a_userobject.control[ll_i]) = CommandButton! then
+					lcb_tmp = a_userobject.control[ll_i]
+					if lcb_tmp.tag = "on_in_view_mode" then
+						lcb_tmp.enabled = (ai_mode = g_constants.state_view or ai_mode = g_constants.state_0view)
+					end if
+					if lcb_tmp.tag = "on_in_edit_mode" then
+						lcb_tmp.enabled = (ai_mode = g_constants.state_modify)
+					end if
+
+				end if
+		end choose
+	next			
+end if	
+
+
+end subroutine
+

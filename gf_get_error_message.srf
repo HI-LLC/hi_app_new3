@@ -1,0 +1,40 @@
+$PBExportHeader$gf_get_error_message.srf
+global type gf_get_error_message from function_object
+end type
+
+forward prototypes
+global function string gf_get_error_message (string i_error_code)
+end prototypes
+
+global function string gf_get_error_message (string i_error_code);////////////////////////////////////////////////////////////////////////
+//
+//   Function : F_get_error_message
+//
+//    Purpose : This function accepts a error code and returns the error
+//              message from the epic error table. 
+//
+//
+//       Date : November 8 1994
+//
+//  Arguments : int i_error_code	 			- error codes above
+//
+//    Returns : string : Error message
+//
+//        Log :
+//
+//             DATE        WHO           WHAT
+//            ------      -----     -------------------------------------
+//					11/7			pabby		created 
+//
+//////////////////////////////////////////////////////////////////////////
+
+string 				ls_error_msg=""
+long					ll_foundrow
+
+select description into :ls_error_msg
+from pb_message
+where message_id = :i_error_code;
+return(ls_error_msg)
+
+end function
+

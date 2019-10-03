@@ -1,0 +1,28 @@
+$PBExportHeader$d_login.srd
+release 8;
+datawindow(units=0 timer_interval=0 color=12632256 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=1836 color="536870912" )
+table(column=(type=char(30) updatewhereclause=no name=name dbname="Name" )
+ column=(type=char(20) updatewhereclause=no name=password dbname="Password" )
+ column=(type=char(30) updatewhereclause=no name=fw_name dbname="fw_Name" )
+ column=(type=char(20) updatewhereclause=no name=fw_password dbname="fw_Password" )
+ column=(type=number updatewhereclause=no name=fw_ind dbname="fw_ind" initial="0" values="Firewall	1/Firewall	0" )
+ )
+column(band=detail id=1 alignment="0" tabsequence=10 border="5" color="33554432" x="626" y="24" height="76" width="704" format="[general]" html.valueishtml="0"  name=name visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=detail alignment="1" text="Account Name" border="0" color="33554432" x="174" y="32" height="64" width="421" html.valueishtml="0"  name=name_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text="Password" border="0" color="33554432" x="192" y="684" height="64" width="402" html.valueishtml="0"  name=t_4 visible="1~tfw_ind"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=20 border="5" color="33554432" x="626" y="160" height="76" width="704" format="*********" html.valueishtml="0"  name=password visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.password=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=detail alignment="1" text="Password" border="0" color="33554432" x="192" y="168" height="64" width="402" html.valueishtml="0"  name=password_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="(check it if your internet 
+connection via firewall or
+proxy server)" border="0" color="33554432" x="713" y="336" height="192" width="672" html.valueishtml="0"  name=t_2 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text="Firewall or Proxy" border="0" color="33554432" x="73" y="420" height="64" width="530" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=30 border="5" color="33554432" x="626" y="428" height="56" width="64" format="[general]" html.valueishtml="0"  name=fw_ind visible="1" checkbox.text="Firewall" checkbox.on="1" checkbox.off="0" checkbox.scale=no checkbox.threed=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=3 alignment="0" tabsequence=40 border="5" color="33554432" x="626" y="540" height="76" width="704" format="[general]" html.valueishtml="0"  name=fw_name visible="1~tfw_ind" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=detail alignment="1" text="Account" border="0" color="33554432" x="105" y="548" height="64" width="489" html.valueishtml="0"  name=t_5 visible="1~tfw_ind"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=50 border="5" color="33554432" x="626" y="676" height="76" width="704" format="*********" html.valueishtml="0"  name=fw_password visible="1~tfw_ind" edit.limit=0 edit.case=any edit.autoselect=yes edit.password=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" netscapelayers="0" )
+ 

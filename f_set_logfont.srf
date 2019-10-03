@@ -1,0 +1,23 @@
+$PBExportHeader$f_set_logfont.srf
+global type f_set_logfont from function_object
+end type
+
+forward prototypes
+global subroutine f_set_logfont (ref str_logfont logfont,long lfheight,long lfWeidht,character lfCharSet,string lfFaceName)
+end prototypes
+
+global subroutine f_set_logfont (ref str_logfont logfont,long lfheight,long lfWeidht,character lfCharSet,string lfFaceName);
+/*
+	logfont.lfHeight = lfheight
+	logfont.lfWeight = lfWeidht
+	logfont.lfItalic = char(0)
+	logfont.lfUnderline = char(0)
+	logfont.lfCharSet = lfCharSet
+	logfont.lfOutPrecision = char(OUT_DEFAULT_PRECIS) //OUT_STRING_PRECIS
+	logfont.lfClipPrecision = char(CLIP_DEFAULT_PRECIS) //CLIP_STROKE_PRECIS
+	logfont.lfQuality = char(DEFAULT_QUALITY)
+	logfont.lfPitchAndFamily = char(DEFAULT_PITCH)	// FF_SWISS | VARIABLE_PITCH
+	logfont.lfFaceName = lfFaceName
+	*/
+end subroutine
+

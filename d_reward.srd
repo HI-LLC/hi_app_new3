@@ -1,0 +1,15 @@
+$PBExportHeader$d_reward.srd
+release 7;
+datawindow(units=0 timer_interval=0 color=15780518 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=128 color="536870912" )
+table(column=(type=number updatewhereclause=no name=token_num dbname="token_num" initial="10" values="1	1/2	2/3	3/4	4/5	5/6	6/7	7/8	8/9	9/10	10/11	11/12	12/13	13/14	14/15	15/" )
+ column=(type=char(100) updatewhereclause=no name=file_name dbname="file_name" initial="Barney (Commercial).avi" values="Barney (Commercial)	Barney (Commercial).avi/Baseball Game (Commercial)	Baseball Game (Commercial).mpg/Empires Game (Commercial)	Empires Game (Commercial).mpg/Magic School Bus Dinosaurs Game (Commercial)	Magic School Bus Dinosaurs Game (Commercial).mpg/Magic School Bus Earth Game (Commercial)	Magic School Bus Earth Game (Commercial).mpg/Magic School Bus Rainforest Game (Commercial)	Magic School Bus Rainforest Game (Commercial).mpg/Mutant Game (Commercial)	Mutant Game (Commercial).mpg/Trespass Game (Commercial)	Trespass Game (Commercial).mpg/Video Off	NO/" )
+ )
+text(band=detail alignment="1" text="Reward Video" border="0" color="0" x="5" y="8" height="64" width="434"  name=t_1  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=2 alignment="0" tabsequence=10 border="5" color="0" x="466" y="8" height="72" width="1454" format="[general]"  name=file_name ddlb.limit=10 ddlb.allowedit=no ddlb.case=any ddlb.vscrollbar=yes ddlb.useasborder=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=1 alignment="0" tabsequence=20 border="5" color="0" x="2336" y="8" height="72" width="238" format="[general]"  name=token_num ddlb.limit=15 ddlb.allowedit=no ddlb.case=any ddlb.vscrollbar=yes ddlb.useasborder=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=detail alignment="1" text="Token Num" border="0" color="0" x="1966" y="12" height="64" width="347"  name=t_2  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )

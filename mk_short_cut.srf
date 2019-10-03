@@ -1,0 +1,62 @@
+string is_vb_script_file, ls_vb_script
+
+is_vb_script_file = "MakeShortCut.vbs"
+
+li_FileNum = FileOpen(is_vb_script_file, LineMode!, Write!, LockWrite!, Replace!)		
+if li_FileNum = -1 then 
+	MessageBox("Error", "Fail To Make The Desktop Shortcut!")
+	return
+end if
+ls_vb_script = 'Dim WSHShell'
+FileWrite(li_FileNum, ls_vb_script)
+ls_vb_script = 'Set WSHShell = WScript.CreateObject("' + 'WScript.Shell")'
+FileWrite(li_FileNum, ls_vb_script)
+ls_vb_script = 'Dim MyShortcut'
+FileWrite(li_FileNum, ls_vb_script)
+if FileExists("C:\Documents and Settings\All Users\Desktop") then // windows 2000 and XP
+	ls_vb_script = 'Set MyShortcut = WSHShell.CreateShortcut("' + 'C:\Documents and Settings\All Users\Start Menu\Programs\Learning Helper\iLearning Helper.lnk")'
+	FileWrite(li_FileNum, ls_vb_script)
+	ls_vb_script = 'MyShortcut.TargetPath = WSHShell.ExpandEnvironmentStrings("' + install_dir.text + '\bin\Learning Helper.exe")'
+	FileWrite(li_FileNum, ls_vb_script)
+	ls_vb_script = 'MyShortcut.WorkingDirectory = WSHShell.ExpandEnvironmentStrings("' + install_dir.text + '\Bin\")'
+	FileWrite(li_FileNum, ls_vb_script)
+	ls_vb_script = 'MyShortcut.WindowStyle = 4'
+	FileWrite(li_FileNum, ls_vb_script)
+	ls_vb_script = 'MyShortcut.IconLocation = WSHShell.ExpandEnvironmentStrings("' + install_dir.text + '\bin\LearningHelper.ico, 0")'
+	FileWrite(li_FileNum, ls_vb_script)
+	ls_vb_script = 'MyShortcut.Save'
+	FileWrite(li_FileNum, ls_vb_script)
+	ls_vb_script = 'Set MyShortcut = WSHShell.CreateShortcut("' + 'C:\Windows\Start Menu\Programs\Learning Helper\Uninstall Learning Helper.lnk")'
+	FileWrite(li_FileNum, ls_vb_script)
+	ls_vb_script = 'MyShortcut.TargetPath = WSHShell.ExpandEnvironmentStrings("' + install_dir.text + '\Uninstall.exe")' 
+	FileWrite(li_FileNum, ls_vb_script)
+	ls_vb_script = 'MyShortcut.WorkingDirectory = WSHShell.ExpandEnvironmentStrings("' + install_dir.text + '\")'
+	FileWrite(li_FileNum, ls_vb_script)
+	ls_vb_script = 'MyShortcut.WindowStyle = 4'
+	FileWrite(li_FileNum, ls_vb_script)
+	ls_vb_script = 'MyShortcut.IconLocation = WSHShell.ExpandEnvironmentStrings("' + install_dir.text + '\bin\LearningHelper.ico, 0")'
+	FileWrite(li_FileNum, ls_vb_script)
+	ls_vb_script = 'MyShortcut.Save'
+	FileWrite(li_FileNum, ls_vb_script)
+	// create short cur on desktop
+	if not gb_trial_version then
+		ls_vb_script = 'Set MyShortcut = WSHShell.CreateShortcut("' + 'C:\Windows\Desktop\Learning Helper.lnk")'
+	else
+		ls_vb_script = 'Set MyShortcut = WSHShell.CreateShortcut("' + 'C:\Windows\Desktop\Learning Helper Demo-Trial.lnk")'
+	end if
+	FileWrite(li_FileNum, ls_vb_script)
+	ls_vb_script = 'MyShortcut.TargetPath = WSHShell.ExpandEnvironmentStrings("' + install_dir.text + '\bin\Learning Helper.exe")'
+	FileWrite(li_FileNum, ls_vb_script)
+	ls_vb_script = 'MyShortcut.WorkingDirectory = WSHShell.ExpandEnvironmentStrings("' + install_dir.text + '\Bin\")'
+	FileWrite(li_FileNum, ls_vb_script)
+	ls_vb_script = 'MyShortcut.WindowStyle = 4'
+	FileWrite(li_FileNum, ls_vb_script)
+	ls_vb_script = 'MyShortcut.IconLocation = WSHShell.ExpandEnvironmentStrings("' + install_dir.text + '\bin\LearningHelper.ico, 0")'
+	FileWrite(li_FileNum, ls_vb_script)
+	ls_vb_script = 'MyShortcut.Save'
+	FileWrite(li_FileNum, ls_vb_script)
+	fnmkdir("C:\Windows\Start Menu\Programs\Learning Helper")
+end if
+FileClose(li_FileNum)
+ls_vb_script = 'wscript.exe' + ' "' + is_vb_script_file + '"'
+run(ls_vb_script)

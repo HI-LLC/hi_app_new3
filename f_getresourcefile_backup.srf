@@ -1,0 +1,21 @@
+$PBExportHeader$f_getresourcefile_backup.srf
+global type f_getresourcefile_backup from function_object
+end type
+
+forward prototypes
+global function integer f_getresourcefile_backup (string as_filename)
+end prototypes
+
+global function integer f_getresourcefile_backup (string as_filename);int li_i
+long ll_fsize, ll_findex
+for li_i = 1 to upperbound(gn_appman.istr_resource_data)
+	if lower(gn_appman.istr_resource_data[li_i].File_Name) = lower(as_filename) then
+		ll_fsize = gn_appman.istr_resource_data[li_i].fsize
+		ll_findex = gn_appman.istr_resource_data[li_i].findex
+		extExtractFile("c:\" + as_filename,  gn_appman.is_res_file_name,  ll_findex, ll_fsize)
+		return 1
+	end if
+next
+return 0
+end function
+

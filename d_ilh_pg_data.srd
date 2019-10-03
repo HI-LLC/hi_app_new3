@@ -1,0 +1,23 @@
+$PBExportHeader$d_ilh_pg_data.srd
+release 8;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=372 color="536870912" )
+summary(height=84 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=84 color="536870912" )
+table(column=(type=number updatewhereclause=no name=lesson_id dbname="lesson_id" )
+ column=(type=number updatewhereclause=no name=report_id dbname="progress_data_id" )
+ column=(type=char(80) updatewhereclause=no name=lesson_name dbname="lesson_name" )
+ column=(type=char(80) updatewhereclause=no name=method dbname="method" )
+ column=(type=datetime updatewhereclause=no name=begin_date dbname="begin_date" )
+ column=(type=datetime updatewhereclause=no name=end_date dbname="end_date" )
+ )
+text(band=header alignment="2" text="Content Name" border="0" color="0" x="9" y="296" height="64" width="1230"  name=lesson_name_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Total Tries" border="0" color="0" x="1253" y="232" height="128" width="219"  name=total_tries_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Total Correct Answers" border="0" color="0" x="1490" y="164" height="196" width="251"  name=total_correct_answers_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Percent" border="0" color="0" x="1760" y="296" height="64" width="251"  name=t_1  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="text" border="0" color="0" x="9" y="8" height="120" width="2002"  name=title_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=summary alignment="0" text="Average" border="0" color="0" x="9" y="4" height="76" width="1230"  name=t_2  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )
+ 

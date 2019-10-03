@@ -1,0 +1,34 @@
+$PBExportHeader$gf_get_wave_dddw.srf
+global type gf_get_wave_dddw from function_object
+end type
+
+forward prototypes
+global subroutine gf_get_wave_dddw (datawindowchild a_dddw)
+end prototypes
+
+global subroutine gf_get_wave_dddw (datawindowchild a_dddw);//string is_wave_list[]
+//long ll_itemcount, ll_row
+//
+//integer li_FileNum, li_Return, li_index = 1
+//long li_RecCount
+//string ls_tmp
+//
+//li_Return = fnDirListwav()
+//li_FileNum = FileOpen("Wave_File_List.txt")
+//li_Return = FileRead(li_FileNum, ls_tmp)
+//do while(li_Return <> -100)
+//	is_wave_list[li_index] = ls_tmp
+//	li_Return = FileRead(li_FileNum, ls_tmp)
+//	li_index++
+//loop
+//FileClose(li_FileNum)
+//
+//for li_index = 1 to upperbound(is_wave_list)
+//	ll_row = a_dddw.InsertRow(0)
+//	a_dddw.SetItem(ll_row, 'filename', is_wave_list[li_index])
+//next 
+//
+
+
+end subroutine
+

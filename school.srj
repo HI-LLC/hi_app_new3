@@ -1,0 +1,218 @@
+$PBExportHeader$school.srj
+EXE:learning helper.exe,install.pbr,0,1
+CMP:0,0,0,2,0,0
+COM:Sybase, Inc.
+DES:Sybase, Inc. Product File
+CPY:
+PRD:PowerBuilder Enterprise Series
+PVS:1,0,0,1
+PVN:1,0,0,1
+FVS:1,0,0,1
+FVN:1,0,0,1
+PBD:D:\PB Apps\Learning Helper\Source Code PB 9.0\Learning Helper School.pbl,,0
+PBD:D:\PB Apps\Learning Helper\Source Code PB 9.0\reports.pbl,,0
+PBD:D:\PB Apps\Learning Helper\Source Code PB 9.0\appl_common.pbl,,0
+PBD:D:\PB Apps\Learning Helper\Source Code PB 9.0\authen_common.pbl,,0
+PBD:D:\PB Apps\Learning Helper\Source Code PB 9.0\comm_board.pbl,,0
+PBD:D:\PB Apps\Learning Helper\Source Code PB 9.0\commons.pbl,,0
+PBD:D:\PB Apps\Learning Helper\Source Code PB 9.0\datawindow.pbl,,0
+PBD:D:\PB Apps\Learning Helper\Source Code PB 9.0\dddw_common.pbl,,0
+PBD:D:\PB Apps\Learning Helper\Source Code PB 9.0\fileservice.pbl,,0
+PBD:D:\PB Apps\Learning Helper\Source Code PB 9.0\functions and structures.pbl,,0
+PBD:D:\PB Apps\Learning Helper\Source Code PB 9.0\lessons.pbl,,0
+PBD:D:\PB Apps\Learning Helper\Source Code PB 9.0\lessonsetup.pbl,,0
+PBD:D:\PB Apps\Learning Helper\Source Code PB 9.0\management.pbl,,0
+PBD:D:\PB Apps\Learning Helper\Source Code PB 9.0\materials.pbl,,0
+PBD:D:\PB Apps\Learning Helper\Source Code PB 9.0\mt_tables.pbl,,0
+PBD:D:\PB Apps\Learning Helper\Source Code PB 9.0\programsetup.pbl,,0
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\lessons.pbl,w_lesson,w
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\functions and structures.pbl,str_msg,s
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\mt_tables.pbl,d_student_training_login,d
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\commons.pbl,n_srv_resize,u
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\functions and structures.pbl,str_point,s
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\commons.pbl,app_constant,u
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\lessonsetup.pbl,w_make_lesson_discrete_trial,w
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\lessonsetup.pbl,d_math_count_destination,d
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\functions and structures.pbl,str_size,s
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\commons.pbl,nvo_dwobjectattrib,u
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\materials.pbl,w_lm_ancestor,w
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\commons.pbl,nvo_linkedlist,u
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\commons.pbl,nv_sound_play,u
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\lessons.pbl,w_lesson_mw_cmmnd,w
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\commons.pbl,w_pb_calendar,w
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\lessonsetup.pbl,d_subject_chapter_content,d
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\commons.pbl,nvo_infoattrib,u
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\management.pbl,w_mastered_content_catalogue,w
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\commons.pbl,w_basic,w
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\lessonsetup.pbl,d_make_lesson_mwcmmnd,d
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\fileservice.pbl,d_filename,d
+OBJ:d:\pb apps\learning helper\Source code PB 9.0\learning helper school.pbl,nvo_aba_appman,u
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\reports.pbl,w_progress_report_tv,w
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\commons.pbl,w_master_treeview,w
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\commons.pbl,w_response,w
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\lessons.pbl,w_container_discrete_trial,w
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\lessonsetup.pbl,w_make_lesson_mw_cmmnd,w
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\commons.pbl,u_radiobutton,u
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\management.pbl,d_mastered_data,d
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\lessonsetup.pbl,d_make_lesson_unscrmsentence,d
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\lessons.pbl,w_lesson_dragdrop_count,w
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\materials.pbl,w_reading_multi_pages,w
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\reports.pbl,d_progress_report_mwcmmnd,d
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\management.pbl,u_pb_calendar_big,u
+OBJ:d:\pb apps\learning helper\Source code PB 9.0\appl_common.pbl,w_splash,w
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\functions and structures.pbl,str_input_simulator,s
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\lessons.pbl,uo_count_number,u
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\programsetup.pbl,w_lesson_program,w
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\reports.pbl,d_address_list,d
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\lessonsetup.pbl,d_make_lesson_ocomp,d
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\lessonsetup.pbl,w_make_lesson_subtraction,w
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\reports.pbl,d_progress_report_graph_item,d
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\commons.pbl,nvo_propertyattrib,u
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\commons.pbl,uo_st_splitbar,u
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\commons.pbl,u_treeview,u
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\programsetup.pbl,d_reward_program_content,d
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\commons.pbl,nvo_returnattrib,u
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\functions and structures.pbl,f_center_window,f
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\lessons.pbl,w_container_unscramble_word,w
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\lessonsetup.pbl,w_make_lesson_dragdrop_count,w
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\materials.pbl,gf_make_content_list,f
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\Learning Helper School.pbl,learninghelper,a
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\lessonsetup.pbl,d_student_filter,d
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\lessonsetup.pbl,w_make_lesson_matching,w
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\fileservice.pbl,w_resource_loading,w
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\programsetup.pbl,w_reward,w
+OBJ:d:\pb apps\learning helper\Source code PB 9.0\learning helper school.pbl,learninghelper,a
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\fileservice.pbl,nvo_filedir,u
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\lessons.pbl,w_lesson_numbermatch_count,w
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\lessonsetup.pbl,d_make_lesson_addition,d
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\datawindow.pbl,d_background,d
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\lessons.pbl,uo_count_dragdrop,u
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\programsetup.pbl,w_play_avi,w
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\functions and structures.pbl,f_filter_double_char,f
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\lessons.pbl,str_mousepos,s
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\reports.pbl,d_comments,d
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\materials.pbl,w_get_bitmap,w
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\datawindow.pbl,d_status_message,d
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\lessonsetup.pbl,w_make_lesson_comp_object,w
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\commons.pbl,nvo_string,u
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\management.pbl,w_mastered_data_graph,w
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\programsetup.pbl,d_lesson_program,d
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\lessons.pbl,uo_count,u
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\commons.pbl,u_datawindow,u
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\materials.pbl,d_subject,d
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\functions and structures.pbl,f_get_prompting_name,f
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\commons.pbl,nvo_sound_ole_control,u
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\commons.pbl,w_generic_update,w
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\functions and structures.pbl,gf_appalreadyrunning,f
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\materials.pbl,w_picture,w
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\functions and structures.pbl,mousepos,s
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\materials.pbl,w_timing_text,w
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\functions and structures.pbl,str_rect,s
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\functions and structures.pbl,gstr_tv_item,s
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\materials.pbl,m_material,m
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\commons.pbl,uo_fram_control_tabpage,u
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\materials.pbl,d_related_lesson_content,d
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\lessonsetup.pbl,w_make_lesson,w
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\functions and structures.pbl,f_show_help,f
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\lessonsetup.pbl,d_lesson_content_grouping,d
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\lessonsetup.pbl,d_math_count_source,d
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\programsetup.pbl,w_money_board,w
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\lessons.pbl,uo_count_comparison,u
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\commons.pbl,nvo_base,u
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\lessons.pbl,w_lesson_comp_scale,w
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\commons.pbl,nvo_lesson_export_import,u
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\commons.pbl,nvo_baseattrib,u
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\lessons.pbl,w_container,w
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\commons.pbl,u_pb_calendar_all,u
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\commons.pbl,nvo_validation_str,u
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\materials.pbl,w_related_items,w
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\commons.pbl,w_announcement,w
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\mt_tables.pbl,w_mt_tables,w
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\programsetup.pbl,d_reward_program,d
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\commons.pbl,w_master_details_treeview,w
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\lessons.pbl,w_lesson_comp_object,w
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\reports.pbl,u_progress_report_graph,u
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\management.pbl,d_sub_chap_cont_lesson,d
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\programsetup.pbl,nvo_reward_program,u
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\functions and structures.pbl,f_log_error,f
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\lessonsetup.pbl,d_lesson_content,d
+OBJ:d:\pb apps\learning helper\Source code PB 9.0\learning helper school.pbl,w_about,w
+OBJ:d:\pb apps\learning helper\Source code PB 9.0\appl_common.pbl,m_label_main_mdi,m
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\lessons.pbl,uo_count_alpha,u
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\materials.pbl,gf_get_wave_dddw,f
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\management.pbl,u_student_management,u
+OBJ:d:\pb apps\learning helper\Source code PB 9.0\appl_common.pbl,w_comm_board,w
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\lessonsetup.pbl,d_make_lesson_ddcount,d
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\management.pbl,d_mastered_data_filter,d
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\commons.pbl,nvo_input_simulator,u
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\commons.pbl,w_demo_selection,w
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\materials.pbl,w_materials,w
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\lessonsetup.pbl,d_make_lesson_matching,d
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\reports.pbl,w_progress_data_graph,w
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\commons.pbl,nvo_dwsrv_sort,u
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\commons.pbl,nvo_constant,u
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\datawindow.pbl,d_calendar_big,d
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\commons.pbl,nvo_sortattrib,u
+OBJ:d:\pb apps\learning helper\Source code PB 9.0\appl_common.pbl,d_comm_board,d
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\lessons.pbl,w_container_number_match,w
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\functions and structures.pbl,str_validation,s
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\lessonsetup.pbl,w_make_lesson_numbermatch_count,w
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\commons.pbl,w_r_print,w
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\materials.pbl,w_export_selection,w
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\commons.pbl,w_status,w
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\lessonsetup.pbl,w_make_lesson_comp_scale,w
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\commons.pbl,nvo_conversion,u
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\functions and structures.pbl,str_string_array,s
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\programsetup.pbl,w_dummy,w
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\lessons.pbl,d_student_l,d
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\lessons.pbl,w_lesson_unscramble_word,w
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\commons.pbl,w_trial_version_message,w
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\lessons.pbl,w_lesson_subtraction,w
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\commons.pbl,nvo_export_import,u
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\reports.pbl,w_signup_list,w
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\authen_common.pbl,nvo_authen,u
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\reports.pbl,w_signup,w
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\reports.pbl,w_comment_update,w
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\lessonsetup.pbl,d_make_lesson_scomp,d
+OBJ:d:\pb apps\learning helper\Source code PB 9.0\appl_common.pbl,w_training_login,w
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\functions and structures.pbl,f_make_lesson_set,f
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\management.pbl,w_student_management,w
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\functions and structures.pbl,str_mt_dddw,s
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\functions and structures.pbl,f_getcolor,f
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\datawindow.pbl,d_calendar,d
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\lessonsetup.pbl,w_content_catalogue,w
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\commons.pbl,u_commandbutton,u
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\materials.pbl,uo_st,u
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\management.pbl,d_mastered_data_graph_total,d
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\lessons.pbl,w_lesson_addition,w
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\lessonsetup.pbl,d_make_lesson_nmcount,d
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\lessonsetup.pbl,d_make_lesson_unscrmword,d
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\programsetup.pbl,d_lesson_program_content,d
+OBJ:d:\pb apps\learning helper\Source code PB 9.0\appl_common.pbl,w_label_main_mdi,w
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\materials.pbl,u_tbpg_material,u
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\materials.pbl,w_text,w
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\lessons.pbl,w_lesson_unscramble_sentence,w
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\lessonsetup.pbl,d_make_lesson,d
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\commons.pbl,w_sheet,w
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\lessonsetup.pbl,w_make_lesson_unscrmword,w
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\management.pbl,d_mastered_data_graph,d
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\reports.pbl,d_address,d
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\materials.pbl,d_chapter,d
+OBJ:d:\pb apps\learning helper\Source code PB 9.0\appl_common.pbl,w_authen,w
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\lessonsetup.pbl,d_lesson_content_count,d
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\lessonsetup.pbl,w_make_lesson_addition,w
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\commons.pbl,u_groupbox,u
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\lessons.pbl,d_lesson_comparison,d
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\materials.pbl,d_content,d
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\materials.pbl,w_text_file_field_selection,w
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\management.pbl,w_mastered_data_filter,w
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\functions and structures.pbl,gf_get_parentwindow,f
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\functions and structures.pbl,str_lesson_program,s
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\lessons.pbl,w_lesson_matching,w
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\lessonsetup.pbl,d_make_lesson_dtrial,d
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\lessons.pbl,w_lesson_discrete_trial,w
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\lessons.pbl,w_container_dragdrop,w
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\commons.pbl,nvo_dwsrv,u
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\commons.pbl,u_pb_calendar,u
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\materials.pbl,w_material_merge,w
+OBJ:D:\PB Apps\Learning Helper\Source code PB 9.0\lessonsetup.pbl,w_make_lesson_unscrmsentence,w

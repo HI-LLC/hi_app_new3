@@ -1,0 +1,28 @@
+$PBExportHeader$f_getcolor.srf
+global type f_getcolor from function_object
+end type
+
+forward prototypes
+global function long f_getcolor (integer ai_color)
+end prototypes
+
+global function long f_getcolor (integer ai_color);// black - 0,	silver - 12632256, white - 16777215, sky blue - 15780518, dark grey - 8421504
+long	ll_Color[] = &
+{0, /*black*/ &
+16777215, /*white*/ &
+255,		 /*red*/ &
+32768, 	 /*Green*/ &
+15780518, /*sky blue*/ &
+65535, 	 /*Yellow*/ &
+12632256, /*silver*/ &
+8421504,	 /*dark grey*/ &
+16711935, /*Fuchsia*/ &
+16711680, /*Dark Blue*/ &
+65280,	 /*Lime*/ &
+128		 /*Purple*/ &
+}
+
+RETURN ll_Color[ai_Color]
+
+end function
+

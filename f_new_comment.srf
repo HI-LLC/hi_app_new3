@@ -1,0 +1,15 @@
+$PBExportHeader$f_new_comment.srf
+global type f_new_comment from function_object
+end type
+
+forward prototypes
+global function boolean f_new_comment (long al_seq_num)
+end prototypes
+
+global function boolean f_new_comment (long al_seq_num);if al_seq_num > gl_last_seq_num then
+	return true
+else
+	return false
+end if
+end function
+

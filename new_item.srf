@@ -1,0 +1,74 @@
+integer il_row, li_random_num, li_correct_row, li_delayed_time = 0
+long ll_x, ll_y, ll_i
+integer li_dummy[]
+string ls_selected_item, ls_local_filename
+w_container_discrete_trial lw_tmp
+if ii_trial_target > 0 then // pair up
+	ii_current_question_id = ii_current_list_offset + ii_trial_target
+else
+	ii_current_question_id++
+end if
+ii_current_try = 0
+il_total_tries[ii_current_question_id]++
+if (ii_trial_target = 0 and ii_current_question_id > ii_total_items) or &
+	(ii_current_list_offset + ii_degree > ii_total_items) then
+	for il_row = 1 to ii_degree
+		lw_tmp = iw_source[il_row]	
+		lw_tmp.visible = false
+	next 	
+	ib_session_done = true
+	post wf_set_lesson_mode(false)
+	wf_update_progress_report()	
+	return
+end if
+
+wf_random_list()
+string ls_bean
+for il_row = 1 to ii_degree
+	iw_source[il_row].BackColor = il_orig_color
+	timer(0, iw_source[il_row])
+	iw_source[il_row].visible = false
+	if ii_trial_target > 0 then // pair up
+		ii_item_presented[il_row] = ii_random_list[il_row] + ii_current_list_offset + 1
+	else
+		ii_item_presented[il_row] = mod(ii_random_list[il_row] + ii_current_question_id - 1, ii_total_items)
+	end if
+	if ii_item_presented[il_row] = 0 then
+		ii_item_presented[il_row] = ii_total_items
+	end if
+	ls_bean = lower(is_picture_list[ii_item_presented[il_row]])
+	lw_tmp = iw_source[il_row]
+next
+for il_row = 1 to ii_degree
+	lw_tmp = iw_source[il_row]	
+	lw_tmp.visible = true
+	lw_tmp.pb_1.BringToTop = true
+next
+
+wf_question_announcer()
+str_msg msg
+long ll_hwn, li_i, li_msg_count = 0
+
+for li_i = 1 to upperbound(iw_source)
+	ll_hwn = handle(iw_source[li_i])
+	do while remove_message(msg, ll_hwn, 513, 513) > 0 
+	loop
+next
+
+for il_row = 1 to ii_degree
+	if ii_item_presented[il_row] = ii_current_question_id then
+		li_correct_row = il_row			
+	end if
+next
+ib_drag = true
+if ii_trial_target > 0 then // pair up
+	f_GetResourceFile(is_picture_list[ii_current_list_offset + 1], ls_local_filename)
+else
+	f_GetResourceFile(is_picture_list[ii_current_question_id], ls_local_filename)
+end if
+p_1.PictureName = ls_local_filename
+p_1.visible = true
+wf_reset_select()
+if ii_trial_target > 0 then
+	ii_current_list_offset = ii_current_list_offset + ii_degree + 1
+end if

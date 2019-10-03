@@ -1,0 +1,50 @@
+$PBExportHeader$d_lesson_container.srd
+release 7;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=136 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=80 color="536870912" )
+table(column=(type=char(50) updatewhereclause=yes name=bean_bitmap_file dbname="bean.bitmap_file" )
+ column=(type=char(50) updatewhereclause=yes name=bean_wave_file dbname="bean.wave_file" )
+ column=(type=char(50) updatewhereclause=yes name=bitmap_file dbname="container.bitmap_file" )
+ column=(type=char(50) updatewhereclause=yes name=wave_file dbname="container.wave_file" )
+ column=(type=char(1) updatewhereclause=yes name=source_ind dbname="lesson_container.source_ind" )
+ column=(type=char(1) updatewhereclause=yes name=selected_ind dbname="lesson_container.selected_ind" )
+ column=(type=char(1) updatewhereclause=yes name=bean_drop_style dbname="lesson_container.bean_drop_style" )
+ column=(type=char(80) updatewhereclause=yes name=description dbname="container.description" )
+ column=(type=decimal(0) updatewhereclause=yes identity=yes name=container_container_id dbname="container.container_id" )
+ retrieve="  SELECT ~"bean~".~"bitmap_file~",   
+         ~"bean~".~"wave_file~",   
+         ~"container~".~"bitmap_file~",   
+         ~"container~".~"wave_file~",   
+         ~"lesson_container~".~"source_ind~",   
+         ~"lesson_container~".~"selected_ind~",   
+         ~"lesson_container~".~"bean_drop_style~",   
+         ~"container~".~"description~",
+  			~"container~".~"container_id~"
+    FROM {oj ~"lesson_container~"  LEFT OUTER JOIN ~"bean~"  ON ~"lesson_container~".~"bean_id~" = ~"bean~".~"bean_id~"},   
+         ~"container~"  
+   WHERE ( ~"lesson_container~".~"container_id~" = ~"container~".~"container_id~" ) and  
+         ( ( ~"lesson_container~".~"lesson_id~" = :an_lesson_id ) )  
+ORDER BY   ~"container~".~"description~"
+" arguments=(("an_lesson_id", number)) )
+text(band=header alignment="2" text="Container
+Bitmap File" border="0" color="0" x="5" y="4" height="128" width="1019"  name=container_bitmap_file_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Container
+Wave File" border="0" color="0" x="1038" y="4" height="128" width="1019"  name=container_wave_file_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Lesson Container
+Source Ind" border="0" color="0" x="2071" y="4" height="128" width="462"  name=lesson_container_source_ind_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Lesson Container
+Selected Ind" border="0" color="0" x="2551" y="0" height="128" width="462"  name=lesson_container_selected_ind_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="0" x="4370" y="12" height="64" width="841" format="[general]"  name=bean_drop_style edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="0" x="5" y="0" height="76" width="1019" format="[general]"  name=bitmap_file edit.limit=50 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="0" x="1038" y="4" height="76" width="1019" format="[general]"  name=wave_file edit.limit=50 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="0" x="2071" y="4" height="76" width="462" format="[general]"  name=source_ind edit.limit=1 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="0" x="2551" y="0" height="76" width="407" format="[general]"  name=selected_ind edit.limit=1 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="3063" y="4" height="64" width="594" format="[general]"  name=bean_bitmap_file edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="3680" y="8" height="64" width="594" format="[general]"  name=bean_wave_file edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="0" x="5248" y="8" height="64" width="1595" format="[general]"  name=description edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="0" tabsequence=0 border="0" color="0" x="6907" y="8" height="64" width="1161"  name=container_container_id  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )

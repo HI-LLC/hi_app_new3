@@ -1,0 +1,58 @@
+integer li_dw_index, li_sort_seq = 1
+long ll_rowcount, ll_row, ll_current_level, ll_item_id
+long ll_current_parent_handle, ll_current_handle, ll_tmp_handle, ll_old_handle
+string ls_expression, ls_description, ls_item_type
+nv_datastore lds_tv_list
+treeviewitem ltvi_new, ltvi_parent, ltvi_source, ltvi_target, ltvi_tmp
+gstr_tv_item lstr_tv_item_parent, lstr_tv_item_tmp
+ll_old_handle = astr_source.tv_handle
+tv_1.GetItem(astr_source.tv_handle, ltvi_source)
+tv_1.GetItem(astr_target.tv_handle, ltvi_target)
+ltvi_new.PictureIndex = 1
+ltvi_new.SelectedPictureIndex = 2
+
+if rb_child.checked then // insert as child
+	if ltvi_target.children and not ltvi_target.expandedonce then
+			wf_make_tv_items( astr_target)
+	end if
+	astr_source.parent_id = astr_target.treeview_id
+	astr_source.ds_for_children.SetItem(astr_source.dw_row, "parent_id", astr_source.parent_id)
+	ltvi_source.data = astr_source
+	ll_current_handle = tv_1.InsertItemLast(astr_target.tv_handle, ltvi_source)
+	ll_tmp_handle = tv_1.FindItem(PreviousTreeItem!, ll_current_handle)
+	if ll_tmp_handle = -1 then // no sibling, only child
+		astr_source.sort_seq = 1
+		astr_source.ds_for_children.SetItem(astr_source.dw_row, "sort_seq", 1)
+	else
+		tv_1.GetItem(ll_tmp_handle, ltvi_tmp)
+		lstr_tv_item_tmp = ltvi_tmp.data
+		astr_source.sort_seq = lstr_tv_item_tmp.sort_seq + 1
+		astr_source.ds_for_children.SetItem(ll_row, "sort_seq", astr_source.sort_seq)	
+	end if
+else // insert as sibling
+	astr_source.parent_id = astr_target.parent_id
+	astr_source.sort_seq = astr_target.sort_seq + 1
+	astr_source.ds_for_children.SetItem(astr_source.dw_row, "parent_id", astr_source.parent_id)
+	astr_source.ds_for_children.SetItem(astr_source.dw_row, "sort_seq", astr_source.sort_seq)
+	ltvi_source.data = astr_source
+	ll_current_handle = tv_1.InsertItem(ll_current_parent_handle, astr_target.tv_handle, ltvi_source)	
+   // Need to update subsequence sibling's sort_seq
+	ll_tmp_handle = tv_1.FindItem(NextTreeItem!, ll_current_handle)
+	do while ll_tmp_handle <> -1 
+//		ll_current_handle = ll_tmp_handle
+		tv_1.GetItem(ll_tmp_handle, ltvi_tmp)
+		lstr_tv_item_tmp = ltvi_tmp.data
+		lstr_tv_item_tmp.sort_seq = lstr_tv_item_tmp.sort_seq + 1
+		ltvi_tmp.data = lstr_tv_item_tmp
+		tv_1.SetItem(ll_tmp_handle, ltvi_tmp)
+		lstr_tv_item_tmp.ds_for_children.SetItem(lstr_tv_item_tmp.dw_row, "sort_seq", lstr_tv_item_tmp.sort_seq)
+		ll_tmp_handle = tv_1.FindItem(NextTreeItem!, ll_tmp_handle)
+	loop
+end if
+astr_source.ds_for_children.update()
+astr_source.ds_for_children.sort()
+if ltvi_source.children then
+	wf_make_tv_items( astr_source)
+end if
+tv_1.DeleteItem(ll_old_handle)
+return 1

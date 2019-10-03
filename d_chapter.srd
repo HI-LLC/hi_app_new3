@@ -1,0 +1,41 @@
+$PBExportHeader$d_chapter.srd
+release 7;
+datawindow(units=0 timer_interval=0 color=12639424 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=64 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912" )
+table(column=(type=decimal(0) update=yes updatewhereclause=yes key=yes identity=yes name=chapter_id dbname="chapter.chapter_id" )
+ column=(type=decimal(0) update=yes updatewhereclause=yes name=subject_id dbname="chapter.subject_id" )
+ column=(type=char(50) update=yes updatewhereclause=yes name=description dbname="chapter.description" )
+ column=(type=char(30000) update=yes updatewhereclause=yes name=details dbname="chapter.details" )
+ column=(type=char(80) update=yes updatewhereclause=yes name=wave_file dbname="chapter.wave_file" )
+ column=(type=char(80) update=yes updatewhereclause=yes name=bitmap_file dbname="chapter.bitmap_file" )
+ column=(type=char(16) updatewhereclause=yes name=bitmap_dd dbname="bitmap_dd" )
+ column=(type=char(1) updatewhereclause=no name=export_ind dbname="export_ind" initial="1" values="	1/	0" )
+ retrieve="  SELECT ~"chapter~".~"chapter_id~",   
+         ~"chapter~".~"subject_id~",   
+         ~"chapter~".~"description~",   
+         ~"chapter~".~"details~",   
+         ~"chapter~".~"wave_file~",   
+         ~"chapter~".~"bitmap_file~", 
+			'dummy1          ' bitmap_dd,
+			0 as export_ind
+    FROM ~"chapter~"  
+   WHERE ~"chapter~".~"subject_id~" = :an_subject_id   
+ORDER BY ~"chapter~".~"description~" ASC   
+" update="chapter" updatewhere=0 updatekeyinplace=no arguments=(("an_subject_id", number))  sort="description A " )
+column(band=detail id=3 alignment="0" tabsequence=10 border="5" color="0" x="18" y="8" height="76" width="859" format="[general]"  name=description edit.limit=50 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="Chapter" border="0" color="0" x="18" y="4" height="52" width="859"  name=description_t  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=20 border="5" color="0" x="896" y="8" height="76" width="837" format="[general]"  name=details edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="Details" border="0" color="0" x="896" y="4" height="52" width="837"  name=t_1  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=30 border="5" color="0" x="1751" y="8" height="76" width="567" format="[general]"  name=bitmap_file dddw.name=dddw_lookup_file dddw.displaycolumn=filename dddw.datacolumn=filename dddw.percentwidth=100 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=yes dddw.case=any dddw.vscrollbar=yes  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="Picture" border="0" color="0" x="1751" y="4" height="52" width="567"  name=t_2  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=50 border="5" color="0" x="2336" y="8" height="76" width="567" format="[general]"  name=wave_file dddw.name=dddw_wave_file dddw.displaycolumn=filename dddw.datacolumn=filename dddw.percentwidth=100 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=yes dddw.case=any dddw.vscrollbar=yes  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="Sound" border="0" color="0" x="2336" y="4" height="52" width="567"  name=t_3  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+button(band=detail text="Recorder"filename=""action="0" border="0" color="0" x="2917" y="8" height="76" width="361" vtextalign="0" htextalign="0"  name=b_1  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Sound Editor" border="0" color="0" x="2917" y="4" height="52" width="361"  name=t_4  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=140 border="5" color="0" x="3296" y="8" height="76" width="201" format="[general]"  name=export_ind checkbox.text="" checkbox.on="1" checkbox.off="0" checkbox.scale=no checkbox.threed=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="Export" border="0" color="0" x="3296" y="0" height="56" width="201"  name=t_7  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )

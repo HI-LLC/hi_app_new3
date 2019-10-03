@@ -1,0 +1,21 @@
+$PBExportHeader$gf_set_mt_dddw.srf
+global type gf_set_mt_dddw from function_object
+end type
+
+forward prototypes
+global subroutine gf_set_mt_dddw (long al_handle, long al_message_no)
+end prototypes
+
+global subroutine gf_set_mt_dddw (long al_handle, long al_message_no);long ll_i, ll_count
+ll_count = upperbound(gstr_mt_dddw)
+for ll_i = 1 to ll_count
+	if gstr_mt_dddw[ll_i].handle = al_handle and & 
+		gstr_mt_dddw[ll_i].message_no = al_message_no then
+		return 
+	end if
+next
+ll_count++
+gstr_mt_dddw[ll_i].handle = al_handle
+gstr_mt_dddw[ll_i].message_no = al_message_no
+end subroutine
+

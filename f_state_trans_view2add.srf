@@ -1,0 +1,15 @@
+$PBExportHeader$f_state_trans_view2add.srf
+global type f_state_trans_view2add from function_object
+end type
+
+forward prototypes
+global subroutine f_state_trans_view2add (window a_window, datawindow a_datawindow, ref str_state a_state)
+end prototypes
+
+global subroutine f_state_trans_view2add (window a_window, datawindow a_datawindow, ref str_state a_state);f_state_trans_set_mode(a_window, a_datawindow, g_constants.state_modify, a_state)
+a_datawindow.dynamic event ue_insertrow()
+
+
+
+end subroutine
+

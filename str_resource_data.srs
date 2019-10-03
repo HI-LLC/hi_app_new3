@@ -1,0 +1,7 @@
+$PBExportHeader$str_resource_data.srs
+global type str_resource_data from structure
+	string		file_name
+	long findex
+	long fsize
+end type
+

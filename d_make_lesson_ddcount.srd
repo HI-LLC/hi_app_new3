@@ -1,0 +1,51 @@
+$PBExportHeader$d_make_lesson_ddcount.srd
+release 7;
+datawindow(units=0 timer_interval=0 color=12639424 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=76 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=84 color="536870912" )
+table(column=(type=decimal(0) update=yes updatewhereclause=yes key=yes identity=yes name=lesson_id dbname="lesson.lesson_id" )
+ column=(type=decimal(0) update=yes updatewhereclause=yes name=student_id dbname="lesson.student_id" )
+ column=(type=decimal(0) update=yes updatewhereclause=yes name=teacher_id dbname="lesson.teacher_id" )
+ column=(type=char(50) update=yes updatewhereclause=yes name=description dbname="lesson.description" )
+ column=(type=decimal(0) update=yes updatewhereclause=yes name=response_to_right_id dbname="lesson.response_to_right_id" )
+ column=(type=decimal(0) update=yes updatewhereclause=yes name=response_to_wrong_id dbname="lesson.response_to_wrong_id" )
+ column=(type=decimal(0) update=yes updatewhereclause=yes name=instruction_id dbname="lesson.instruction_id" )
+ column=(type=decimal(0) update=yes updatewhereclause=yes name=preposition1 dbname="lesson.preposition1" )
+ column=(type=decimal(0) update=yes updatewhereclause=yes name=preposition2 dbname="lesson.preposition2" )
+ column=(type=decimal(0) update=yes updatewhereclause=yes name=method_id dbname="lesson.method_id" initial="15" )
+ column=(type=char(1) updatewhereclause=yes name=prompt_ind dbname="lesson.prompt_ind" initial="0" values="Yes	1/No	0/" )
+ retrieve="  SELECT ~"lesson~".~"lesson_id~",   
+         ~"lesson~".~"student_id~",   
+         ~"lesson~".~"teacher_id~",   
+         ~"lesson~".~"description~",   
+         ~"lesson~".~"response_to_right_id~",   
+         ~"lesson~".~"response_to_wrong_id~",   
+         ~"lesson~".~"instruction_id~",   
+         ~"lesson~".~"preposition1~",   
+         ~"lesson~".~"preposition2~" ,
+ 			~"lesson~".~"method_id~",
+ 			~"lesson~".~"prompt_ind~" prompt_ind
+    FROM ~"lesson~"        
+   WHERE ~"lesson~".~"method_id~" = 15
+" update="lesson" updatewhere=0 updatekeyinplace=no  sort="description A " )
+text(band=header alignment="2" text="Lesson" border="0" color="0" x="430" y="4" height="64" width="219"  name=description_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Student" border="0" color="0" x="1051" y="4" height="64" width="462"  name=student_id_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Teacher" border="0" color="0" x="1527" y="4" height="64" width="462"  name=teacher_id_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Response - Right" border="0" color="0" x="2007" y="8" height="64" width="512"  name=t_1  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Response - Wrong" border="0" color="0" x="2560" y="4" height="64" width="549"  name=t_2  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Instruction" border="0" color="0" x="3241" y="0" height="64" width="311"  name=t_3  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Prepos-1" border="0" color="0" x="3680" y="4" height="64" width="297"  name=t_4  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Prepos-2" border="0" color="0" x="4000" y="8" height="64" width="297"  name=t_5  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=10 border="5" color="0" x="9" y="8" height="64" width="1019" format="[general]"  name=description edit.limit=50 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=2 alignment="1" tabsequence=20 border="5" color="0" x="1051" y="8" height="64" width="462" format="[general]"  name=student_id dddw.name=dddw_student dddw.displaycolumn=fullname dddw.datacolumn=student_id dddw.percentwidth=100 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=3 alignment="1" tabsequence=30 border="5" color="0" x="1527" y="8" height="64" width="462" format="[general]"  name=teacher_id dddw.name=dddw_teacher dddw.displaycolumn=fullname dddw.datacolumn=teacher_id dddw.percentwidth=100 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=5 alignment="0" tabsequence=40 border="5" color="0" x="2011" y="8" height="64" width="535" format="[General]"  name=response_to_right_id dddw.name=dddw_response_right dddw.displaycolumn=description dddw.datacolumn=response_id dddw.percentwidth=100 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=6 alignment="0" tabsequence=50 border="5" color="0" x="2569" y="8" height="64" width="535" format="[General]"  name=response_to_wrong_id dddw.name=dddw_response_wrong dddw.displaycolumn=description dddw.datacolumn=response_id dddw.percentwidth=100 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=7 alignment="0" tabsequence=60 border="5" color="0" x="3122" y="8" height="64" width="535" format="[General]"  name=instruction_id dddw.name=dddw_instruction dddw.displaycolumn=description dddw.datacolumn=instruction_id dddw.percentwidth=100 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.vscrollbar=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=8 alignment="0" tabsequence=70 border="5" color="0" x="3680" y="8" height="64" width="297" format="[General]"  name=preposition1 dddw.name=dddw_preposition dddw.displaycolumn=wave_file dddw.datacolumn=word_id dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.vscrollbar=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=9 alignment="0" tabsequence=80 border="5" color="0" x="4000" y="8" height="64" width="297" format="[General]"  name=preposition2 dddw.name=dddw_preposition dddw.displaycolumn=wave_file dddw.datacolumn=word_id dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.vscrollbar=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )
+  

@@ -1,0 +1,60 @@
+$PBExportHeader$d_progress_report_tv_list.srd
+release 7;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=120 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912" )
+table(column=(type=datetime updatewhereclause=yes name=end_date dbname="progress_data.end_date" )
+ column=(type=datetime updatewhereclause=yes name=begin_date dbname="progress_data.begin_date" )
+ column=(type=char(26) updatewhereclause=yes name=period dbname="period" )
+ column=(type=char(102) updatewhereclause=yes name=student_name dbname="student_name" )
+ column=(type=char(50) updatewhereclause=yes name=lesson_name dbname="lesson.lesson_name" )
+ column=(type=char(60) updatewhereclause=yes name=lesson_key dbname="lesson_key" )
+ column=(type=decimal(0) updatewhereclause=yes name=progress_data_id dbname="progress_data.progress_data_id" )
+ column=(type=decimal(0) updatewhereclause=yes identity=yes name=lesson_id dbname="lesson.lesson_id" )
+ column=(type=decimal(0) updatewhereclause=yes identity=yes name=method_id dbname="method.method_id" )
+ column=(type=char(80) updatewhereclause=yes name=lesson_type dbname="method.lesson_type" )
+ column=(type=decimal(0) updatewhereclause=yes identity=yes name=student_id dbname="student.student_id" )
+ retrieve="  SELECT ~"progress_data~".~"end_date~" end_date,   
+         ~"progress_data~".~"begin_date~" begin_date,
+			 dateformat( ~"progress_data~".~"begin_date~", 'mm/dd/yyyyy') + ' To ' + dateformat(~"progress_data~".~"end_date~", 'mm/dd/yyyyy') period,		                 
+         ~"student~".~"last_name~" + ', ' + ~"student~".~"first_name~" student_name,   
+			~"lesson~".~"description~" lesson_name,
+			~"lesson~".~"description~" + convert(char(10), ~"lesson~".~"lesson_id~") lesson_key,
+			~"progress_data~".~"progress_data_id~" progress_data_id,
+			~"lesson~".~"lesson_id~" lesson_id,
+			~"method~".~"method_id~" method_id,
+			~"method~".~"description~" lesson_type,
+			~"student~".~"student_id~" student_id
+    FROM ~"lesson~",   
+         ~"lesson_content~",   
+         ~"progress_data~",   
+         ~"student~",
+			~"method~"
+   WHERE ( ~"lesson~".~"lesson_id~" = ~"lesson_content~".~"lesson_id~" ) and  
+         ( ~"lesson_content~".~"lesson_content_id~" = ~"progress_data~".~"lesson_content_id~" ) and  
+         ( ~"lesson~".~"student_id~" = ~"student~".~"student_id~" ) and
+         ( ~"lesson~".~"method_id~" = ~"method~".~"method_id~" )
+"  sort="student_name A lesson_type A lesson_name A begin_date A end_date A " )
+text(band=header alignment="2" text="Begin Date" border="0" color="0" x="9" y="20" height="64" width="325"  name=progress_data_begin_date_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="End Date" border="0" color="0" x="352" y="20" height="64" width="325"  name=progress_data_end_date_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Student Name" border="0" color="0" x="695" y="20" height="64" width="526"  name=student_name_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Lesson" border="0" color="0" x="1239" y="20" height="64" width="763"  name=lesson_lesson_name_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Lesson Key" border="0" color="0" x="2021" y="20" height="64" width="567"  name=lesson_key_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Progress Data Id" border="0" color="0" x="2606" y="20" height="64" width="434"  name=progress_data_progress_data_id_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Lesson Id" border="0" color="0" x="3058" y="20" height="64" width="430"  name=lesson_lesson_id_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Method Id" border="0" color="0" x="3506" y="20" height="64" width="434"  name=method_method_id_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Lesson Type" border="0" color="0" x="3959" y="20" height="64" width="846"  name=method_lesson_type_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="9" y="8" height="64" width="325" format="[shortdate] [time]"  name=begin_date edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="352" y="8" height="64" width="325" format="[shortdate] [time]"  name=end_date edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="0" x="695" y="8" height="64" width="526" format="[general]"  name=student_name edit.limit=102 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="0" x="1239" y="8" height="64" width="763" format="[general]"  name=lesson_name edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="0" x="2021" y="8" height="64" width="567" format="[general]"  name=lesson_key edit.limit=60 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="0" x="2606" y="8" height="64" width="434" format="[general]"  name=progress_data_id edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="0" x="3058" y="8" height="64" width="430" format="[general]"  name=lesson_id edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="0" color="0" x="3506" y="8" height="64" width="434" format="[general]"  name=method_id edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="0" color="0" x="3959" y="8" height="64" width="846" format="[general]"  name=lesson_type edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )
+  

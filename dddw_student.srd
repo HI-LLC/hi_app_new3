@@ -1,0 +1,12 @@
+$PBExportHeader$dddw_student.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=79741120 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=84 color="536870912" )
+table(column=(type=decimal(0) update=yes updatewhereclause=yes identity=yes name=student_id dbname="student.student_id" )
+ column=(type=char(50) update=yes updatewhereclause=yes name=first_name dbname="student.first_name" )
+ column=(type=char(50) update=yes updatewhereclause=yes name=last_name dbname="student.last_name" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"student~" ) COLUMN(NAME=~"student.student_id~") COLUMN(NAME=~"student.first_name~") COLUMN(NAME=~"student.last_name~")) "  sort="last_name A first_name A " )
+compute(band=detail alignment="0" expression=" last_name + ~", ~" +  first_name "border="0" color="0" x="9" y="8" height="64" width="786"  name=fullname  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

@@ -1,0 +1,13 @@
+$PBExportHeader$d_method.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=79741120 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=72 color="79741120" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=100 color="536870912" )
+table(column=(type=decimal(0) update=yes updatewhereclause=yes key=yes identity=yes name=method_id dbname="method.method_id" )
+ column=(type=char(80) update=yes updatewhereclause=yes name=description dbname="method.description" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"method~" ) COLUMN(NAME=~"method.method_id~") COLUMN(NAME=~"method.description~")) " update="method" updatewhere=0 updatekeyinplace=no  sort="description A " )
+text(band=header alignment="2" text="Method"border="0" color="0" x="466" y="4" height="64" width="219"  name=method_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=10 border="5" color="0" x="5" y="0" height="76" width="1609" format="[general]"  name=description edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes") 

@@ -1,0 +1,2570 @@
+$PBExportHeader$m_internet_lh_mdi.srm
+forward
+global type m_internet_lh_mdi from menu
+end type
+type m_file from menu within m_internet_lh_mdi
+end type
+type m_open from menu within m_file
+end type
+type m_close from menu within m_file
+end type
+type m_dash11 from menu within m_file
+end type
+type m_print from menu within m_file
+end type
+type m_printersetup from menu within m_file
+end type
+type m_dash12 from menu within m_file
+end type
+type m_toolbars from menu within m_file
+end type
+type m_dash13 from menu within m_file
+end type
+type m_exit from menu within m_file
+end type
+type m_file from menu within m_internet_lh_mdi
+m_open m_open
+m_close m_close
+m_dash11 m_dash11
+m_print m_print
+m_printersetup m_printersetup
+m_dash12 m_dash12
+m_toolbars m_toolbars
+m_dash13 m_dash13
+m_exit m_exit
+end type
+type m_applications from menu within m_internet_lh_mdi
+end type
+type m_maintenance from menu within m_applications
+end type
+type m_teachmaterials from menu within m_applications
+end type
+type m_lessonpreparation from menu within m_applications
+end type
+type m_discretetrial0 from menu within m_lessonpreparation
+end type
+type m_comparison from menu within m_lessonpreparation
+end type
+type m_3 from menu within m_comparison
+end type
+type m_4 from menu within m_comparison
+end type
+type m_comparison from menu within m_lessonpreparation
+m_3 m_3
+m_4 m_4
+end type
+type m_matching from menu within m_lessonpreparation
+end type
+type m_grouping from menu within m_lessonpreparation
+end type
+type m_counting0 from menu within m_lessonpreparation
+end type
+type m_drag-drop0 from menu within m_counting0
+end type
+type m_numbermatching from menu within m_counting0
+end type
+type m_setup_addition from menu within m_counting0
+end type
+type m_setup_subtraction from menu within m_counting0
+end type
+type m_counting0 from menu within m_lessonpreparation
+m_drag-drop0 m_drag-drop0
+m_numbermatching m_numbermatching
+m_setup_addition m_setup_addition
+m_setup_subtraction m_setup_subtraction
+end type
+type m_unscramblewords from menu within m_lessonpreparation
+end type
+type m_unscramblesentences from menu within m_lessonpreparation
+end type
+type m_lessonpreparation from menu within m_applications
+m_discretetrial0 m_discretetrial0
+m_comparison m_comparison
+m_matching m_matching
+m_grouping m_grouping
+m_counting0 m_counting0
+m_unscramblewords m_unscramblewords
+m_unscramblesentences m_unscramblesentences
+end type
+type m_lessonpreparation0 from menu within m_applications
+end type
+type m_0 from menu within m_lessonpreparation0
+end type
+type m_1 from menu within m_lessonpreparation0
+end type
+type m_5 from menu within m_1
+end type
+type m_6 from menu within m_1
+end type
+type m_1 from menu within m_lessonpreparation0
+m_5 m_5
+m_6 m_6
+end type
+type m_matching0 from menu within m_lessonpreparation0
+end type
+type m_grouping0 from menu within m_lessonpreparation0
+end type
+type m_counting from menu within m_lessonpreparation0
+end type
+type m_drag-drop from menu within m_counting
+end type
+type m_numbermatching0 from menu within m_counting
+end type
+type m_addition from menu within m_counting
+end type
+type m_subtraction from menu within m_counting
+end type
+type m_counting from menu within m_lessonpreparation0
+m_drag-drop m_drag-drop
+m_numbermatching0 m_numbermatching0
+m_addition m_addition
+m_subtraction m_subtraction
+end type
+type m_reading from menu within m_lessonpreparation0
+end type
+type m_unscrambleword from menu within m_lessonpreparation0
+end type
+type m_unscramblesentence from menu within m_lessonpreparation0
+end type
+type m_lessonpreparation0 from menu within m_applications
+m_0 m_0
+m_1 m_1
+m_matching0 m_matching0
+m_grouping0 m_grouping0
+m_counting m_counting
+m_reading m_reading
+m_unscrambleword m_unscrambleword
+m_unscramblesentence m_unscramblesentence
+end type
+type m_student from menu within m_applications
+end type
+type m_group from menu within m_applications
+end type
+type m_systreeview from menu within m_applications
+end type
+type m_lhexplorer from menu within m_applications
+end type
+type m_grouplistview from menu within m_applications
+end type
+type m_applications from menu within m_internet_lh_mdi
+m_maintenance m_maintenance
+m_teachmaterials m_teachmaterials
+m_lessonpreparation m_lessonpreparation
+m_lessonpreparation0 m_lessonpreparation0
+m_student m_student
+m_group m_group
+m_systreeview m_systreeview
+m_lhexplorer m_lhexplorer
+m_grouplistview m_grouplistview
+end type
+type m_tools from menu within m_internet_lh_mdi
+end type
+type m_exportndblhlesson from menu within m_tools
+end type
+type m_export from menu within m_tools
+end type
+type m_import from menu within m_tools
+end type
+type m_moneyboard from menu within m_tools
+end type
+type m_reward from menu within m_tools
+end type
+type m_lessonprogram from menu within m_tools
+end type
+type m_learninghelperexhibtryout from menu within m_tools
+end type
+type m_learninghelperdemo from menu within m_tools
+end type
+type m_soundrecorder from menu within m_tools
+end type
+type m_appwatch from menu within m_tools
+end type
+type m_appwatchontop from menu within m_tools
+end type
+type m_swapprogram from menu within m_tools
+end type
+type m_tools from menu within m_internet_lh_mdi
+m_exportndblhlesson m_exportndblhlesson
+m_export m_export
+m_import m_import
+m_moneyboard m_moneyboard
+m_reward m_reward
+m_lessonprogram m_lessonprogram
+m_learninghelperexhibtryout m_learninghelperexhibtryout
+m_learninghelperdemo m_learninghelperdemo
+m_soundrecorder m_soundrecorder
+m_appwatch m_appwatch
+m_appwatchontop m_appwatchontop
+m_swapprogram m_swapprogram
+end type
+type m_report from menu within m_internet_lh_mdi
+end type
+type m_importreport from menu within m_report
+end type
+type m_exportreporton-line from menu within m_report
+end type
+type m_export_report from menu within m_report
+end type
+type m_progressreport from menu within m_report
+end type
+type m_studentmanagement from menu within m_report
+end type
+type m_report from menu within m_internet_lh_mdi
+m_importreport m_importreport
+m_exportreporton-line m_exportreporton-line
+m_export_report m_export_report
+m_progressreport m_progressreport
+m_studentmanagement m_studentmanagement
+end type
+type m_internet from menu within m_internet_lh_mdi
+end type
+type m_createaccount from menu within m_internet
+end type
+type m_login from menu within m_internet
+end type
+type m_freetriallesson from menu within m_internet
+end type
+type m_accountlesson from menu within m_internet
+end type
+type m_internet from menu within m_internet_lh_mdi
+m_createaccount m_createaccount
+m_login m_login
+m_freetriallesson m_freetriallesson
+m_accountlesson m_accountlesson
+end type
+type m_9 from menu within m_internet_lh_mdi
+end type
+type m_window from menu within m_internet_lh_mdi
+end type
+type m_cascade from menu within m_window
+end type
+type m_layer from menu within m_window
+end type
+type m_tile from menu within m_window
+end type
+type m_arrangeicons from menu within m_window
+end type
+type m_-7 from menu within m_window
+end type
+type m_showtoolbar from menu within m_window
+end type
+type m_showtoolbartext from menu within m_window
+end type
+type m_showtoolbartip from menu within m_window
+end type
+type m_windowcontrol from menu within m_window
+end type
+type m_-5 from menu within m_window
+end type
+type m_customizetoolabr from menu within m_window
+end type
+type m_-2 from menu within m_window
+end type
+type m_close_win from menu within m_window
+end type
+type m_closeall from menu within m_window
+end type
+type m_window from menu within m_internet_lh_mdi
+m_cascade m_cascade
+m_layer m_layer
+m_tile m_tile
+m_arrangeicons m_arrangeicons
+m_-7 m_-7
+m_showtoolbar m_showtoolbar
+m_showtoolbartext m_showtoolbartext
+m_showtoolbartip m_showtoolbartip
+m_windowcontrol m_windowcontrol
+m_-5 m_-5
+m_customizetoolabr m_customizetoolabr
+m_-2 m_-2
+m_close_win m_close_win
+m_closeall m_closeall
+end type
+type m_help from menu within m_internet_lh_mdi
+end type
+type m_helpindex from menu within m_help
+end type
+type m_search from menu within m_help
+end type
+type m_dash21 from menu within m_help
+end type
+type m_aboutquickapp from menu within m_help
+end type
+type m_2 from menu within m_help
+end type
+type m_7 from menu within m_help
+end type
+type m_8 from menu within m_help
+end type
+type m_help from menu within m_internet_lh_mdi
+m_helpindex m_helpindex
+m_search m_search
+m_dash21 m_dash21
+m_aboutquickapp m_aboutquickapp
+m_2 m_2
+m_7 m_7
+m_8 m_8
+end type
+type m_talkautism from menu within m_internet_lh_mdi
+end type
+global type m_internet_lh_mdi from menu
+m_file m_file
+m_applications m_applications
+m_tools m_tools
+m_report m_report
+m_internet m_internet
+m_9 m_9
+m_window m_window
+m_help m_help
+m_talkautism m_talkautism
+end type
+end forward
+
+global type m_internet_lh_mdi from menu
+m_file m_file
+m_applications m_applications
+m_tools m_tools
+m_report m_report
+m_internet m_internet
+m_9 m_9
+m_window m_window
+m_help m_help
+m_talkautism m_talkautism
+end type
+global m_internet_lh_mdi m_internet_lh_mdi
+
+type variables
+boolean ib_screen_control = true
+boolean ib_toolbar = false
+boolean ib_toolbartext = false
+boolean ib_toolbartips = true
+//str_lesson_program istr_lp
+end variables
+
+forward prototypes
+public subroutine mf_update_toolbar ()
+end prototypes
+
+public subroutine mf_update_toolbar ();/*w_label_main_mdi lw_mdi
+lw_mdi = gn_appman.iw_frame
+if ib_screen_control then 
+	m_window.m_windowcontrol.checked = true
+	lw_mdi.tab_1.visible = true
+else
+	m_window.m_windowcontrol.checked = false
+	lw_mdi.tab_1.visible = false	
+end if
+lw_mdi.wf_resizing()
+
+if ib_toolbar then
+	parentwindow.ToolBarVisible = true
+	m_window.m_showtoolbar.checked = true		
+else
+	parentwindow.ToolBarVisible = false
+	m_window.m_showtoolbar.checked = false	
+end if
+
+if ib_toolbartext then
+	lh_app.ToolBarText = true
+	m_window.m_showtoolbartext.checked = true
+else
+	lh_app.ToolBarText = false
+	m_window.m_showtoolbartext.checked = false
+end if
+
+if ib_toolbartips then
+	lh_app.ToolBarTips = true
+	m_window.m_showtoolbartip.checked = true
+else
+	lh_app.ToolBarTips = false
+	m_window.m_showtoolbartip.checked = false
+end if
+*/
+end subroutine
+
+on m_internet_lh_mdi.create
+m_internet_lh_mdi=this
+call super::create
+this.m_file=create m_file
+this.m_applications=create m_applications
+this.m_tools=create m_tools
+this.m_report=create m_report
+this.m_internet=create m_internet
+this.m_9=create m_9
+this.m_window=create m_window
+this.m_help=create m_help
+this.m_talkautism=create m_talkautism
+this.Item[UpperBound(this.Item)+1]=this.m_file
+this.Item[UpperBound(this.Item)+1]=this.m_applications
+this.Item[UpperBound(this.Item)+1]=this.m_tools
+this.Item[UpperBound(this.Item)+1]=this.m_report
+this.Item[UpperBound(this.Item)+1]=this.m_internet
+this.Item[UpperBound(this.Item)+1]=this.m_9
+this.Item[UpperBound(this.Item)+1]=this.m_window
+this.Item[UpperBound(this.Item)+1]=this.m_help
+this.Item[UpperBound(this.Item)+1]=this.m_talkautism
+end on
+
+on m_internet_lh_mdi.destroy
+call super::destroy
+destroy(this.m_file)
+destroy(this.m_applications)
+destroy(this.m_tools)
+destroy(this.m_report)
+destroy(this.m_internet)
+destroy(this.m_9)
+destroy(this.m_window)
+destroy(this.m_help)
+destroy(this.m_talkautism)
+end on
+
+event clicked;string ls_command
+ls_command = '"C:\Program Files\Internet Explorer\IEXPLORE.EXE"' + ' "http://www.talkautism.org"'
+MessageBox("TalkAutism", "clicked")
+run(ls_command)
+end event
+
+type m_file from menu within m_internet_lh_mdi
+m_open m_open
+m_close m_close
+m_dash11 m_dash11
+m_print m_print
+m_printersetup m_printersetup
+m_dash12 m_dash12
+m_toolbars m_toolbars
+m_dash13 m_dash13
+m_exit m_exit
+end type
+
+on m_file.create
+call super::create
+this.text = "&File"
+this.m_open=create m_open
+this.m_close=create m_close
+this.m_dash11=create m_dash11
+this.m_print=create m_print
+this.m_printersetup=create m_printersetup
+this.m_dash12=create m_dash12
+this.m_toolbars=create m_toolbars
+this.m_dash13=create m_dash13
+this.m_exit=create m_exit
+this.Item[UpperBound(this.Item)+1]=this.m_open
+this.Item[UpperBound(this.Item)+1]=this.m_close
+this.Item[UpperBound(this.Item)+1]=this.m_dash11
+this.Item[UpperBound(this.Item)+1]=this.m_print
+this.Item[UpperBound(this.Item)+1]=this.m_printersetup
+this.Item[UpperBound(this.Item)+1]=this.m_dash12
+this.Item[UpperBound(this.Item)+1]=this.m_toolbars
+this.Item[UpperBound(this.Item)+1]=this.m_dash13
+this.Item[UpperBound(this.Item)+1]=this.m_exit
+end on
+
+on m_file.destroy
+call super::destroy
+destroy(this.m_open)
+destroy(this.m_close)
+destroy(this.m_dash11)
+destroy(this.m_print)
+destroy(this.m_printersetup)
+destroy(this.m_dash12)
+destroy(this.m_toolbars)
+destroy(this.m_dash13)
+destroy(this.m_exit)
+end on
+
+type m_open from menu within m_file
+end type
+
+on m_open.create
+call super::create
+this.text = "&Open...~tCtrl+O"
+this.enabled = false
+this.shortcut = 335
+this.microhelp = "Open existing sheet"
+this.toolbaritemvisible = false
+end on
+
+on m_open.destroy
+call super::destroy
+end on
+
+type m_close from menu within m_file
+end type
+
+on m_close.create
+call super::create
+this.text = "&Close~tCtrl+W"
+this.shortcut = 343
+this.microhelp = "Close active sheet"
+this.toolbaritemvisible = false
+end on
+
+on m_close.destroy
+call super::destroy
+end on
+
+event clicked;close(gn_appman.iw_frame.GetActiveSheet())
+
+end event
+
+type m_dash11 from menu within m_file
+end type
+
+on m_dash11.create
+call super::create
+this.text = "-"
+end on
+
+on m_dash11.destroy
+call super::destroy
+end on
+
+type m_print from menu within m_file
+end type
+
+event clicked;// Clicked script for m_print
+
+//long		ll_job
+//window	lw_sheet
+//
+//// Print active sheet
+//lw_sheet = w_genapp_frame.GetActiveSheet ()
+//if IsValid (lw_sheet) then
+//	w_genapp_frame.SetMicroHelp ("Printing active sheet...")
+//	ll_job = PrintOpen ()
+//	lw_sheet.Print (ll_job, 1, 1)
+//	PrintClose (ll_job)
+//	w_genapp_frame.SetMicroHelp ("")
+//end if
+end event
+
+on m_print.create
+call super::create
+this.visible = false
+this.text = "&Print~tCtrl+P"
+this.enabled = false
+this.shortcut = 336
+this.microhelp = "Print active sheet"
+this.toolbaritemvisible = false
+this.toolbaritemname = "Print!"
+this.toolbaritemtext = "Print"
+end on
+
+on m_print.destroy
+call super::destroy
+end on
+
+type m_printersetup from menu within m_file
+end type
+
+event clicked;// Do printer setup
+PrintSetup ()
+end event
+
+on m_printersetup.create
+call super::create
+this.text = "Print &Setup..."
+this.microhelp = "Setup printer"
+this.toolbaritemvisible = false
+this.toolbaritemname = "Print!"
+this.toolbaritemtext = "Printer Setup"
+end on
+
+on m_printersetup.destroy
+call super::destroy
+end on
+
+type m_dash12 from menu within m_file
+end type
+
+on m_dash12.create
+call super::create
+this.text = "-"
+end on
+
+on m_dash12.destroy
+call super::destroy
+end on
+
+type m_toolbars from menu within m_file
+end type
+
+event clicked;// Configure toolbars
+//OpenWithParm (w_genapp_toolbars, w_genapp_frame)
+end event
+
+on m_toolbars.create
+call super::create
+this.visible = false
+this.text = "&Toolbars..."
+this.microhelp = "Configure toolbars"
+end on
+
+on m_toolbars.destroy
+call super::destroy
+end on
+
+type m_dash13 from menu within m_file
+end type
+
+on m_dash13.create
+call super::create
+this.text = "-"
+end on
+
+on m_dash13.destroy
+call super::destroy
+end on
+
+type m_exit from menu within m_file
+end type
+
+event clicked;//Close (gn_appman.iw_frame)
+end event
+
+on m_exit.create
+call super::create
+this.text = "E&xit"
+this.microhelp = "Exit program"
+this.toolbaritemvisible = false
+this.toolbaritemname = "Exit!"
+this.toolbaritemtext = "Exit"
+this.toolbaritemspace = 2
+this.menuitemtype = menuitemtypeexit!
+end on
+
+on m_exit.destroy
+call super::destroy
+end on
+
+type m_applications from menu within m_internet_lh_mdi
+m_maintenance m_maintenance
+m_teachmaterials m_teachmaterials
+m_lessonpreparation m_lessonpreparation
+m_lessonpreparation0 m_lessonpreparation0
+m_student m_student
+m_group m_group
+m_systreeview m_systreeview
+m_lhexplorer m_lhexplorer
+m_grouplistview m_grouplistview
+end type
+
+on m_applications.create
+call super::create
+this.text = "Applications"
+this.m_maintenance=create m_maintenance
+this.m_teachmaterials=create m_teachmaterials
+this.m_lessonpreparation=create m_lessonpreparation
+this.m_lessonpreparation0=create m_lessonpreparation0
+this.m_student=create m_student
+this.m_group=create m_group
+this.m_systreeview=create m_systreeview
+this.m_lhexplorer=create m_lhexplorer
+this.m_grouplistview=create m_grouplistview
+this.Item[UpperBound(this.Item)+1]=this.m_maintenance
+this.Item[UpperBound(this.Item)+1]=this.m_teachmaterials
+this.Item[UpperBound(this.Item)+1]=this.m_lessonpreparation
+this.Item[UpperBound(this.Item)+1]=this.m_lessonpreparation0
+this.Item[UpperBound(this.Item)+1]=this.m_student
+this.Item[UpperBound(this.Item)+1]=this.m_group
+this.Item[UpperBound(this.Item)+1]=this.m_systreeview
+this.Item[UpperBound(this.Item)+1]=this.m_lhexplorer
+this.Item[UpperBound(this.Item)+1]=this.m_grouplistview
+end on
+
+on m_applications.destroy
+call super::destroy
+destroy(this.m_maintenance)
+destroy(this.m_teachmaterials)
+destroy(this.m_lessonpreparation)
+destroy(this.m_lessonpreparation0)
+destroy(this.m_student)
+destroy(this.m_group)
+destroy(this.m_systreeview)
+destroy(this.m_lhexplorer)
+destroy(this.m_grouplistview)
+end on
+
+event clicked;//MessageBox("m_applications", "clicked")
+//gn_appman.iw_frame.SetMicroHelp('Move mouse to "Lesson' + '"')
+//gn_appman.iw_frame.SetMicroHelp('Move mouse to Lesson')
+//
+//gnvo_is.of_move_cursor(50, 100, 10, 2, false, false)
+//
+end event
+
+type m_maintenance from menu within m_applications
+event clicked ( )
+end type
+
+event clicked;//OpenSheetWithParm(w_mt_tables, "w_mt_tables", gn_appman.iw_frame, 0, original!)
+end event
+
+on m_maintenance.create
+call super::create
+this.text = "Static Table Maintenance"
+end on
+
+on m_maintenance.destroy
+call super::destroy
+end on
+
+type m_teachmaterials from menu within m_applications
+end type
+
+event clicked;//OpenSheetWithParm(w_materials, "", gn_appman.iw_frame, 0, original!)
+
+end event
+
+on m_teachmaterials.create
+call super::create
+this.text = "Teaching Materials"
+end on
+
+on m_teachmaterials.destroy
+call super::destroy
+end on
+
+type m_lessonpreparation from menu within m_applications
+m_discretetrial0 m_discretetrial0
+m_comparison m_comparison
+m_matching m_matching
+m_grouping m_grouping
+m_counting0 m_counting0
+m_unscramblewords m_unscramblewords
+m_unscramblesentences m_unscramblesentences
+end type
+
+on m_lessonpreparation.create
+call super::create
+this.text = "Lesson Setup"
+this.m_discretetrial0=create m_discretetrial0
+this.m_comparison=create m_comparison
+this.m_matching=create m_matching
+this.m_grouping=create m_grouping
+this.m_counting0=create m_counting0
+this.m_unscramblewords=create m_unscramblewords
+this.m_unscramblesentences=create m_unscramblesentences
+this.Item[UpperBound(this.Item)+1]=this.m_discretetrial0
+this.Item[UpperBound(this.Item)+1]=this.m_comparison
+this.Item[UpperBound(this.Item)+1]=this.m_matching
+this.Item[UpperBound(this.Item)+1]=this.m_grouping
+this.Item[UpperBound(this.Item)+1]=this.m_counting0
+this.Item[UpperBound(this.Item)+1]=this.m_unscramblewords
+this.Item[UpperBound(this.Item)+1]=this.m_unscramblesentences
+end on
+
+on m_lessonpreparation.destroy
+call super::destroy
+destroy(this.m_discretetrial0)
+destroy(this.m_comparison)
+destroy(this.m_matching)
+destroy(this.m_grouping)
+destroy(this.m_counting0)
+destroy(this.m_unscramblewords)
+destroy(this.m_unscramblesentences)
+end on
+
+type m_discretetrial0 from menu within m_lessonpreparation
+end type
+
+event clicked;//OpenSheetWithParm(w_make_lesson_discrete_trial, "Object", gn_appman.iw_frame, 0, original!)
+
+end event
+
+on m_discretetrial0.create
+call super::create
+this.text = "Object Identification"
+end on
+
+on m_discretetrial0.destroy
+call super::destroy
+end on
+
+type m_comparison from menu within m_lessonpreparation
+m_3 m_3
+m_4 m_4
+event clicked ( )
+end type
+
+on m_comparison.create
+call super::create
+this.text = "Comparison"
+this.m_3=create m_3
+this.m_4=create m_4
+this.Item[UpperBound(this.Item)+1]=this.m_3
+this.Item[UpperBound(this.Item)+1]=this.m_4
+end on
+
+on m_comparison.destroy
+call super::destroy
+destroy(this.m_3)
+destroy(this.m_4)
+end on
+
+type m_3 from menu within m_comparison
+end type
+
+event clicked;//OpenSheetWithParm(w_make_lesson_comp_object, "Object", gn_appman.iw_frame, 0, original!)
+end event
+
+on m_3.create
+call super::create
+this.text = "Object"
+end on
+
+on m_3.destroy
+call super::destroy
+end on
+
+type m_4 from menu within m_comparison
+end type
+
+event clicked;//OpenSheetWithParm(w_make_lesson_comp_scale, "Quantity", gn_appman.iw_frame, 0, original!)
+end event
+
+on m_4.create
+call super::create
+this.text = "Scale"
+end on
+
+on m_4.destroy
+call super::destroy
+end on
+
+type m_matching from menu within m_lessonpreparation
+end type
+
+event clicked;//OpenSheetWithParm(w_make_lesson_matching, "Object", gn_appman.iw_frame, 0, original!)
+
+end event
+
+on m_matching.create
+call super::create
+this.text = "Matching"
+end on
+
+on m_matching.destroy
+call super::destroy
+end on
+
+type m_grouping from menu within m_lessonpreparation
+event clicked ( )
+end type
+
+event clicked;//OpenSheetWithParm(w_make_lesson_mw_cmmnd, "Object", gn_appman.iw_frame, 0, original!)
+
+end event
+
+on m_grouping.create
+call super::create
+this.text = "Grouping"
+end on
+
+on m_grouping.destroy
+call super::destroy
+end on
+
+type m_counting0 from menu within m_lessonpreparation
+m_drag-drop0 m_drag-drop0
+m_numbermatching m_numbermatching
+m_setup_addition m_setup_addition
+m_setup_subtraction m_setup_subtraction
+end type
+
+on m_counting0.create
+call super::create
+this.text = "Math"
+this.m_drag-drop0=create m_drag-drop0
+this.m_numbermatching=create m_numbermatching
+this.m_setup_addition=create m_setup_addition
+this.m_setup_subtraction=create m_setup_subtraction
+this.Item[UpperBound(this.Item)+1]=this.m_drag-drop0
+this.Item[UpperBound(this.Item)+1]=this.m_numbermatching
+this.Item[UpperBound(this.Item)+1]=this.m_setup_addition
+this.Item[UpperBound(this.Item)+1]=this.m_setup_subtraction
+end on
+
+on m_counting0.destroy
+call super::destroy
+destroy(this.m_drag-drop0)
+destroy(this.m_numbermatching)
+destroy(this.m_setup_addition)
+destroy(this.m_setup_subtraction)
+end on
+
+type m_drag-drop0 from menu within m_counting0
+end type
+
+event clicked;//OpenSheetWithParm(w_make_lesson_dragdrop_count, "Quantity", gn_appman.iw_frame, 0, original!)
+
+end event
+
+on m_drag-drop0.create
+call super::create
+this.text = "Drag-drop Counting"
+end on
+
+on m_drag-drop0.destroy
+call super::destroy
+end on
+
+type m_numbermatching from menu within m_counting0
+end type
+
+on m_numbermatching.create
+call super::create
+this.text = "Number-Matching Counting"
+end on
+
+on m_numbermatching.destroy
+call super::destroy
+end on
+
+event clicked;//OpenSheetWithParm(w_make_lesson_numbermatch_count, "Quantity", gn_appman.iw_frame, 0, original!)
+
+end event
+
+type m_setup_addition from menu within m_counting0
+end type
+
+event clicked;//OpenSheetWithParm(w_make_lesson_addition, "Quantity", gn_appman.iw_frame, 0, original!)
+
+end event
+
+on m_setup_addition.create
+call super::create
+this.text = "Addition"
+end on
+
+on m_setup_addition.destroy
+call super::destroy
+end on
+
+type m_setup_subtraction from menu within m_counting0
+end type
+
+event clicked;//OpenSheetWithParm(w_make_lesson_subtraction, "Quantity", gn_appman.iw_frame, 0, original!)
+
+end event
+
+on m_setup_subtraction.create
+call super::create
+this.text = "Subtraction"
+end on
+
+on m_setup_subtraction.destroy
+call super::destroy
+end on
+
+type m_unscramblewords from menu within m_lessonpreparation
+end type
+
+event clicked;//OpenSheetWithParm(w_make_lesson_unscrmword, "Object", gn_appman.iw_frame, 0, original!)
+
+end event
+
+on m_unscramblewords.create
+call super::create
+this.text = "Unscramble Words"
+end on
+
+on m_unscramblewords.destroy
+call super::destroy
+end on
+
+type m_unscramblesentences from menu within m_lessonpreparation
+end type
+
+event clicked;//OpenSheetWithParm(w_make_lesson_unscrmsentence, "Object", gn_appman.iw_frame, 0, original!)
+
+end event
+
+on m_unscramblesentences.create
+call super::create
+this.text = "Unscramble Sentences"
+end on
+
+on m_unscramblesentences.destroy
+call super::destroy
+end on
+
+type m_lessonpreparation0 from menu within m_applications
+m_0 m_0
+m_1 m_1
+m_matching0 m_matching0
+m_grouping0 m_grouping0
+m_counting m_counting
+m_reading m_reading
+m_unscrambleword m_unscrambleword
+m_unscramblesentence m_unscramblesentence
+end type
+
+on m_lessonpreparation0.create
+call super::create
+this.text = "Lesson"
+this.m_0=create m_0
+this.m_1=create m_1
+this.m_matching0=create m_matching0
+this.m_grouping0=create m_grouping0
+this.m_counting=create m_counting
+this.m_reading=create m_reading
+this.m_unscrambleword=create m_unscrambleword
+this.m_unscramblesentence=create m_unscramblesentence
+this.Item[UpperBound(this.Item)+1]=this.m_0
+this.Item[UpperBound(this.Item)+1]=this.m_1
+this.Item[UpperBound(this.Item)+1]=this.m_matching0
+this.Item[UpperBound(this.Item)+1]=this.m_grouping0
+this.Item[UpperBound(this.Item)+1]=this.m_counting
+this.Item[UpperBound(this.Item)+1]=this.m_reading
+this.Item[UpperBound(this.Item)+1]=this.m_unscrambleword
+this.Item[UpperBound(this.Item)+1]=this.m_unscramblesentence
+end on
+
+on m_lessonpreparation0.destroy
+call super::destroy
+destroy(this.m_0)
+destroy(this.m_1)
+destroy(this.m_matching0)
+destroy(this.m_grouping0)
+destroy(this.m_counting)
+destroy(this.m_reading)
+destroy(this.m_unscrambleword)
+destroy(this.m_unscramblesentence)
+end on
+
+event clicked;//istr_lp.str_name = "ONLINE"
+//gn_appman.iw_frame.SetMicroHelp('Move mouse to "Counting' + '"')
+//
+//gnvo_is.of_move_cursor(200, 100, 10, 2, false, false)
+//gnvo_is.of_move_cursor(200, 130, 10, 2, false, false)
+
+end event
+
+type m_0 from menu within m_lessonpreparation0
+event clicked ( )
+end type
+
+event clicked;//str_lesson_program lstr_lp
+//lstr_lp.str_name = "ONLINE"
+//OpenSheetWithParm(w_lesson_discrete_trial, istr_lp, gn_appman.iw_frame, 0, original!)
+
+end event
+
+on m_0.create
+call super::create
+this.text = "Object Identification"
+end on
+
+on m_0.destroy
+call super::destroy
+end on
+
+type m_1 from menu within m_lessonpreparation0
+m_5 m_5
+m_6 m_6
+end type
+
+on m_1.create
+call super::create
+this.text = "Comparison"
+this.m_5=create m_5
+this.m_6=create m_6
+this.Item[UpperBound(this.Item)+1]=this.m_5
+this.Item[UpperBound(this.Item)+1]=this.m_6
+end on
+
+on m_1.destroy
+call super::destroy
+destroy(this.m_5)
+destroy(this.m_6)
+end on
+
+type m_5 from menu within m_1
+event clicked ( )
+end type
+
+event clicked;//str_lesson_program lstr_lp
+//lstr_lp.str_name = "ONLINE"
+//OpenSheetWithParm(w_lesson_comp_object, lstr_lp, gn_appman.iw_frame, 0, original!)
+end event
+
+on m_5.create
+call super::create
+this.text = "Object"
+end on
+
+on m_5.destroy
+call super::destroy
+end on
+
+type m_6 from menu within m_1
+event clicked ( )
+end type
+
+event clicked;//str_lesson_program lstr_lp
+//lstr_lp.str_name = "ONLINE"
+//OpenSheetWithParm(w_lesson_comp_scale, lstr_lp, gn_appman.iw_frame, 0, original!)
+end event
+
+on m_6.create
+call super::create
+this.text = "Scale"
+end on
+
+on m_6.destroy
+call super::destroy
+end on
+
+type m_matching0 from menu within m_lessonpreparation0
+end type
+
+event clicked;//str_lesson_program lstr_lp
+//lstr_lp.str_name = "ONLINE"
+//OpenSheetWithParm(w_lesson_matching, lstr_lp, gn_appman.iw_frame, 0, original!)
+end event
+
+on m_matching0.create
+call super::create
+this.text = "Matching"
+end on
+
+on m_matching0.destroy
+call super::destroy
+end on
+
+type m_grouping0 from menu within m_lessonpreparation0
+event clicked ( )
+end type
+
+event clicked;//str_lesson_program lstr_lp
+//lstr_lp.str_name = "ONLINE"
+//OpenSheetWithParm(w_lesson_mw_cmmnd, lstr_lp, gn_appman.iw_frame, 0, original!)
+end event
+
+on m_grouping0.create
+call super::create
+this.text = "Grouping"
+end on
+
+on m_grouping0.destroy
+call super::destroy
+end on
+
+type m_counting from menu within m_lessonpreparation0
+m_drag-drop m_drag-drop
+m_numbermatching0 m_numbermatching0
+m_addition m_addition
+m_subtraction m_subtraction
+end type
+
+on m_counting.create
+call super::create
+this.text = "Math"
+this.m_drag-drop=create m_drag-drop
+this.m_numbermatching0=create m_numbermatching0
+this.m_addition=create m_addition
+this.m_subtraction=create m_subtraction
+this.Item[UpperBound(this.Item)+1]=this.m_drag-drop
+this.Item[UpperBound(this.Item)+1]=this.m_numbermatching0
+this.Item[UpperBound(this.Item)+1]=this.m_addition
+this.Item[UpperBound(this.Item)+1]=this.m_subtraction
+end on
+
+on m_counting.destroy
+call super::destroy
+destroy(this.m_drag-drop)
+destroy(this.m_numbermatching0)
+destroy(this.m_addition)
+destroy(this.m_subtraction)
+end on
+
+event clicked;//gn_appman.iw_frame.SetMicroHelp('Move mouse to "Drag-drop' + '"')
+//
+//gnvo_is.of_move_cursor(300, 130, 10, 2, false, false)
+//gnvo_is.of_move_cursor(350, 130, 10, 2, false, false)
+
+end event
+
+type m_drag-drop from menu within m_counting
+end type
+
+event clicked;//str_lesson_program lstr_lp
+//lstr_lp.str_name = "ONLINE"
+//OpenSheetWithParm(w_lesson_dragdrop_count, lstr_lp, gn_appman.iw_frame, 0, original!)
+end event
+
+on m_drag-drop.create
+call super::create
+this.text = "Drag-drop Counting"
+end on
+
+on m_drag-drop.destroy
+call super::destroy
+end on
+
+event selected;//sleeping(2000)
+//gnvo_is.of_lb_down()
+//gnvo_is.of_lb_up()
+end event
+
+type m_numbermatching0 from menu within m_counting
+end type
+
+event clicked;//str_lesson_program lstr_lp
+//lstr_lp.str_name = "ONLINE"
+//OpenSheetWithParm(w_lesson_numbermatch_count, lstr_lp, gn_appman.iw_frame, 0, original!)
+
+end event
+
+on m_numbermatching0.create
+call super::create
+this.text = "Number-matching Counting"
+end on
+
+on m_numbermatching0.destroy
+call super::destroy
+end on
+
+type m_addition from menu within m_counting
+end type
+
+event clicked;//str_lesson_program lstr_lp
+//lstr_lp.str_name = "ONLINE"
+//OpenSheetWithParm(w_lesson_addition, lstr_lp, gn_appman.iw_frame, 0, original!)
+
+end event
+
+on m_addition.create
+call super::create
+this.text = "Addition"
+end on
+
+on m_addition.destroy
+call super::destroy
+end on
+
+type m_subtraction from menu within m_counting
+end type
+
+event clicked;//str_lesson_program lstr_lp
+//lstr_lp.str_name = "ONLINE"
+//OpenSheetWithParm(w_lesson_subtraction, lstr_lp, gn_appman.iw_frame, 0, original!)
+
+end event
+
+on m_subtraction.create
+call super::create
+this.text = "Subtraction"
+end on
+
+on m_subtraction.destroy
+call super::destroy
+end on
+
+type m_reading from menu within m_lessonpreparation0
+end type
+
+event clicked;//OpenSheetWithParm(w_reading_multi_pages, "w_reading_multi_pages", gn_appman.iw_frame, 0, original!)
+end event
+
+on m_reading.create
+call super::create
+this.text = "Reading"
+end on
+
+on m_reading.destroy
+call super::destroy
+end on
+
+type m_unscrambleword from menu within m_lessonpreparation0
+end type
+
+event clicked;//OpenSheetWithParm(w_lesson_unscramble_word, istr_lp, gn_appman.iw_frame, 0, original!)
+
+end event
+
+on m_unscrambleword.create
+call super::create
+this.text = "Unscramble Word"
+end on
+
+on m_unscrambleword.destroy
+call super::destroy
+end on
+
+type m_unscramblesentence from menu within m_lessonpreparation0
+end type
+
+event clicked;//OpenSheetWithParm(w_lesson_unscramble_sentence, istr_lp, gn_appman.iw_frame, 0, original!)
+
+end event
+
+on m_unscramblesentence.create
+call super::create
+this.text = "Unscramble Sentences"
+end on
+
+on m_unscramblesentence.destroy
+call super::destroy
+end on
+
+type m_student from menu within m_applications
+end type
+
+event clicked;OpenSheetWithParm(w_student, "", gn_appman.iw_frame, 0, original!)
+end event
+
+on m_student.create
+call super::create
+this.text = "Student"
+end on
+
+on m_student.destroy
+call super::destroy
+end on
+
+type m_group from menu within m_applications
+end type
+
+event clicked;OpenSheetWithParm(w_group, "", gn_appman.iw_frame, 0, original!)
+end event
+
+on m_group.create
+call super::create
+this.text = "Group"
+end on
+
+on m_group.destroy
+call super::destroy
+end on
+
+type m_systreeview from menu within m_applications
+end type
+
+event clicked;OpenSheetWithParm(w_treeview_sys_table, "", gn_appman.iw_frame, 0, original!)
+end event
+
+on m_systreeview.create
+call super::create
+this.text = "Sys Treeview"
+end on
+
+on m_systreeview.destroy
+call super::destroy
+end on
+
+type m_lhexplorer from menu within m_applications
+end type
+
+event clicked;OpenSheetWithParm(w_explorer, "", gn_appman.iw_frame, 0, original!)
+end event
+
+on m_lhexplorer.create
+call super::create
+this.text = "LH Explorer"
+end on
+
+on m_lhexplorer.destroy
+call super::destroy
+end on
+
+type m_grouplistview from menu within m_applications
+end type
+
+event clicked;//
+OpenSheetWithParm(w_student_list_for_lesson_play, "", gn_appman.iw_frame, 0, original!)
+end event
+
+on m_grouplistview.create
+call super::create
+this.text = "Group List View"
+end on
+
+on m_grouplistview.destroy
+call super::destroy
+end on
+
+type m_tools from menu within m_internet_lh_mdi
+m_exportndblhlesson m_exportndblhlesson
+m_export m_export
+m_import m_import
+m_moneyboard m_moneyboard
+m_reward m_reward
+m_lessonprogram m_lessonprogram
+m_learninghelperexhibtryout m_learninghelperexhibtryout
+m_learninghelperdemo m_learninghelperdemo
+m_soundrecorder m_soundrecorder
+m_appwatch m_appwatch
+m_appwatchontop m_appwatchontop
+m_swapprogram m_swapprogram
+end type
+
+on m_tools.create
+call super::create
+this.text = "Tools"
+this.m_exportndblhlesson=create m_exportndblhlesson
+this.m_export=create m_export
+this.m_import=create m_import
+this.m_moneyboard=create m_moneyboard
+this.m_reward=create m_reward
+this.m_lessonprogram=create m_lessonprogram
+this.m_learninghelperexhibtryout=create m_learninghelperexhibtryout
+this.m_learninghelperdemo=create m_learninghelperdemo
+this.m_soundrecorder=create m_soundrecorder
+this.m_appwatch=create m_appwatch
+this.m_appwatchontop=create m_appwatchontop
+this.m_swapprogram=create m_swapprogram
+this.Item[UpperBound(this.Item)+1]=this.m_exportndblhlesson
+this.Item[UpperBound(this.Item)+1]=this.m_export
+this.Item[UpperBound(this.Item)+1]=this.m_import
+this.Item[UpperBound(this.Item)+1]=this.m_moneyboard
+this.Item[UpperBound(this.Item)+1]=this.m_reward
+this.Item[UpperBound(this.Item)+1]=this.m_lessonprogram
+this.Item[UpperBound(this.Item)+1]=this.m_learninghelperexhibtryout
+this.Item[UpperBound(this.Item)+1]=this.m_learninghelperdemo
+this.Item[UpperBound(this.Item)+1]=this.m_soundrecorder
+this.Item[UpperBound(this.Item)+1]=this.m_appwatch
+this.Item[UpperBound(this.Item)+1]=this.m_appwatchontop
+this.Item[UpperBound(this.Item)+1]=this.m_swapprogram
+end on
+
+on m_tools.destroy
+call super::destroy
+destroy(this.m_exportndblhlesson)
+destroy(this.m_export)
+destroy(this.m_import)
+destroy(this.m_moneyboard)
+destroy(this.m_reward)
+destroy(this.m_lessonprogram)
+destroy(this.m_learninghelperexhibtryout)
+destroy(this.m_learninghelperdemo)
+destroy(this.m_soundrecorder)
+destroy(this.m_appwatch)
+destroy(this.m_appwatchontop)
+destroy(this.m_swapprogram)
+end on
+
+type m_exportndblhlesson from menu within m_tools
+end type
+
+event clicked;//w_sheet lw_window
+//lw_window = gn_appman.iw_frame.GetActiveSheet()
+//if pos(lw_window.classname(), "w_make_lesson") > 0 then
+//	lw_window.dynamic of_export_ndblh_lesson()
+//end if
+
+end event
+
+on m_exportndblhlesson.create
+call super::create
+this.visible = false
+this.text = "Export nDBLH Lesson"
+end on
+
+on m_exportndblhlesson.destroy
+call super::destroy
+end on
+
+type m_export from menu within m_tools
+end type
+
+event clicked;//w_sheet lw_window
+//lw_window = gn_appman.iw_frame.GetActiveSheet()
+//if isvalid(lw_window) then
+//	if pos(lw_window.classname(), "w_make_lesson") > 0 or &
+//		pos(lw_window.classname(), "w_materials") > 0 or &
+//		pos(lw_window.classname(), "w_student_management") > 0 or &
+//		pos(lw_window.classname(), "w_progress_report_tv") > 0 then
+//		lw_window.dynamic of_exporting()
+//	end if
+//end if
+
+end event
+
+on m_export.create
+call super::create
+this.text = "Export"
+end on
+
+on m_export.destroy
+call super::destroy
+end on
+
+type m_import from menu within m_tools
+end type
+
+event clicked;//nvo_export_import lnv_export_import
+//lnv_export_import = create nvo_export_import
+//lnv_export_import.of_init_import()
+//destroy lnv_export_import
+end event
+
+on m_import.create
+call super::create
+this.text = "Import"
+end on
+
+on m_import.destroy
+call super::destroy
+end on
+
+type m_moneyboard from menu within m_tools
+end type
+
+on m_moneyboard.create
+call super::create
+this.text = "Money Board"
+this.checked = true
+end on
+
+on m_moneyboard.destroy
+call super::destroy
+end on
+
+event clicked;//if checked then
+//	checked = false
+//	gb_money_board_on = false
+//	if isvalid(gw_money_board) then
+//		close(gw_money_board)
+//	end if
+//else
+//	checked = true
+//	gb_money_board_on = true
+//end if
+	
+end event
+
+type m_reward from menu within m_tools
+end type
+
+event clicked;//OpenSheetWithParm(w_reward, "w_reward", gn_appman.iw_frame, 0, original!)
+end event
+
+on m_reward.create
+call super::create
+this.text = "Reward Program"
+end on
+
+on m_reward.destroy
+call super::destroy
+end on
+
+type m_lessonprogram from menu within m_tools
+end type
+
+event clicked;//OpenSheetWithParm(w_lesson_program, "w_lesson_program", gn_appman.iw_frame, 0, original!)
+end event
+
+on m_lessonprogram.create
+call super::create
+this.text = "Lesson Program"
+end on
+
+on m_lessonprogram.destroy
+call super::destroy
+end on
+
+type m_learninghelperexhibtryout from menu within m_tools
+end type
+
+event clicked;//if not isvalid(gnvo_is.iw_demo_selection) then
+//	Open(gnvo_is.iw_demo_selection, "w_demo_trial_selection")
+//else
+//	gnvo_is.iw_demo_selection.BringToTop = true
+//end if
+end event
+
+on m_learninghelperexhibtryout.create
+call super::create
+this.visible = false
+this.text = "Learning Helper Exhib. Try Out"
+end on
+
+on m_learninghelperexhibtryout.destroy
+call super::destroy
+end on
+
+type m_learninghelperdemo from menu within m_tools
+end type
+
+on m_learninghelperdemo.create
+call super::create
+this.text = "Learning Helper Demo"
+end on
+
+on m_learninghelperdemo.destroy
+call super::destroy
+end on
+
+event clicked;//if not isvalid(gnvo_is.iw_demo_selection) then
+//	Open(gnvo_is.iw_demo_selection, "w_demo_selection")
+//else
+//	gnvo_is.iw_demo_selection.BringToTop = true
+//end if
+end event
+
+type m_soundrecorder from menu within m_tools
+end type
+
+event clicked;run("C:\WINDOWS\SNDREC32.EXE")
+end event
+
+on m_soundrecorder.create
+call super::create
+this.text = "Sound Recorder"
+end on
+
+on m_soundrecorder.destroy
+call super::destroy
+end on
+
+type m_appwatch from menu within m_tools
+end type
+
+event clicked;//if checked then
+//	checked = false
+//	gb_appwatch = false
+//else
+//	checked = true
+//	gb_appwatch = true
+//end if
+	
+end event
+
+on m_appwatch.create
+call super::create
+this.visible = false
+this.text = "App. Watch"
+end on
+
+on m_appwatch.destroy
+call super::destroy
+end on
+
+type m_appwatchontop from menu within m_tools
+end type
+
+event clicked;//if checked then
+//	checked = false
+//	SetAppWatchStatus("c:\Learning Helper\bin\AppWatchStatus.bin", 0)
+//else
+//	checked = true
+//	SetAppWatchStatus("c:\Learning Helper\bin\AppWatchStatus.bin", 0)
+//end if
+	
+end event
+
+on m_appwatchontop.create
+call super::create
+this.visible = false
+this.text = "App. Watch On Top"
+end on
+
+on m_appwatchontop.destroy
+call super::destroy
+end on
+
+type m_swapprogram from menu within m_tools
+end type
+
+event clicked;string ls_command
+ls_command = "LHUpgrade.exe" 
+SwapProgram(ls_command)
+end event
+
+on m_swapprogram.create
+call super::create
+this.text = "Swap Program"
+end on
+
+on m_swapprogram.destroy
+call super::destroy
+end on
+
+type m_report from menu within m_internet_lh_mdi
+m_importreport m_importreport
+m_exportreporton-line m_exportreporton-line
+m_export_report m_export_report
+m_progressreport m_progressreport
+m_studentmanagement m_studentmanagement
+end type
+
+on m_report.create
+call super::create
+this.text = "Report"
+this.m_importreport=create m_importreport
+this.m_exportreporton-line=create m_exportreporton-line
+this.m_export_report=create m_export_report
+this.m_progressreport=create m_progressreport
+this.m_studentmanagement=create m_studentmanagement
+this.Item[UpperBound(this.Item)+1]=this.m_importreport
+this.Item[UpperBound(this.Item)+1]=this.m_exportreporton-line
+this.Item[UpperBound(this.Item)+1]=this.m_export_report
+this.Item[UpperBound(this.Item)+1]=this.m_progressreport
+this.Item[UpperBound(this.Item)+1]=this.m_studentmanagement
+end on
+
+on m_report.destroy
+call super::destroy
+destroy(this.m_importreport)
+destroy(this.m_exportreporton-line)
+destroy(this.m_export_report)
+destroy(this.m_progressreport)
+destroy(this.m_studentmanagement)
+end on
+
+type m_importreport from menu within m_report
+event clicked ( )
+end type
+
+event clicked;//string FileList[], RemoteFilePath = "/usr/home/helper/LH_gimit/DDD_training/reports" 
+//string LocalFileName = "c:\report_tmp.txz"
+//string LocalBinFileName = "c:\report_tmp.ex_"
+//long li_i, FileCount
+//
+//if MessageBox("Warning", "You are about to import reports from the on-line site,~r~n " + &
+//		"do you want to continue?", Question!, YesNo!) = 2 then
+//	return
+//end if
+//FileCount = RemoteFileCount(RemoteFilePath)
+//if FileCount < 1 then
+//	MessageBox("Import Error", "No File Avaiable!")
+//	return
+//end if
+//SetPointer(HourGlass!)
+//nvo_export_import lnv_export_import
+//lnv_export_import = create nvo_export_import
+//
+//for li_i = 1 to FileCount
+//	FileList[li_i] = space(100)
+//next
+//DirectoryList(RemoteFilePath, FileList, FileCount)
+//for li_i = 1 to FileCount
+//	DownLoadReport(LocalFileName, FileList[li_i])
+//	fntextfile2binfile (LocalFileName, LocalBinFileName)
+//	lnv_export_import.of_init_import(LocalBinFileName)
+//next 
+//FileDelete(LocalFileName)
+//FileDelete(LocalBinFileName)
+//SetPointer(Arrow!)
+//destroy lnv_export_import
+end event
+
+on m_importreport.create
+call super::create
+this.text = "Import Report On-Line"
+end on
+
+on m_importreport.destroy
+call super::destroy
+end on
+
+type m_exportreporton-line from menu within m_report
+event clicked ( )
+end type
+
+event clicked;long ll_student_id, ll_lesson_id, ll_1st_lesson_id, ll_count = 0
+integer li_value
+string ls_Docname, ls_named, ls_full_path, ls_name_tmp
+string ls_orig_directory, ls_current_directory
+//nvo_export_import lnv_export_import
+//
+//ls_orig_directory = space(200)
+//ls_current_directory = space(200)
+//SetPointer(HourGlass!)
+////ls_orig_directory = getcurrentdir ()
+//lnv_export_import = create nvo_export_import
+//lnv_export_import.of_init_export()
+//Pointer lp_oldpointer
+//lp_oldpointer = SetPointer ( HourGlass! )
+//DECLARE student_cur CURSOR FOR
+//	select distinct lesson.student_id
+//	from progress_data, lesson
+//	where progress_data.lesson_id = lesson.lesson_id and
+//		lesson.student_id between 10010 and 15000;
+//OPEN student_cur;
+//do 	
+//	FETCH student_cur INTO :ll_student_id; 
+//	IF SQLCA.sqlcode <> 0 THEN exit
+//	if ll_count = 0 then
+//		ll_1st_lesson_id = ll_student_id
+//	end if
+//	ll_count++
+//	lnv_export_import.of_export_progress_data_by_student(ll_student_id, 0)	
+//LOOP WHILE SQLCA.sqlcode = 0
+//CLOSE student_cur;
+//if ll_count = 1 then
+//	ls_named = "rpt" + string(ll_1st_lesson_id, "00000") + ".txz"
+//else
+//	ls_named = "rpt00000.txz"
+//end if
+//ls_full_path = "c:\" + ls_named
+//ls_name_tmp = "c:\progress_data_tmp.ex_"
+//lnv_export_import.of_post_exporting(ls_name_tmp, "PROGRESS_DATA", 0)
+//fnBinFile2TextFile(ls_name_tmp, ls_full_path)
+//UpLoadReport(ls_full_path, ls_named)
+//lp_oldpointer = SetPointer ( lp_oldpointer )
+//destroy lnv_export_import
+////FileDelete(ls_name_tmp)
+//SetPointer(Arrow!)
+
+end event
+
+on m_exportreporton-line.create
+call super::create
+this.text = "Export Report On-Line"
+end on
+
+on m_exportreporton-line.destroy
+call super::destroy
+end on
+
+type m_export_report from menu within m_report
+event clicked ( )
+end type
+
+event clicked;long ll_student_id, ll_lesson_id
+integer li_value
+string ls_Docname, ls_named
+string ls_orig_directory, ls_current_directory
+//nvo_export_import lnv_export_import
+//
+//ls_orig_directory = space(200)
+//ls_current_directory = space(200)
+//
+//GetCurrentDir(200, ls_orig_directory)
+//
+////ls_orig_directory = getcurrentdir ()
+//lnv_export_import = create nvo_export_import
+//lnv_export_import.of_init_export()
+//Pointer lp_oldpointer
+//lp_oldpointer = SetPointer ( HourGlass! )
+//ls_Docname = "C:\Progress_data.ex_"
+//li_value = GetFileSaveName("Select File", ls_Docname, ls_named, "EX_", "Export File (*.EX_),*.EX_")
+//if ls_named = "" then
+//	MessageBox("Error", "Not a valid file name specified")
+//	destroy lnv_export_import	
+//	SetCurrentDir(ls_orig_directory)
+//	return
+//end if
+//if ls_named = "" then
+//	MessageBox("Error", "Not a valid file name specified")
+//	SetCurrentDir(ls_orig_directory)
+//	return
+//end if
+//GetCurrentDir(200, ls_current_directory)
+//DECLARE student_cur CURSOR FOR
+//	select distinct lesson.student_id
+//	from progress_data, lesson
+//	where progress_data.lesson_id = lesson.lesson_id and
+//		lesson.student_id between 10010 and 15000;
+//OPEN student_cur;
+//GetCurrentDir(200, ls_current_directory)
+//MessageBox("ls_current_directory", ls_current_directory)
+//do 	
+//	FETCH student_cur INTO :ll_student_id; 
+//	IF SQLCA.sqlcode <> 0 THEN exit
+//	lnv_export_import.of_export_progress_data_by_student(ll_student_id, 0)	
+//LOOP WHILE SQLCA.sqlcode = 0
+//CLOSE student_cur;
+//GetCurrentDir(200, ls_current_directory)
+//lnv_export_import.of_post_exporting(ls_named, "PROGRESS_DATA", 0)
+//lp_oldpointer = SetPointer ( lp_oldpointer )
+//destroy lnv_export_import
+//SetCurrentDir(ls_orig_directory)
+
+end event
+
+on m_export_report.create
+call super::create
+this.visible = false
+this.text = "Export Report As File"
+end on
+
+on m_export_report.destroy
+call super::destroy
+end on
+
+type m_progressreport from menu within m_report
+event clicked ( )
+end type
+
+event clicked;//OpenSheetWithParm(w_progress_report_tv, "", gn_appman.iw_frame, 0, original!)
+
+end event
+
+on m_progressreport.create
+call super::create
+this.text = "Progress Report"
+end on
+
+on m_progressreport.destroy
+call super::destroy
+end on
+
+type m_studentmanagement from menu within m_report
+event clicked ( )
+end type
+
+event clicked;//OpenSheetWithParm(w_student_management, "", gn_appman.iw_frame, 0, original!)
+//open(w_daily_planner)
+end event
+
+on m_studentmanagement.create
+call super::create
+this.text = "Mastered Item Database"
+end on
+
+on m_studentmanagement.destroy
+call super::destroy
+end on
+
+type m_internet from menu within m_internet_lh_mdi
+m_createaccount m_createaccount
+m_login m_login
+m_freetriallesson m_freetriallesson
+m_accountlesson m_accountlesson
+event create ( )
+event destroy ( )
+end type
+
+on m_internet.create
+call super::create
+this.text = "Internet"
+this.m_createaccount=create m_createaccount
+this.m_login=create m_login
+this.m_freetriallesson=create m_freetriallesson
+this.m_accountlesson=create m_accountlesson
+this.Item[UpperBound(this.Item)+1]=this.m_createaccount
+this.Item[UpperBound(this.Item)+1]=this.m_login
+this.Item[UpperBound(this.Item)+1]=this.m_freetriallesson
+this.Item[UpperBound(this.Item)+1]=this.m_accountlesson
+end on
+
+on m_internet.destroy
+call super::destroy
+destroy(this.m_createaccount)
+destroy(this.m_login)
+destroy(this.m_freetriallesson)
+destroy(this.m_accountlesson)
+end on
+
+type m_createaccount from menu within m_internet
+end type
+
+event clicked;OpenSheetWithParm(w_create_account, "", gn_appman.iw_frame, 0, original!)
+end event
+
+on m_createaccount.create
+call super::create
+this.text = "Create Account"
+end on
+
+on m_createaccount.destroy
+call super::destroy
+end on
+
+type m_login from menu within m_internet
+end type
+
+event clicked;OpenSheetWithParm(w_login, "", gn_appman.iw_frame, 0, original!)
+end event
+
+on m_login.create
+call super::create
+this.text = "Login"
+end on
+
+on m_login.destroy
+call super::destroy
+end on
+
+type m_freetriallesson from menu within m_internet
+event create ( )
+event destroy ( )
+end type
+
+on m_freetriallesson.create
+call super::create
+this.text = "Free Trial Lesson"
+end on
+
+on m_freetriallesson.destroy
+call super::destroy
+end on
+
+event clicked;string ls_subject_type
+ls_subject_type = "FREE TRIAL LESSONS"
+gn_appman.of_set_parm("LIST SUBJECT", ls_subject_type)
+OpenSheetWithParm(w_ilesson_list, "", gn_appman.iw_frame, 0, original!)
+end event
+
+type m_accountlesson from menu within m_internet
+end type
+
+event clicked;string ls_subject_type
+ls_subject_type = "ACCOUNT LESSONS"
+gn_appman.of_set_parm("LIST SUBJECT", ls_subject_type)
+OpenSheetWithParm(w_ilesson_list, "", gn_appman.iw_frame, 0, original!)
+end event
+
+on m_accountlesson.create
+call super::create
+this.text = "Account Lesson"
+end on
+
+on m_accountlesson.destroy
+call super::destroy
+end on
+
+type m_9 from menu within m_internet_lh_mdi
+end type
+
+on m_9.create
+call super::create
+this.text = "Training Communitaction Board"
+end on
+
+on m_9.destroy
+call super::destroy
+end on
+
+event clicked;//OpenSheetWithParm(w_comm_board, "", gn_appman.iw_frame, 0, original!)
+end event
+
+type m_window from menu within m_internet_lh_mdi
+m_cascade m_cascade
+m_layer m_layer
+m_tile m_tile
+m_arrangeicons m_arrangeicons
+m_-7 m_-7
+m_showtoolbar m_showtoolbar
+m_showtoolbartext m_showtoolbartext
+m_showtoolbartip m_showtoolbartip
+m_windowcontrol m_windowcontrol
+m_-5 m_-5
+m_customizetoolabr m_customizetoolabr
+m_-2 m_-2
+m_close_win m_close_win
+m_closeall m_closeall
+end type
+
+on m_window.create
+call super::create
+this.text = "&Window"
+this.m_cascade=create m_cascade
+this.m_layer=create m_layer
+this.m_tile=create m_tile
+this.m_arrangeicons=create m_arrangeicons
+this.m_-7=create m_-7
+this.m_showtoolbar=create m_showtoolbar
+this.m_showtoolbartext=create m_showtoolbartext
+this.m_showtoolbartip=create m_showtoolbartip
+this.m_windowcontrol=create m_windowcontrol
+this.m_-5=create m_-5
+this.m_customizetoolabr=create m_customizetoolabr
+this.m_-2=create m_-2
+this.m_close_win=create m_close_win
+this.m_closeall=create m_closeall
+this.Item[UpperBound(this.Item)+1]=this.m_cascade
+this.Item[UpperBound(this.Item)+1]=this.m_layer
+this.Item[UpperBound(this.Item)+1]=this.m_tile
+this.Item[UpperBound(this.Item)+1]=this.m_arrangeicons
+this.Item[UpperBound(this.Item)+1]=this.m_-7
+this.Item[UpperBound(this.Item)+1]=this.m_showtoolbar
+this.Item[UpperBound(this.Item)+1]=this.m_showtoolbartext
+this.Item[UpperBound(this.Item)+1]=this.m_showtoolbartip
+this.Item[UpperBound(this.Item)+1]=this.m_windowcontrol
+this.Item[UpperBound(this.Item)+1]=this.m_-5
+this.Item[UpperBound(this.Item)+1]=this.m_customizetoolabr
+this.Item[UpperBound(this.Item)+1]=this.m_-2
+this.Item[UpperBound(this.Item)+1]=this.m_close_win
+this.Item[UpperBound(this.Item)+1]=this.m_closeall
+end on
+
+on m_window.destroy
+call super::destroy
+destroy(this.m_cascade)
+destroy(this.m_layer)
+destroy(this.m_tile)
+destroy(this.m_arrangeicons)
+destroy(this.m_-7)
+destroy(this.m_showtoolbar)
+destroy(this.m_showtoolbartext)
+destroy(this.m_showtoolbartip)
+destroy(this.m_windowcontrol)
+destroy(this.m_-5)
+destroy(this.m_customizetoolabr)
+destroy(this.m_-2)
+destroy(this.m_close_win)
+destroy(this.m_closeall)
+end on
+
+type m_cascade from menu within m_window
+end type
+
+event clicked;//g_TileorCas = True
+//ParentWindow.arrangesheets(cascade!)
+//g_TileorCas = False
+
+end event
+
+on m_cascade.create
+call super::create
+this.text = "&Cascade~tAlt+F1"
+this.shortcut = 624
+this.microhelp = "Cascade windows on workspace"
+this.toolbaritemvisible = false
+this.toolbaritemorder = 17
+this.toolbaritemspace = 2
+end on
+
+on m_cascade.destroy
+call super::destroy
+end on
+
+type m_layer from menu within m_window
+end type
+
+event clicked;//g_TileorCas = True
+//ParentWindow.arrangesheets(Layer!)
+//g_TileorCas = False
+
+end event
+
+on m_layer.create
+call super::create
+this.text = "&Layer~tAlt+F2"
+this.shortcut = 625
+this.microhelp = "Layer windows on workspace"
+this.toolbaritemvisible = false
+this.toolbaritemorder = 18
+end on
+
+on m_layer.destroy
+call super::destroy
+end on
+
+type m_tile from menu within m_window
+end type
+
+event clicked;//g_TileorCas = True
+//ParentWindow.arrangesheets(Tile!)
+//g_TileorCas = False
+
+end event
+
+on m_tile.create
+call super::create
+this.text = "&Tile~tAlt+F3"
+this.shortcut = 626
+this.microhelp = "Tile windows on workspace"
+this.toolbaritemvisible = false
+this.toolbaritemorder = 19
+end on
+
+on m_tile.destroy
+call super::destroy
+end on
+
+type m_arrangeicons from menu within m_window
+end type
+
+event clicked;ParentWindow.ArrangeSheets(Icons!)
+end event
+
+on m_arrangeicons.create
+call super::create
+this.text = "Arrange Icons~tAlt+F4"
+this.shortcut = 627
+end on
+
+on m_arrangeicons.destroy
+call super::destroy
+end on
+
+type m_-7 from menu within m_window
+end type
+
+on m_-7.create
+call super::create
+this.text = "-"
+end on
+
+on m_-7.destroy
+call super::destroy
+end on
+
+type m_showtoolbar from menu within m_window
+end type
+
+event clicked;if parentwindow.ToolBarVisible = false then
+	parentwindow.ToolBarVisible = true
+	ib_toolbar = true
+	this.checked = true
+else
+	parentwindow.ToolBarVisible = false
+	ib_toolbar = false
+	this.checked = false
+end if
+end event
+
+on m_showtoolbar.create
+call super::create
+this.text = "Show Toolbar"
+this.toolbaritemvisible = false
+end on
+
+on m_showtoolbar.destroy
+call super::destroy
+end on
+
+type m_showtoolbartext from menu within m_window
+end type
+
+event clicked;//if lh_app.ToolBarText = false then
+//	lh_app.ToolBarText = true
+//	ib_toolbartext = true
+//	this.checked = true
+//else
+//	lh_app.ToolBarText = false
+//	ib_toolbartext = false	
+//	this.checked = false
+//end if
+end event
+
+on m_showtoolbartext.create
+call super::create
+this.text = "Show Toolbar Text"
+this.checked = true
+this.toolbaritemvisible = false
+end on
+
+on m_showtoolbartext.destroy
+call super::destroy
+end on
+
+type m_showtoolbartip from menu within m_window
+end type
+
+event clicked;//if lh_app.ToolBarTips = false then
+//	lh_app.ToolBarTips = true
+//	ib_toolbartips = true
+//	this.checked = true
+//else
+//	lh_app.ToolBarTips = false
+//	ib_toolbartips = false
+//	this.checked = false
+//end if
+end event
+
+on m_showtoolbartip.create
+call super::create
+this.text = "Show Toolbar Tips"
+this.checked = true
+end on
+
+on m_showtoolbartip.destroy
+call super::destroy
+end on
+
+type m_windowcontrol from menu within m_window
+end type
+
+event clicked;w_internet_lh_mdi lw_mdi
+lw_mdi = gn_appman.iw_frame
+if checked then
+	checked = false
+	lw_mdi.tab_1.visible = false
+	ib_screen_control = false
+else
+	checked = true
+	lw_mdi.tab_1.visible = true
+	ib_screen_control = true
+end if
+
+lw_mdi.wf_resizing()
+	
+end event
+
+on m_windowcontrol.create
+call super::create
+this.text = "Window Control"
+end on
+
+on m_windowcontrol.destroy
+call super::destroy
+end on
+
+type m_-5 from menu within m_window
+end type
+
+on m_-5.create
+call super::create
+this.visible = false
+this.text = "-"
+end on
+
+on m_-5.destroy
+call super::destroy
+end on
+
+type m_customizetoolabr from menu within m_window
+end type
+
+event clicked;
+end event
+
+on m_customizetoolabr.create
+call super::create
+this.visible = false
+this.text = "Customize Toolbar"
+this.toolbaritemvisible = false
+end on
+
+on m_customizetoolabr.destroy
+call super::destroy
+end on
+
+type m_-2 from menu within m_window
+end type
+
+on m_-2.create
+call super::create
+this.text = "-"
+end on
+
+on m_-2.destroy
+call super::destroy
+end on
+
+type m_close_win from menu within m_window
+end type
+
+event clicked;//ParentWindow.TriggerEvent("ue_close_active")
+
+Window active_sheet
+String	sheet_name
+
+active_sheet = ParentWindow.GetActiveSheet()
+
+if IsValid(active_sheet) Then
+	Close(active_sheet)
+End If
+
+
+end event
+
+on m_close_win.create
+call super::create
+this.text = "&Close~tCtrl+F4"
+this.shortcut = 371
+end on
+
+on m_close_win.destroy
+call super::destroy
+end on
+
+type m_closeall from menu within m_window
+end type
+
+event clicked;ParentWindow.TriggerEvent("ue_closeall")
+end event
+
+on m_closeall.create
+call super::create
+this.text = "Close &All~tCtrl+Alt+F4"
+this.shortcut = 883
+this.microhelp = "Close all active windows"
+this.toolbaritemorder = 35
+this.toolbaritemspace = 2
+end on
+
+on m_closeall.destroy
+call super::destroy
+end on
+
+type m_help from menu within m_internet_lh_mdi
+m_helpindex m_helpindex
+m_search m_search
+m_dash21 m_dash21
+m_aboutquickapp m_aboutquickapp
+m_2 m_2
+m_7 m_7
+m_8 m_8
+end type
+
+on m_help.create
+call super::create
+this.text = "&Help"
+this.shifttoright = true
+this.m_helpindex=create m_helpindex
+this.m_search=create m_search
+this.m_dash21=create m_dash21
+this.m_aboutquickapp=create m_aboutquickapp
+this.m_2=create m_2
+this.m_7=create m_7
+this.m_8=create m_8
+this.Item[UpperBound(this.Item)+1]=this.m_helpindex
+this.Item[UpperBound(this.Item)+1]=this.m_search
+this.Item[UpperBound(this.Item)+1]=this.m_dash21
+this.Item[UpperBound(this.Item)+1]=this.m_aboutquickapp
+this.Item[UpperBound(this.Item)+1]=this.m_2
+this.Item[UpperBound(this.Item)+1]=this.m_7
+this.Item[UpperBound(this.Item)+1]=this.m_8
+end on
+
+on m_help.destroy
+call super::destroy
+destroy(this.m_helpindex)
+destroy(this.m_search)
+destroy(this.m_dash21)
+destroy(this.m_aboutquickapp)
+destroy(this.m_2)
+destroy(this.m_7)
+destroy(this.m_8)
+end on
+
+type m_helpindex from menu within m_help
+end type
+
+event clicked;//f_show_help()
+end event
+
+on m_helpindex.create
+call super::create
+this.text = "Help &Index~tF1"
+this.shortcut = 112
+this.microhelp = "Display Help index"
+end on
+
+on m_helpindex.destroy
+call super::destroy
+end on
+
+type m_search from menu within m_help
+end type
+
+event clicked;/* Search for Help topic (if uncommented) */
+//string ls_help_path
+//ls_help_path = gn_appman.is_help_path + "LearningHelper.hlp"
+//ShowHelp (ls_help_path, Keyword!, "")
+
+end event
+
+on m_search.create
+call super::create
+this.text = "&Search for Help on..."
+this.microhelp = "Search for Help topic"
+end on
+
+on m_search.destroy
+call super::destroy
+end on
+
+type m_dash21 from menu within m_help
+end type
+
+on m_dash21.create
+call super::create
+this.text = "-"
+end on
+
+on m_dash21.destroy
+call super::destroy
+end on
+
+type m_aboutquickapp from menu within m_help
+end type
+
+event clicked;// Invoke copyright response window
+
+//Open (w_about)
+end event
+
+on m_aboutquickapp.create
+call super::create
+this.text = "&About..."
+this.microhelp = "Display ~"About~" window"
+this.menuitemtype = menuitemtypeabout!
+end on
+
+on m_aboutquickapp.destroy
+call super::destroy
+end on
+
+type m_2 from menu within m_help
+end type
+
+event clicked;// Invoke signup window
+
+//Open (w_signup)
+end event
+
+on m_2.create
+call super::create
+this.text = "Sign &Up"
+end on
+
+on m_2.destroy
+call super::destroy
+end on
+
+type m_7 from menu within m_help
+end type
+
+event clicked;// Invoke signup window
+
+//Open (w_signup_list)
+end event
+
+on m_7.create
+call super::create
+this.text = "Sign Up &List"
+end on
+
+on m_7.destroy
+call super::destroy
+end on
+
+type m_8 from menu within m_help
+end type
+
+on m_8.create
+call super::create
+this.text = "Sign Up Pop-up Indicator"
+end on
+
+on m_8.destroy
+call super::destroy
+end on
+
+event clicked;//if checked then
+//	checked = false
+//	gb_signup_on = false
+//else
+//	checked = true
+//	gb_signup_on = true
+//end if
+	
+end event
+
+type m_talkautism from menu within m_internet_lh_mdi
+end type
+
+on m_talkautism.create
+call super::create
+this.text = "TalkAutism"
+this.shifttoright = true
+end on
+
+on m_talkautism.destroy
+call super::destroy
+end on
+
+event clicked;string ls_command
+ls_command = '"C:\Program Files\Internet Explorer\IEXPLORE.EXE"' + ' "http://www.talkautism.org"'
+run(ls_command)
+end event
+

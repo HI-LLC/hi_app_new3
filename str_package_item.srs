@@ -1,0 +1,8 @@
+$PBExportHeader$str_package_item.srs
+global type str_package_item from structure
+	long Index
+	long Size      
+	character Name[200]
+	character DateStamp[12]
+	character TimeStamp[20]	
+end type

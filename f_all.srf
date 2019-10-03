@@ -1,0 +1,72 @@
+global function integer f_getcachedatawindowfile (string as_filename, string as_local_filename);//MessageBox("as_local_filename", as_local_filename)
+if extGetImageFile(gn_appman.is_datawindow_index_file, gn_appman.is_datawindow_image_file, as_filename, as_local_filename) = 1 then
+	f_set_garbage_file(as_local_filename)
+	return 1
+end if
+
+return 0
+end function
+
+
+global function integer f_getcachedictionaryfile (string as_filename, string as_local_filename);//MessageBox(as_local_filename, as_filename)
+if not FileExists(gn_appman.is_dict_index_file) or not FileExists(gn_appman.is_dict_image_file) then return 0
+if extGetImageFile(gn_appman.is_dict_index_file, gn_appman.is_dict_image_file, as_filename, as_local_filename) = 1 then
+	f_set_garbage_file(as_local_filename)
+	return 1
+end if
+return 0
+end function
+
+global function integer f_getcachelessonfile (string as_filename, string as_local_filename);//MessageBox(as_local_filename, as_filename)
+if extGetImageFile(gn_appman.is_lesson_index_file, gn_appman.is_lesson_image_file, as_filename, as_local_filename) = 1 then
+	f_set_garbage_file(as_local_filename)
+	return 1
+end if
+
+return 0
+end function
+
+global function integer f_getcacheresourcefile (string as_filename, string as_local_filename);//MessageBox(as_local_filename, as_filename)
+if extGetImageFile(gn_appman.is_resource_index_file, gn_appman.is_resource_image_file, as_filename, as_local_filename) = 1 then
+	f_set_garbage_file(as_local_filename)
+	return 1
+end if
+
+return 0
+end function
+
+global function integer f_getresourcefile (string as_filename, ref string as_local_filename);string ls_filename, ls_local_file
+if gn_appman.ib_online_data then
+	if f_getonlinefile(as_filename, ls_local_file) = 1 then
+		as_local_filename = ls_local_file
+	//	MessageBox(as_filename, ls_local_file)
+		return 1
+	else
+		return 0
+	end if
+else
+	ls_filename = lower(as_filename)
+	as_local_filename = as_filename	
+	gn_appman.is_garbage_file_list[upperbound(gn_appman.is_garbage_file_list) + 1] = ls_filename
+	return extExtractPackageFile(gn_appman.istr_lesson_package.Package_prefix, ls_filename, 2)
+end if
+end function
+
+global function integer f_set_picture_with_cache_resource (string as_filename, ref picture as_picture);string ls_local_filename
+integer fh
+blob lblb_pic
+ls_local_filename = gn_appman.is_app_path + "\ttttmmmppp.bin"
+
+if f_getcacheresourcefile(as_filename, ls_local_filename) = 1 then
+	fh = FileOpen(ls_local_filename, StreamMode!)
+	IF fh <> -1 THEN
+		FileRead(fh, lblb_pic)
+		FileClose(fh)
+		as_picture.SetPicture(lblb_pic)
+	else
+		return 0
+	END IF
+end if
+return 1
+end function
+

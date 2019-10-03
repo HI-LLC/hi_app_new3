@@ -1,0 +1,6 @@
+$PBExportHeader$str_mt_dddw.srs
+global type str_mt_dddw from structure
+	long		handle
+	long		message_no
+end type
+

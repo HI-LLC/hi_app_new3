@@ -1,0 +1,41 @@
+$PBExportHeader$f_get_error_message.srf
+$PBExportComments$Function to retrieve error messages from EPIC error table - EPIC
+global type f_get_error_message from function_object
+end type
+
+forward prototypes
+global function string f_get_error_message (long i_error_code)
+end prototypes
+
+global function string f_get_error_message (long i_error_code);////////////////////////////////////////////////////////////////////////
+//
+//   Function : F_get_error_message
+//
+//    Purpose : This function accepts a error code and returns the error
+//              message from the epic error table. 
+//
+//
+//       Date : November 8 1994
+//
+//  Arguments : int i_error_code	 			- error codes above
+//
+//    Returns : string : Error message
+//
+//        Log :
+//
+//             DATE        WHO           WHAT
+//            ------      -----     -------------------------------------
+//					11/7			pabby		created 
+//
+//////////////////////////////////////////////////////////////////////////
+
+string 				ls_error_msg=""
+long					ll_foundrow
+
+ls_error_msg = string(i_error_code)
+ls_error_msg=ProfileString( "cran_msg.ini", "Error Messages",ls_error_msg, "Unknown")
+if ProfileString( "cran_msg.ini", "Error Messages","ShowAll", "0")='1' then MessageBox("Database Error", "Error Code - "+string(i_error_code)+"~r~n~r~n"+ls_error_msg)  
+return(ls_error_msg)
+
+end function
+

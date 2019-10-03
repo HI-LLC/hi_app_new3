@@ -1,0 +1,48 @@
+$PBExportHeader$f_center_window.srf
+global type f_center_window from function_object
+end type
+
+forward prototypes
+global subroutine f_center_window (ref window aw_window)
+end prototypes
+
+global subroutine f_center_window (ref window aw_window);Integer		li_screenheight
+Integer		li_screenwidth
+Integer		li_rc
+Integer		li_x = 1
+Integer		li_y = 1
+environment	lenv_obj
+
+//Check for a window association with this object
+If IsNull(aw_window) Or Not IsValid (aw_window) Then
+	Return 
+End If
+
+// Get environment
+If GetEnvironment (lenv_obj) = -1 Then
+	Return
+End If
+
+// Determine current screen resolution and validate
+li_screenheight = PixelsToUnits (lenv_obj.screenheight, YPixelsToUnits!)
+li_screenwidth = PixelsToUnits (lenv_obj.screenwidth, XPixelsToUnits!)
+If Not (li_screenheight > 0) or Not (li_screenwidth > 0) Then
+	Return 
+End If
+
+// Get center points
+If li_screenwidth > aw_window.Width Then
+	li_x = (li_screenwidth / 2) - (aw_window.Width / 2)
+End If
+If li_screenheight > aw_window.Height Then
+	li_y = (li_screenheight / 2) - (aw_window.Height / 2)
+End If
+
+// Center window
+li_rc = aw_window.Move (li_x, li_y)
+If li_rc <> 1 Then
+	Return 
+End If
+
+end subroutine
+

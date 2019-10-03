@@ -1,0 +1,18 @@
+$PBExportHeader$d_lesson_type.srd
+release 8;
+datawindow(units=0 timer_interval=0 color=12632256 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=88 color="12632256" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=100 color="12632256" )
+table(column=(type=number updatewhereclause=yes name=account_id dbname="account_id" )
+ column=(type=number updatewhereclause=yes name=method_cat_id dbname="method_cat_id" )
+ column=(type=char(100) updatewhereclause=yes name=method_name dbname="method_name" )
+ retrieve="    SELECT ~"method_cat_id~",   
+         ~"method_name~"   
+	FROM ~"Method~" 
+"  sort="method_cat_id A " )
+text(band=header alignment="2" text="Group Name" border="0" color="33554432" x="18" y="12" height="64" width="727" html.valueishtml="0"  name=last_name_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Note" border="0" color="33554432" x="768" y="12" height="64" width="942" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" netscapelayers="0" )

@@ -1,0 +1,26 @@
+$PBExportHeader$f_getonlinefile.srf
+global type f_getonlinefile from function_object
+end type
+
+forward prototypes
+global function integer f_getonlinefile (string as_remote_filename, ref string as_local_file_name)
+end prototypes
+
+global function integer f_getonlinefile (string as_remote_filename, ref string as_local_file_name);long ll_j
+string ls_local_filename
+ls_local_filename = ""
+for ll_j = len(as_remote_filename) to 1 step -1
+	if mid(as_remote_filename, ll_j, 1) <> "/" then
+		ls_local_filename = mid(as_remote_filename, ll_j, 1) + ls_local_filename
+	else
+		exit
+	end if
+next
+extGetBinaryFile(ls_local_filename, as_remote_filename)
+as_local_file_name = ls_local_filename
+gn_appman.is_garbage_file_list[upperbound(gn_appman.is_garbage_file_list) + 1] = ls_local_filename
+if gn_appman.ib_online_data then
+end if
+return 1
+end function
+

@@ -1,0 +1,304 @@
+integer li_row, li_row_count, li_i, li_count, li_x, li_y, li_width, li_height, li_allowed_height, li_char_ind = 0
+integer li_adjusted_height = 0, li_textsize
+string ls_process_words, ls_word_list[]
+string ls_selected_item
+long ll_x, ll_y, ll_i,ll_hwn
+integer li_dummy[], li_j, li_1st_invisible = 500
+
+li_dummy = {0, 13}	
+w_container lw_empty[]
+w_container_unscramble_word lw_tmp
+ii_current_state = ici_query_state 
+ii_char_index = 1
+ib_misspelled = false
+ii_current_try = 0
+ii_current_question_id++
+il_total_tries[ii_current_question_id]++
+//return
+SetFocus()
+if ii_current_question_id > ii_total_items then
+	ib_keyboard_only = false
+	if gnvo_is.ib_demo_is_going then
+		if gnvo_is.iw_demo_selection.classname() = "w_demo_selection" then
+			ll_x = cb_close.x + cb_close.width/2 + WorkspaceX()
+			ll_y = cb_close.y + cb_close.height/2 + WorkSpaceY()
+			ll_x = UnitsToPixels(ll_x, XUnitsToPixels!)
+			ll_y = UnitsToPixels(ll_y, YUnitsToPixels!)
+			gnvo_is.of_reset_parms()
+			gnvo_is.of_set_parms(0, 0, 0,  0, 10, 50, false, false, false, false, false, false, false, false, "", 1.0, 'Enter', true, li_dummy,0,0)
+			gnvo_is.of_set_parms(0, 0, ll_x,  ll_y, 10, 50, true, false, false, false, false, false, true, false, "", 1.0, 'Move Mouse Pointer To Close Button', false, li_dummy,0,0)
+			gnvo_is.of_set_parms(0, 0,   0,   0,  1, 2, false, false, true, true, false, false, false, false, "", 2.0, "Click Close Button", false, li_dummy,handle(gnvo_is.iw_status),1024)
+			gnvo_is.of_set_parms(0, 0, ll_x,  ll_y, 10, 50, true, false, false, false, false, false, true, false, "", 1.0, '', false, li_dummy,handle(gnvo_is.iw_status),1027) 
+			gnvo_is.ib_demo_selection_on = true
+			gnvo_is.of_set_index(1)
+			gnvo_is.start(2)
+		else
+			gnvo_is.of_reset_parms()
+			gnvo_is.of_set_parms(0, 0, 0,  0, 10, 50, false, false, false, false, false, false, false, false, "", 1.0, 'Enter', true, li_dummy,0,0)
+			gnvo_is.of_set_index(1)
+			gnvo_is.start(2)					
+		end if
+	elseif isvalid(gnvo_is.iw_demo_selection) then
+		if gnvo_is.iw_demo_selection.classname() = "w_demo_trial_selection" then
+			gnvo_is.of_reset_parms()
+			gnvo_is.of_set_parms(0, 0, 0,  0, 10, 50, false, false, false, false, false, false, false, false, "", 1.0, 'Enter', true, li_dummy,0,0)
+			gnvo_is.of_set_index(1)
+			gnvo_is.start(2)		
+		end if
+	end if
+	ii_current_state = ici_lesson_end_state  
+	timer(0.5, this)
+	MessageBox("Lesson", "End of the lesson, click Start button to restart the lesson!")
+	st_2.visible = false
+	st_3.visible = false
+	wf_update_statistic()
+	post wf_set_lesson_mode(false) // close container window
+	wf_check_batch()
+	timer(0, this)
+	return
+end if
+ip_orig_pointer = SetPointer(HourGlass!)
+if integer(is_text_ind) > 0 then // mouse input
+	ib_keyboard_only = true
+	mouse_event(32769, 1, 1, 0, 0)
+else
+	ib_keyboard_only = false
+	sle_1.visible = false
+end if	
+SetRedraw(false)		
+// close previous destination window
+li_count = upperbound(iw_dest)
+for li_i = 1 to li_count
+	if isvalid(iw_dest[li_i]) then
+		close(iw_dest[li_i])
+	end if
+next
+iw_dest = lw_empty
+// close previous source window
+li_count = upperbound(iw_source)
+for li_i = 1 to li_count
+	if isvalid(iw_source[li_i]) then
+		close(iw_source[li_i])
+	end if
+next
+iw_source = lw_empty
+li_count = len(is_text_list[ii_current_question_id])
+if li_count = 0 then 
+	MessageBox("Lesson", "Invalid word.")
+	wf_get_new_item()
+	SetRedraw(true)	
+   return
+end if
+
+string ls_word1, ls_word2, ls_whole_word, ls_mask
+integer li_word2_start
+ls_whole_word = is_text_list[ii_current_question_id]
+ls_mask = is_mask_list[ii_current_question_id]
+if ii_prompt_ind = 1 then // Hint
+	st_2.visible = true
+	st_2.width = this.width
+	st_2.x = 0
+	st_2.y = 0
+	if isvalid(gw_money_board) then
+		st_2.y = 20
+	end if
+	st_2.text = is_text_list[ii_current_question_id]
+	st_2.BringToTop = true
+	li_adjusted_height = st_2.y + st_2.height
+	if len(ls_whole_word) > 80 then
+		li_word2_start = pos(ls_whole_word, ' ', len(ls_whole_word)/2)
+		ls_word1 = left(ls_whole_word, li_word2_start)
+		ls_word2 = right(ls_whole_word, len(ls_whole_word) - li_word2_start)
+		st_3.visible = true
+		st_3.width = this.width
+		st_3.x = 0
+		st_3.y = st_2.y + st_2.height + 10
+		st_2.text = ls_word1
+		st_3.text = ls_word2
+		li_adjusted_height = li_adjusted_height + st_3.height + 10
+	else
+		st_3.visible = false
+	end if			
+else
+	st_2.visible = false
+		st_3.visible = false
+end if
+
+// open destination windows
+//li_width = integer(ProfileString(is_startupfile, "spelling_word_size", "width", "250"))
+//li_height = integer(ProfileString(is_startupfile, "spelling_word_size", "height", "230"))
+li_textsize = integer(ProfileString(is_startupfile, "spelling_word_size", "textsize", "48"))
+li_width = long(dec(li_textsize)*4)
+li_height = li_width  //long(dec(li_width)/1.21875)
+//li_width = 250
+//li_height = 230
+
+wf_make_word_list(this.width, li_width + 5, is_text_list[ii_current_question_id], ls_word_list)
+
+ls_process_words = ""
+for li_row = 1 to upperbound(ls_word_list)
+	ls_process_words = ls_process_words + ls_word_list[li_row]
+next
+gnvo_is.of_reset_parms()
+if integer(is_text_ind) < 3 then // None Dictation
+	li_allowed_height = (this.height - li_adjusted_height - this.height/20 )*5/9 
+else
+	li_allowed_height = (this.height - li_adjusted_height - this.height/20 )
+end if
+li_y = li_adjusted_height + li_allowed_height/(upperbound(ls_word_list) + 1) - (li_height/2)
+li_row_count =  upperbound(ls_word_list)
+for li_row = 1 to li_row_count
+	li_count = len(ls_word_list[li_row])
+	li_x = (this.width - (li_width + 5) * li_count - 5)/2 //- li_width/2
+	for li_i = 1 to li_count
+//		if mid(ls_word_list[li_row], li_i, 1) <> ' ' then
+			li_char_ind++
+			open(iw_dest[li_char_ind], 'w_container_unscramble_word', this)
+			lw_tmp = iw_dest[li_char_ind]
+			lw_tmp.p_1.visible = false
+			lw_tmp.visible = true
+			lw_tmp.ib_target = false	
+			lw_tmp.width = li_width
+			lw_tmp.height = li_height
+			lw_tmp.x = li_x
+			lw_tmp.y = li_y
+			lw_tmp.st_1.textsize = li_textsize
+			if len(ls_mask) = 0 then
+				lw_tmp.st_1.text = mid(ls_word_list[li_row], li_i, 1)	
+				lw_tmp.is_char = mid(ls_word_list[li_row], li_i, 1)
+				lw_tmp.st_1.visible = false
+			else // filling missing characters
+				lw_tmp.st_1.text = mid(ls_whole_word, li_char_ind, 1)	
+				lw_tmp.is_char = mid(ls_whole_word, li_char_ind, 1)
+				if lw_tmp.st_1.text = ' ' then 
+					lw_tmp.st_1.visible = true
+				else
+					lw_tmp.st_1.visible = false
+					if len(ls_mask) >= li_char_ind then lw_tmp.st_1.visible = mid(ls_mask, li_char_ind, 1) <> ' '
+				end if
+			end if
+			if lw_tmp.st_1.visible = false and li_char_ind < li_1st_invisible then
+				li_1st_invisible = li_char_ind
+			end if
+			lw_tmp.st_1.BringToTop = true	
+//		end if
+		li_x =  li_x + li_width //+ 5		
+	next
+	li_y = li_y + (li_allowed_height/(upperbound(ls_word_list) + 1))
+next
+ii_char_index = li_1st_invisible
+lw_tmp = iw_dest[li_1st_invisible]
+lw_tmp.ib_target = true	
+string ls_scrambled_word = '', ls_tmp
+for li_i = 1 to len(ls_process_words)
+	ls_tmp = mid(ls_process_words, li_i, 1)
+	if len(ls_mask) >= li_i then 
+		if mid(ls_mask, li_i, 1) = mid(ls_process_words, li_i, 1) then ls_tmp = ""
+	end if
+	ls_scrambled_word = ls_scrambled_word + ls_tmp	
+next
+ls_scrambled_word = ls_scrambled_word + is_distract_list[ii_current_question_id]
+wf_random_list(ls_scrambled_word)
+open(iw_source[1], 'w_container_unscramble_word', this)
+lw_tmp = iw_source[1]
+lw_tmp.visible = false
+if integer(is_text_ind) < 3 then // None Dictation
+//	ls_scrambled_word = ls_process_words
+	wf_random_list(ls_scrambled_word)
+	open(iw_source[1], 'w_container_unscramble_word', this)
+	lw_tmp = iw_source[1]
+	lw_tmp.visible = false
+	//if is_text_ind = '3' then // Dictate
+	//	for li_i = 1 to upperbound(lw_tmp.ioval)
+	//		lw_tmp.ioval[li_i].visible = false
+	//	next
+	//end if
+	lw_tmp.height = (this.height - li_adjusted_height - this.height/20)*4/9
+	lw_tmp.width = (lw_tmp.height * 7)/4
+	lw_tmp.y = li_adjusted_height + (this.height - li_adjusted_height - this.height/20)*5/9
+	lw_tmp.x = (this.width - lw_tmp.width)/2
+	lw_tmp.p_1.height = lw_tmp.height
+	lw_tmp.p_1.width = lw_tmp.width
+	lw_tmp.st_1.visible = false
+	lw_tmp.ib_target = false	
+	if is_picture_ind = '1' and FileExists(is_picture_list[ii_current_question_id]) then
+		lw_tmp.p_1.PictureName = is_picture_list[ii_current_question_id]
+	else
+		lw_tmp.BackColor = f_getcolor(7)
+		lw_tmp.p_1.visible = false
+	end if
+	lw_tmp.wf_draw_alpha(ls_scrambled_word, 1, 0)
+
+	lw_tmp.visible = true
+else
+	ls_scrambled_word =  'A'
+	lw_tmp.wf_draw_alpha(ls_scrambled_word, 1, 0)
+end if
+//if is_text_ind <> '3' then // Dictate
+//	lw_tmp.visible = true
+//end if
+SetRedraw(true)	
+wf_question_announcer()
+if ib_keyboard_only then 
+	sle_1.visible = true
+	sle_1.SetFocus()
+end if	
+
+
+if ii_prompt_ind = 2 then // Prompt
+	wf_set_flash_for_prompt()
+end if
+
+// demo
+integer li_tmp[]
+if gnvo_is.ib_demo_is_going then
+	for li_j = 1 to len(ls_scrambled_word)
+		li_tmp[li_j] = 0
+	next
+	for li_i = 1 to upperbound(iw_dest)
+		lw_tmp = iw_dest[li_i]
+		for li_j = 1 to len(ls_scrambled_word)
+			if lw_tmp.st_1.text = mid(ls_scrambled_word, li_j, 1) and li_tmp[li_j] = 0 then
+				exit
+			end if
+		next
+		li_tmp[li_j] = 1
+		ll_x = iw_source[1].x + iw_source[1].ioval[li_j].x + iw_source[1].ioval[li_j].width/2 + WorkspaceX()// - 80
+		ll_y = iw_source[1].y + iw_source[1].ioval[li_j].y + iw_source[1].ioval[li_j].height/2 + WorkSpaceY() //- 70 // + (dw_1.height) - 20
+		ll_x = UnitsToPixels(ll_x, XUnitsToPixels!)
+		ll_y = UnitsToPixels(ll_y, YUnitsToPixels!)
+		ls_selected_item = 'Move Mouse Pointer To Letter "' + lw_tmp.st_1.text + '"'
+		gnvo_is.of_set_parms(0, 0, ll_x,  ll_y, 10, 20, true, false, false, false, false, false, true, false, "", 1.0, ls_selected_item, false, li_dummy,0,0)
+		ls_selected_item = 'Drag Letter "' + lw_tmp.st_1.text + '"'
+		gnvo_is.of_set_parms(0, 0,   0,   0,  1, 2, false, false, true, false, false, false, false, false, "", 2.0, ls_selected_item, false, li_dummy,0,0)
+		ll_x = iw_dest[li_i].x + iw_dest[li_i].width/2 + WorkspaceX()// - 80
+		ll_y = iw_dest[li_i].y + iw_dest[li_i].height/2 + WorkSpaceY() //- 70 // + (dw_1.height) - 20
+		ll_x = UnitsToPixels(ll_x, XUnitsToPixels!)
+		ll_y = UnitsToPixels(ll_y, YUnitsToPixels!)
+		gnvo_is.of_set_parms(0, 0, ll_x,  ll_y, 10, 20, true, false, false, false, false, false, true, false, "", 1.0, '', false, li_dummy,0,0)
+		ls_selected_item = 'Drop Letter "' + lw_tmp.st_1.text + '"'
+		gnvo_is.of_set_parms(0, 0,   0,   0,  1, 2, false, false, false, true, false, false, false, false, "", 2.0, ls_selected_item, false, li_dummy,0,0)
+	next
+	li_dummy = {0, 13}	
+	gnvo_is.of_set_parms(0, 0,   0,   0,  1, 2, false, false, false, false, false, false, false, false, "", 2.0, "", true, li_dummy,0,0)
+	gnvo_is.of_set_index(1)
+	gnvo_is.start(3)
+end if	
+
+str_msg msg
+for li_i = 1 to upperbound(iw_source)
+	ll_hwn = handle(iw_source[li_i])
+	do while remove_message(msg, ll_hwn, 0, 0) > 0 
+	loop
+next
+for li_i = 1 to upperbound(iw_dest)
+	ll_hwn = handle(iw_dest[li_i])
+	do while remove_message(msg, ll_hwn, 0, 0) > 0 
+	loop
+next
+ll_hwn = handle(this)
+do while remove_message(msg, ll_hwn, 	0, 0) > 0 
+loop
+//Sleeping(4000)
+//
+//post MessageBox("wf_get_new_item", "END")

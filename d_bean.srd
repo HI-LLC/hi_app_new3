@@ -1,0 +1,21 @@
+$PBExportHeader$d_bean.srd
+release 7;
+datawindow(units=0 timer_interval=0 color=79741120 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=84 color="79741120" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=96 color="536870912" )
+table(column=(type=decimal(0) update=yes updatewhereclause=yes key=yes identity=yes name=bean_id dbname="bean.bean_id" )
+ column=(type=char(80) update=yes updatewhereclause=yes name=description dbname="bean.description" )
+ column=(type=char(50) update=yes updatewhereclause=yes name=bitmap_file dbname="bean.bitmap_file" )
+ column=(type=char(50) update=yes updatewhereclause=yes name=wave_file dbname="bean.wave_file" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"bean~" ) COLUMN(NAME=~"bean.bean_id~") COLUMN(NAME=~"bean.description~") COLUMN(NAME=~"bean.bitmap_file~") COLUMN(NAME=~"bean.wave_file~")) " update="bean" updatewhere=1 updatekeyinplace=no )
+text(band=header alignment="2" text="Description" border="0" color="0" x="5" y="4" height="64" width="923"  name=description_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=10 border="5" color="0" x="5" y="4" height="76" width="923" format="[general]"  name=description edit.limit=80 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=3 alignment="0" tabsequence=20 border="5" color="0" x="951" y="4" height="76" width="736" format="[general]"  name=bitmap_file dddw.name=dddw_bitmap_file dddw.displaycolumn=filename dddw.datacolumn=filename dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=yes dddw.case=any dddw.vscrollbar=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+text(band=header alignment="2" text="Bitmap File" border="0" color="0" x="946" y="4" height="64" width="736"  name=bitmap_file_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=30 border="5" color="0" x="1705" y="4" height="76" width="736" format="[general]"  name=wave_file dddw.name=dddw_wave_file dddw.displaycolumn=filename dddw.datacolumn=filename dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=yes dddw.case=any dddw.vscrollbar=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+text(band=header alignment="2" text="Wave File" border="0" color="0" x="1705" y="4" height="64" width="736"  name=wave_file_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )
+ 

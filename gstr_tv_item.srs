@@ -1,0 +1,6 @@
+$PBExportHeader$gstr_tv_item.srs
+global type gstr_tv_item from structure
+	long		data_id
+	string	description
+end type
+

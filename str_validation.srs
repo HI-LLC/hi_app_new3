@@ -1,0 +1,8 @@
+$PBExportHeader$str_validation.srs
+global type str_validation from structure
+	string		data_column
+	string		display_column
+	integer		required
+	integer		validation_type
+end type
+

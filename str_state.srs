@@ -1,0 +1,6 @@
+$PBExportHeader$str_state.srs
+global type str_state from structure
+	integer		current
+	integer		previous
+end type
+

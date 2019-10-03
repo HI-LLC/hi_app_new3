@@ -1,0 +1,25 @@
+$PBExportHeader$f_filter_double_char.srf
+global type f_filter_double_char from function_object
+end type
+
+forward prototypes
+global subroutine f_filter_double_char (string as_double_char, ref string as_string)
+end prototypes
+
+global subroutine f_filter_double_char (string as_double_char, ref string as_string);string ls_tmp, ls_first, ls_second
+integer li_i, li_len
+li_len = len(as_string)
+ls_first = mid(as_string, 1, 1)
+ls_tmp = ls_first
+for li_i = 2 to li_len
+	ls_second = mid(as_string, li_i, 1)
+	if not (ls_first = ls_second and ls_first = as_double_char) then
+		ls_tmp = ls_tmp + ls_second
+	end if
+	ls_first = ls_second
+next 
+
+as_string = ls_tmp
+	
+end subroutine
+

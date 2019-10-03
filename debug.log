@@ -1,0 +1,72 @@
+[0107/105327.450:ERROR:tcp_socket_win.cc(335)] bind() returned an error: Only one usage of each socket address (protocol/network address/port) is normally permitted. (0x2740)
+[0107/105327.451:ERROR:devtools_http_handler.cc(249)] Cannot start http server for devtools. Stop devtools.
+[0107/105327.491:ERROR:cache_util_win.cc(20)] Unable to move the cache: 5
+[0107/105327.491:ERROR:cache_util.cc(134)] Unable to move cache folder GPUCache to old_GPUCache_000
+[0107/105327.491:ERROR:disk_cache.cc(169)] Unable to create cache
+[0107/105327.491:ERROR:shader_disk_cache.cc(601)] Shader Cache Creation failed: -2
+[0108/102339.110:ERROR:tcp_socket_win.cc(335)] bind() returned an error: Only one usage of each socket address (protocol/network address/port) is normally permitted. (0x2740)
+[0108/102339.112:ERROR:devtools_http_handler.cc(249)] Cannot start http server for devtools. Stop devtools.
+[0108/103941.103:ERROR:tcp_socket_win.cc(335)] bind() returned an error: Only one usage of each socket address (protocol/network address/port) is normally permitted. (0x2740)
+[0108/103941.104:ERROR:devtools_http_handler.cc(249)] Cannot start http server for devtools. Stop devtools.
+[0108/104031.832:ERROR:tcp_socket_win.cc(335)] bind() returned an error: Only one usage of each socket address (protocol/network address/port) is normally permitted. (0x2740)
+[0108/104031.833:ERROR:devtools_http_handler.cc(249)] Cannot start http server for devtools. Stop devtools.
+[0108/104150.644:ERROR:tcp_socket_win.cc(335)] bind() returned an error: Only one usage of each socket address (protocol/network address/port) is normally permitted. (0x2740)
+[0108/104150.645:ERROR:devtools_http_handler.cc(249)] Cannot start http server for devtools. Stop devtools.
+[0108/104628.022:ERROR:tcp_socket_win.cc(335)] bind() returned an error: Only one usage of each socket address (protocol/network address/port) is normally permitted. (0x2740)
+[0108/104628.023:ERROR:devtools_http_handler.cc(249)] Cannot start http server for devtools. Stop devtools.
+[0108/104804.154:ERROR:tcp_socket_win.cc(335)] bind() returned an error: Only one usage of each socket address (protocol/network address/port) is normally permitted. (0x2740)
+[0108/104804.155:ERROR:devtools_http_handler.cc(249)] Cannot start http server for devtools. Stop devtools.
+[0108/105009.669:ERROR:tcp_socket_win.cc(335)] bind() returned an error: Only one usage of each socket address (protocol/network address/port) is normally permitted. (0x2740)
+[0108/105009.670:ERROR:devtools_http_handler.cc(249)] Cannot start http server for devtools. Stop devtools.
+[0108/105011.337:INFO:CONSOLE(1)] "Refreshing HTML about:blank ...", source: about:blank (1)
+[0108/105139.781:ERROR:tcp_socket_win.cc(335)] bind() returned an error: Only one usage of each socket address (protocol/network address/port) is normally permitted. (0x2740)
+[0108/105139.781:ERROR:devtools_http_handler.cc(249)] Cannot start http server for devtools. Stop devtools.
+[0108/105141.578:INFO:CONSOLE(1)] "Refreshing HTML about:blank ...", source: about:blank (1)
+[0108/105201.481:ERROR:tcp_socket_win.cc(335)] bind() returned an error: Only one usage of each socket address (protocol/network address/port) is normally permitted. (0x2740)
+[0108/105201.482:ERROR:devtools_http_handler.cc(249)] Cannot start http server for devtools. Stop devtools.
+[0108/105203.005:INFO:CONSOLE(1)] "Refreshing HTML about:blank ...", source: about:blank (1)
+[0108/105220.269:ERROR:tcp_socket_win.cc(335)] bind() returned an error: Only one usage of each socket address (protocol/network address/port) is normally permitted. (0x2740)
+[0108/105220.269:ERROR:devtools_http_handler.cc(249)] Cannot start http server for devtools. Stop devtools.
+[0108/105222.175:INFO:CONSOLE(1)] "Refreshing HTML about:blank ...", source: about:blank (1)
+[0108/105348.574:ERROR:tcp_socket_win.cc(335)] bind() returned an error: Only one usage of each socket address (protocol/network address/port) is normally permitted. (0x2740)
+[0108/105348.574:ERROR:devtools_http_handler.cc(249)] Cannot start http server for devtools. Stop devtools.
+[0108/105440.111:ERROR:tcp_socket_win.cc(335)] bind() returned an error: Only one usage of each socket address (protocol/network address/port) is normally permitted. (0x2740)
+[0108/105440.113:ERROR:devtools_http_handler.cc(249)] Cannot start http server for devtools. Stop devtools.
+[0108/112549.368:ERROR:tcp_socket_win.cc(335)] bind() returned an error: Only one usage of each socket address (protocol/network address/port) is normally permitted. (0x2740)
+[0108/112549.369:ERROR:devtools_http_handler.cc(249)] Cannot start http server for devtools. Stop devtools.
+[0108/113008.503:ERROR:tcp_socket_win.cc(335)] bind() returned an error: Only one usage of each socket address (protocol/network address/port) is normally permitted. (0x2740)
+[0108/113008.503:ERROR:devtools_http_handler.cc(249)] Cannot start http server for devtools. Stop devtools.
+[0108/122809.456:WARNING:dns_config_service_win.cc(669)] Failed to read DnsConfig.
+[0108/122811.824:WARNING:dns_config_service_win.cc(669)] Failed to read DnsConfig.
+[0108/122811.833:WARNING:dns_config_service_win.cc(669)] Failed to read DnsConfig.
+[0108/122814.460:WARNING:dns_config_service_win.cc(669)] Failed to read DnsConfig.
+[0108/122816.828:WARNING:dns_config_service_win.cc(669)] Failed to read DnsConfig.
+[0108/122816.836:WARNING:dns_config_service_win.cc(669)] Failed to read DnsConfig.
+[0108/122819.469:WARNING:dns_config_service_win.cc(669)] Failed to read DnsConfig.
+[0108/215452.988:WARNING:dns_config_service_win.cc(669)] Failed to read DnsConfig.
+[0108/215453.033:WARNING:dns_config_service_win.cc(669)] Failed to read DnsConfig.
+[0108/215542.065:WARNING:dns_config_service_win.cc(669)] Failed to read DnsConfig.
+[0108/215542.073:WARNING:dns_config_service_win.cc(669)] Failed to read DnsConfig.
+[0108/223910.624:ERROR:tcp_socket_win.cc(335)] bind() returned an error: Only one usage of each socket address (protocol/network address/port) is normally permitted. (0x2740)
+[0108/223910.625:ERROR:devtools_http_handler.cc(249)] Cannot start http server for devtools. Stop devtools.
+[0108/223920.746:ERROR:tcp_socket_win.cc(335)] bind() returned an error: Only one usage of each socket address (protocol/network address/port) is normally permitted. (0x2740)
+[0108/223920.746:ERROR:devtools_http_handler.cc(249)] Cannot start http server for devtools. Stop devtools.
+[0108/223935.733:ERROR:tcp_socket_win.cc(335)] bind() returned an error: Only one usage of each socket address (protocol/network address/port) is normally permitted. (0x2740)
+[0108/223935.734:ERROR:devtools_http_handler.cc(249)] Cannot start http server for devtools. Stop devtools.
+[0108/223940.398:ERROR:cache_util_win.cc(20)] Unable to move the cache: 5
+[0108/223940.399:ERROR:cache_util.cc(134)] Unable to move cache folder C:\Users\hzhang\OneDrive - Health Interactive(1)\PowerBuilder2017\MyCache\GPUCache to C:\Users\hzhang\OneDrive - Health Interactive(1)\PowerBuilder2017\MyCache\old_GPUCache_000
+[0108/223940.399:ERROR:disk_cache.cc(169)] Unable to create cache
+[0108/223940.399:ERROR:shader_disk_cache.cc(601)] Shader Cache Creation failed: -2
+[0108/223943.634:WARNING:value_store_frontend.cc(42)] Reading mhjfbmdgcfjbbpaeojofohoefgiehjai.alarms from  failed: IO error: .../LOCK: No further details. (ChromeMethodBFE: 15::LockFile::1)
+[0108/224007.573:ERROR:tcp_socket_win.cc(335)] bind() returned an error: Only one usage of each socket address (protocol/network address/port) is normally permitted. (0x2740)
+[0108/224007.574:ERROR:devtools_http_handler.cc(249)] Cannot start http server for devtools. Stop devtools.
+[0108/224516.262:ERROR:tcp_socket_win.cc(335)] bind() returned an error: Only one usage of each socket address (protocol/network address/port) is normally permitted. (0x2740)
+[0108/224516.262:ERROR:devtools_http_handler.cc(249)] Cannot start http server for devtools. Stop devtools.
+[0108/225215.734:ERROR:tcp_socket_win.cc(335)] bind() returned an error: Only one usage of each socket address (protocol/network address/port) is normally permitted. (0x2740)
+[0108/225215.735:ERROR:devtools_http_handler.cc(249)] Cannot start http server for devtools. Stop devtools.
+[0108/225420.849:ERROR:tcp_socket_win.cc(335)] bind() returned an error: Only one usage of each socket address (protocol/network address/port) is normally permitted. (0x2740)
+[0108/225420.849:ERROR:devtools_http_handler.cc(249)] Cannot start http server for devtools. Stop devtools.
+[0108/225449.002:ERROR:tcp_socket_win.cc(335)] bind() returned an error: Only one usage of each socket address (protocol/network address/port) is normally permitted. (0x2740)
+[0108/225449.003:ERROR:devtools_http_handler.cc(249)] Cannot start http server for devtools. Stop devtools.
+[0108/230728.559:ERROR:tcp_socket_win.cc(335)] bind() returned an error: Only one usage of each socket address (protocol/network address/port) is normally permitted. (0x2740)
+[0108/230728.561:ERROR:devtools_http_handler.cc(249)] Cannot start http server for devtools. Stop devtools.

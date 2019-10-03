@@ -1,0 +1,21 @@
+$PBExportHeader$gf_get_parentwindow.srf
+global type gf_get_parentwindow from function_object
+end type
+
+forward prototypes
+global function window gf_get_parentwindow (powerobject po)
+end prototypes
+
+global function window gf_get_parentwindow (powerobject po);window w
+
+if po.TypeOf() <> window! then
+	w=gf_get_parentwindow(po.GetParent())
+else
+	w=po
+end if
+
+return w
+
+
+end function
+

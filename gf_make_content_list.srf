@@ -1,0 +1,22 @@
+$PBExportHeader$gf_make_content_list.srf
+global type gf_make_content_list from function_object
+end type
+
+forward prototypes
+global subroutine gf_make_content_list (string as_input, ref string as_output[])
+end prototypes
+
+global subroutine gf_make_content_list (string as_input, ref string as_output[]);integer li_i = 1, li_pos
+string ls_tmp
+
+ls_tmp = trim(as_input)
+li_pos = pos(ls_tmp, ' ')
+do while li_pos > 0
+	as_output[li_i] = left(ls_tmp, li_pos - 1)
+	ls_tmp = trim(right(ls_tmp, len(ls_tmp) - li_pos))
+	li_pos = pos(ls_tmp, ' ')
+	li_i++
+loop
+as_output[li_i] = trim(ls_tmp)
+end subroutine
+

@@ -1,0 +1,14 @@
+$PBExportHeader$f_log_error.srf
+global type f_log_error from function_object
+end type
+
+forward prototypes
+global subroutine f_log_error (string as_table_name, long al_sqlcode, long al_sqldbcode, string as_sqldberrtext)
+end prototypes
+
+global subroutine f_log_error (string as_table_name, long al_sqlcode, long al_sqldbcode, string as_sqldberrtext);rollback;
+insert into error_log(table_name, sqlcacode, sqldbcode, sqldberrtext)
+values(:as_table_name, :al_sqlcode, :al_sqldbcode, :as_sqldberrtext);
+commit;
+end subroutine
+

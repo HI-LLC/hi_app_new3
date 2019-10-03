@@ -1,0 +1,22 @@
+$PBExportHeader$dddw_lesson.srd
+release 7;
+datawindow(units=0 timer_interval=0 color=79741120 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=84 color="536870912" )
+table(column=(type=char(50) updatewhereclause=yes name=description dbname="lesson.description" )
+ column=(type=decimal(0) update=yes updatewhereclause=yes key=yes identity=yes name=lesson_id dbname="lesson.lesson_id" )
+ column=(type=char(2) updatewhereclause=yes name=lesson_type dbname="lesson.lesson_type" )
+ column=(type=decimal(0) updatewhereclause=yes name=method_id dbname="lesson.method_id" )
+ retrieve="  SELECT ~"lesson~".~"description~",   
+         ~"lesson~".~"lesson_id~",
+         ~"lesson~".~"lesson_type~",
+			~"lesson~".~"method_id~"
+    FROM ~"lesson~"  
+   WHERE ~"lesson~".~"student_id~" = :an_student_id and
+			~"lesson~".~"active_ind~" = '1'
+ORDER BY ~"lesson~".~"description~" ASC   
+" update="lesson" updatewhere=0 updatekeyinplace=no filter=" method_id =2" arguments=(("an_student_id", number))  sort="description A " )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="5" y="4" height="64" width="965" format="[general]"  name=description edit.limit=50 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )

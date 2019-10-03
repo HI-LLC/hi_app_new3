@@ -1,0 +1,6 @@
+$PBExportHeader$str_size.srs
+global type str_size from structure
+	long		cx
+	long		cy
+end type
+
